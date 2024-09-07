@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
+  final PageController _pageController = PageController(initialPage: 0);
+
+  OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +17,7 @@ class OnBoardingScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: OnBoardingAnimation(
-          controller: PageController(
-              initialPage: 0,
-              keepPage: false,
-              onDetach: (ScrollPosition scrollPosition) {
-                debugPrint('${scrollPosition.allowImplicitScrolling} Detach');
-                scrollPosition.debugLabel;
-              },
-              onAttach: (ScrollPosition scrollPosition) {
-                debugPrint('${scrollPosition.allowImplicitScrolling} Attach');
-              }),
+          controller: _pageController,
           pages: [
             _GetCardsContent(
               image: AppImages.onBoardingOne,
@@ -39,6 +32,10 @@ class OnBoardingScreen extends StatelessWidget {
               skipButtonVisibility: true,
               subtitle: OnBoardingScreenText.pageOneSubtitle,
               backButtonVisibility: false,
+              onNext: () => _pageController.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut),
+              onSkip: () => _pageController.jumpToPage(2),
             ),
             _GetCardsContent(
               image: AppImages.onBoardingOne,
@@ -53,6 +50,13 @@ class OnBoardingScreen extends StatelessWidget {
               skipButtonVisibility: true,
               subtitle: OnBoardingScreenText.pageTwoSubtitle,
               backButtonVisibility: true,
+              onNext: () => _pageController.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut),
+              onBack: () => _pageController.previousPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut),
+              onSkip: () => _pageController.jumpToPage(2),
             ),
             _GetCardsContent(
               image: AppImages.onBoardingOne,
@@ -68,6 +72,9 @@ class OnBoardingScreen extends StatelessWidget {
               skipButtonVisibility: false,
               subtitle: OnBoardingScreenText.pageThreeSubtitle,
               backButtonVisibility: true,
+              onBack: () => _pageController.previousPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut),
             ),
           ],
           indicatorDotHeight: 7.0,
@@ -91,6 +98,9 @@ class _GetCardsContent extends StatelessWidget {
   final Widget title;
   final bool backButtonVisibility;
   final bool skipButtonVisibility;
+  final VoidCallback? onNext;
+  final VoidCallback? onBack;
+  final VoidCallback? onSkip;
 
   const _GetCardsContent({
     required this.image,
@@ -98,6 +108,9 @@ class _GetCardsContent extends StatelessWidget {
     required this.subtitle,
     required this.backButtonVisibility,
     required this.skipButtonVisibility,
+    this.onNext,
+    this.onBack,
+    this.onSkip,
   });
 
   @override
@@ -120,7 +133,7 @@ class _GetCardsContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: onSkip,
                     child: const Text(
                       'Skip',
                       style:
@@ -147,24 +160,25 @@ class _GetCardsContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Visibility(
-                    visible: backButtonVisibility,
-                    child: IconButton(
-                      onPressed: () {},
-                      style: IconButton.styleFrom(
-                          padding: const EdgeInsets.all(15),
-                          backgroundColor: AppColors.primary,
-                          side: BorderSide(color: AppColors.secondary)),
-                      icon: Icon(Icons.arrow_back,
-                          size: 25, color: AppColors.secondary),
-                    )),
+                  visible: backButtonVisibility,
+                  child: IconButton(
+                    onPressed: onBack,
+                    style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(15),
+                        backgroundColor: AppColors.primary,
+                        side: BorderSide(color: AppColors.secondary)),
+                    icon: Icon(Icons.arrow_back,
+                        size: 25, color: AppColors.secondary),
+                  ),
+                ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: onNext,
                   style: IconButton.styleFrom(
                       padding: const EdgeInsets.all(15),
                       backgroundColor: AppColors.secondary),
                   icon: Icon(Icons.arrow_forward,
                       size: 25, color: AppColors.primary),
-                )
+                ),
               ],
             ),
           ],

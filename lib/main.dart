@@ -21,13 +21,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const SplashScreen(),
       routes: {
-        '/onBoardingScreen': (context) => const OnBoardingScreen(),
+        '/onBoardingScreen': (context) => OnBoardingScreen(),
       },
     );
   }
 }
-
-
-
-
-
