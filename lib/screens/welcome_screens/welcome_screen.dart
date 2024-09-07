@@ -18,29 +18,41 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              const SizedBox(height: 6),
               SizedBox(
-                height: screenHeight * .4,
+                height: screenHeight * .45,
                 child: Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        width: screenWidth / 2,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.black,
-                          image: DecorationImage(
-                              image: AssetImage(AppImages.welcomeScreenImgOne),
-                              fit: BoxFit.fill),
+                      child: Stack(alignment: Alignment.bottomLeft, children: [
+                        Container(
+                          width: screenWidth / 2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.black,
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(AppImages.welcomeScreenImgOne),
+                                fit: BoxFit.fill),
+                          ),
                         ),
-                      ),
+                        const Text(
+                          '⁎',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 100,
+                          ),
+                        )
+                      ]),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
+                            flex: 1,
                             child: Container(
                               width: screenWidth / 2,
                               decoration: BoxDecoration(
@@ -53,42 +65,47 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: CircleAvatar(
-                                radius: screenWidth / 2,
-                                backgroundColor: Colors.black,
-                                backgroundImage: AssetImage(
-                                    AppImages.welcomeScreenImgThree)),
-                          ),
+                          const SizedBox(height: 5),
+                          CircleAvatar(
+                              radius: (screenWidth / 2) * .4,
+                              backgroundColor: Colors.black,
+                              backgroundImage:
+                                  AssetImage(AppImages.welcomeScreenImgThree)),
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: 'The ',
-                    style: TextStyle(
-                      color: AppColors.tertiary,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: AppTexts.appName,
-                        style: TextStyle(color: AppColors.secondary),
-                      ),
-                      TextSpan(
-                        text: WelcomeScreenText.title,
-                        style: TextStyle(color: AppColors.tertiary),
-                      ),
-                    ],
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: AppTexts.the,
+                  style: TextStyle(
+                    color: AppColors.tertiary,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
                   ),
+                  children: [
+                    TextSpan(
+                      text: AppTexts.appName,
+                      style: TextStyle(color: AppColors.secondary),
+                    ),
+                    TextSpan(
+                      text: WelcomeScreenText.title,
+                      style: TextStyle(color: AppColors.tertiary),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
+              Text(
+                WelcomeScreenText.subtitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.textColorSubtitles,
+                  fontSize: 20,
+                ),
+              ),
               Row(
                 children: [
                   Expanded(
@@ -99,7 +116,7 @@ class WelcomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 15),
                       ),
                       child: Text(
-                        'Let\'s Get Started',
+                        WelcomeScreenText.buttonText,
                         style: TextStyle(
                           color: AppColors.primary,
                           fontSize: 22,
@@ -111,14 +128,14 @@ class WelcomeScreen extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: AppTexts.dontHaveAAcc,
+                  text: AppTexts.alreadyHaveAAcc,
                   style: TextStyle(
                     color: AppColors.tertiary,
                     fontSize: 16,
                   ),
                   children: [
                     TextSpan(
-                      text: ' Sign Up',
+                      text: AppTexts.singIn,
                       style: TextStyle(
                         color: AppColors.secondary,
                         fontSize: 16,
