@@ -10,57 +10,60 @@ class WelcomeScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              height: screenHeight * .7,
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 400,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.black,
-                        image: DecorationImage(
-                            image: AssetImage(AppImages.welcomeScreenImgOne),
-                            fit: BoxFit.cover),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              SizedBox(
+                height: screenHeight * .5,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: screenWidth / 2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black,
+                          image: DecorationImage(
+                              image: AssetImage(AppImages.welcomeScreenImgOne),
+                              fit: BoxFit.fill),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 400,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.black,
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(AppImages.welcomeScreenImgOne),
-                                fit: BoxFit.cover),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: screenWidth / 2,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.black,
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        AppImages.welcomeScreenImgTwo),
+                                    fit: BoxFit.fill),
+                              ),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: CircleAvatar(
-                              radius: 50,
-                              backgroundImage:
-                                  AssetImage(AppImages.welcomeScreenImgOne)),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          Expanded(
+                            child: CircleAvatar(
+                                radius: screenWidth / 2,
+                                backgroundColor: Colors.black,
+                                backgroundImage: AssetImage(
+                                    AppImages.welcomeScreenImgThree)),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
