@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   another_flutter_splash_screen: ^1.2.1
   flutter_onboarding_slider: ^1.0.11
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
