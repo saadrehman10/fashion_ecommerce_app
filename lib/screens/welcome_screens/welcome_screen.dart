@@ -132,7 +132,10 @@ class WelcomeScreen extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, '/SignInScreen');
+                        },
                     ),
                   ],
                 ),
