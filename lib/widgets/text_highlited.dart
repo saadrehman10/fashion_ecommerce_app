@@ -27,7 +27,6 @@ class TextHighted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(_totalText.toString());
     return RichText(
         textAlign: textAlign!,
         text: TextSpan(

@@ -15,7 +15,16 @@ class OnBoardingScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: OnBoardingAnimation(
-          controller: PageController(initialPage: 0),
+          controller: PageController(
+              initialPage: 0,
+              keepPage: false,
+              onDetach: (ScrollPosition scrollPosition) {
+                debugPrint('${scrollPosition.allowImplicitScrolling} Detach');
+                scrollPosition.debugLabel;
+              },
+              onAttach: (ScrollPosition scrollPosition) {
+                debugPrint('${scrollPosition.allowImplicitScrolling} Attach');
+              }),
           pages: [
             _GetCardsContent(
               image: AppImages.onBoardingOne,
