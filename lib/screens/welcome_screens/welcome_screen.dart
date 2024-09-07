@@ -82,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
                 text: WelcomeScreenText.title,
                 highlightColor: AppColors.secondary,
                 textToHighlight: WelcomeScreenText.hightedWords,
-                fontSize: 30,
+                fontSize: 27,
                 normalTextColor: AppColors.tertiary,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.center,

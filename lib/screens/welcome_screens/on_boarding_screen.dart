@@ -27,6 +27,7 @@ class OnBoardingScreen extends StatelessWidget {
                 normalTextColor: AppColors.tertiary,
                 textAlign: TextAlign.center,
               ),
+              skipButtonVisibility: true,
               subtitle: OnBoardingScreenText.pageOneSubtitle,
               backButtonVisibility: false,
             ),
@@ -40,6 +41,7 @@ class OnBoardingScreen extends StatelessWidget {
                 normalTextColor: AppColors.tertiary,
                 textAlign: TextAlign.center,
               ),
+              skipButtonVisibility: true,
               subtitle: OnBoardingScreenText.pageTwoSubtitle,
               backButtonVisibility: true,
             ),
@@ -54,6 +56,7 @@ class OnBoardingScreen extends StatelessWidget {
                 normalTextColor: AppColors.tertiary,
                 textAlign: TextAlign.center,
               ),
+              skipButtonVisibility: false,
               subtitle: OnBoardingScreenText.pageThreeSubtitle,
               backButtonVisibility: true,
             ),
@@ -78,12 +81,14 @@ class _GetCardsContent extends StatelessWidget {
   final String image, subtitle;
   final Widget title;
   final bool backButtonVisibility;
+  final bool skipButtonVisibility;
 
   const _GetCardsContent({
     required this.image,
     required this.title,
     required this.subtitle,
     required this.backButtonVisibility,
+    required this.skipButtonVisibility,
   });
 
   @override
@@ -98,15 +103,23 @@ class _GetCardsContent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(11.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Skip'),
-                ),
-              ],
+            Visibility(
+              visible: skipButtonVisibility,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Skip',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                ],
+              ),
             ),
             ClipRRect(
               borderRadius: const BorderRadius.all(
@@ -125,21 +138,23 @@ class _GetCardsContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Visibility(
-                  visible: backButtonVisibility,
-                  child: IconButton(
-                    onPressed: () {},
-                    style: IconButton.styleFrom(
-                        backgroundColor: AppColors.secondary),
-                    icon: Icon(Icons.arrow_back,
-                        size: 40, color: AppColors.primary),
-                  ),
-                ),
+                    visible: backButtonVisibility,
+                    child: IconButton(
+                      onPressed: () {},
+                      style: IconButton.styleFrom(
+                          padding: const EdgeInsets.all(15),
+                          backgroundColor: AppColors.primary,
+                          side: BorderSide(color: AppColors.secondary)),
+                      icon: Icon(Icons.arrow_back,
+                          size: 25, color: AppColors.secondary),
+                    )),
                 IconButton(
                   onPressed: () {},
                   style: IconButton.styleFrom(
+                      padding: const EdgeInsets.all(15),
                       backgroundColor: AppColors.secondary),
                   icon: Icon(Icons.arrow_forward,
-                      size: 40, color: AppColors.primary),
+                      size: 25, color: AppColors.primary),
                 )
               ],
             ),
