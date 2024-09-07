@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/text_highlited.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -77,26 +78,14 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              RichText(
+              TextHighted(
+                text: WelcomeScreenText.title,
+                highlightColor: AppColors.secondary,
+                textToHighlight: WelcomeScreenText.hightedWords,
+                fontSize: 30,
+                normalTextColor: AppColors.tertiary,
+                fontWeight: FontWeight.bold,
                 textAlign: TextAlign.center,
-                text: TextSpan(
-                  text: AppTexts.the,
-                  style: TextStyle(
-                    color: AppColors.tertiary,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: AppTexts.appName,
-                      style: TextStyle(color: AppColors.secondary),
-                    ),
-                    TextSpan(
-                      text: WelcomeScreenText.title,
-                      style: TextStyle(color: AppColors.tertiary),
-                    ),
-                  ],
-                ),
               ),
               Text(
                 WelcomeScreenText.subtitle,
@@ -137,7 +126,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: AppTexts.singIn,
+                      text: ButtonText.singIn,
                       style: TextStyle(
                         color: AppColors.secondary,
                         fontSize: 16,

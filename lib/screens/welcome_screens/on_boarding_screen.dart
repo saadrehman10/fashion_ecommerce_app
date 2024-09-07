@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/text_highlited.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 
@@ -14,16 +15,17 @@ class OnBoardingScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: OnBoardingAnimation(
-          controller: PageController(initialPage: 1),
+          controller: PageController(initialPage: 0),
           pages: [
             _GetCardsContent(
               image: AppImages.onBoardingOne,
               title: TextHighted(
                 text: OnBoardingScreenText.pageOneTitle,
-                textToHighlight: const ['Shameless'],
+                textToHighlight: OnBoardingScreenText.titlePageOneHightedWords,
                 highlightColor: AppColors.secondary,
                 fontSize: 30,
                 normalTextColor: AppColors.tertiary,
+                textAlign: TextAlign.center,
               ),
               subtitle: OnBoardingScreenText.pageOneSubtitle,
               backButtonVisibility: false,
@@ -31,11 +33,12 @@ class OnBoardingScreen extends StatelessWidget {
             _GetCardsContent(
               image: AppImages.onBoardingOne,
               title: TextHighted(
-                text: OnBoardingScreenText.pageOneTitle,
-                textToHighlight: const ['Shameless'],
+                text: OnBoardingScreenText.pageTwoTitle,
+                textToHighlight: OnBoardingScreenText.titlePageTwoHightedWords,
                 highlightColor: AppColors.secondary,
                 fontSize: 30,
                 normalTextColor: AppColors.tertiary,
+                textAlign: TextAlign.center,
               ),
               subtitle: OnBoardingScreenText.pageTwoSubtitle,
               backButtonVisibility: true,
@@ -43,11 +46,13 @@ class OnBoardingScreen extends StatelessWidget {
             _GetCardsContent(
               image: AppImages.onBoardingOne,
               title: TextHighted(
-                text: OnBoardingScreenText.pageOneTitle,
-                textToHighlight: const ['Shameless'],
+                text: OnBoardingScreenText.pageThreeTitle,
+                textToHighlight:
+                    OnBoardingScreenText.titlePageThreeHightedWords,
                 highlightColor: AppColors.secondary,
                 fontSize: 30,
                 normalTextColor: AppColors.tertiary,
+                textAlign: TextAlign.center,
               ),
               subtitle: OnBoardingScreenText.pageThreeSubtitle,
               backButtonVisibility: true,
@@ -62,7 +67,7 @@ class OnBoardingScreen extends StatelessWidget {
           indicatorInActiveDotColor: AppColors.textColorSubtitles,
           indicatorPosition: IndicatorPosition.bottomCenter,
           indicatorSwapType: SwapType.zRotation,
-          indicatorJumpScale: 3,
+          indicatorJumpScale: 1,
         ),
       ),
     );
@@ -84,9 +89,9 @@ class _GetCardsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: const BorderRadius.all(
           Radius.circular(20.0),
         ),
       ),
@@ -95,6 +100,14 @@ class _GetCardsContent extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Skip'),
+                ),
+              ],
+            ),
             ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(20.0),
@@ -134,60 +147,5 @@ class _GetCardsContent extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-// ignore: must_be_immutable
-class TextHighted extends StatelessWidget {
-  final String text;
-  final List<String> textToHighlight;
-  final Color highlightColor;
-  final Color normalTextColor;
-  final double fontSize;
-  final TextAlign? textAlign;
-  final FontWeight? fontWeight;
-
-  TextHighted(
-      {super.key,
-      required this.text,
-      required this.textToHighlight,
-      required this.highlightColor,
-      required this.fontSize,
-      required this.normalTextColor,
-      this.textAlign = TextAlign.left,
-      this.fontWeight = FontWeight.normal}) {
-    _listed();
-  }
-
-  // ignore: empty_constructor_bodies
-  final List<String> _totalText = [];
-  void _listed() => _totalText.addAll(text.split(' '));
-
-  @override
-  Widget build(BuildContext context) {
-    debugPrint(_totalText.toString());
-    return RichText(
-        textAlign: textAlign!,
-        text: TextSpan(
-            children: List.generate(_totalText.length, (index) {
-          if (textToHighlight.contains(_totalText[index])) {
-            return TextSpan(
-                text: '${_totalText[index]} ',
-                style: TextStyle(
-                  color: highlightColor,
-                  fontSize: fontSize,
-                  fontWeight: fontWeight,
-                ));
-          } else {
-            return TextSpan(
-              text: '${_totalText[index]} ',
-              style: TextStyle(
-                color: normalTextColor,
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-              ),
-            );
-          }
-        })));
   }
 }
