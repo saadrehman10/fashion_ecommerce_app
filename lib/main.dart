@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/screens/welcome_screens/on_boarding_screen.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
+        '/SignInScreen': (context) => const SignInScreen(),
       },
     );
   }
