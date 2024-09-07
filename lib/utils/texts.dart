@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AppTexts {
   static const String appName = 'Fashion App';
   static const String dontHaveAAcc = 'Don\'t have an account?';
@@ -18,9 +16,9 @@ class WelcomeScreenText {
 
 class OnBoardingScreenText {
   //titles
-  static const String pageOneTitle = 'Shopping Experience';
-  static String get pageTwoTitle => 'WishList: Where $fashionDreams Begins';
-  static const String pageThreeTitle = '';
+  static const String pageOneTitle = 'Shameless Shopping Experience';
+  static String get pageTwoTitle => 'WishList: Where Fashion Dreams Begins';
+  static const String pageThreeTitle = 'Swift and Reliability Delivery';
   //subtitles
   static const String pageOneSubtitle =
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
@@ -28,9 +26,4 @@ class OnBoardingScreenText {
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
   static const String pageThreeSubtitle =
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
-
-  //extra words
-  static const String shameless = 'Shameless ';
-  static const String fashionDreams = 'Fashion Dreams ';
-  static const String swiftAndReliability = 'Swift and Reliability ';
 }
