@@ -1,4 +1,7 @@
+import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
+import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -11,11 +14,12 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: screenHeight * .5,
+                height: screenHeight * .4,
                 child: Row(
                   children: [
                     Expanded(
@@ -59,6 +63,69 @@ class WelcomeScreen extends StatelessWidget {
                         ],
                       ),
                     )
+                  ],
+                ),
+              ),
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: 'The ',
+                    style: TextStyle(
+                      color: AppColors.tertiary,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: AppTexts.appName,
+                        style: TextStyle(color: AppColors.secondary),
+                      ),
+                      TextSpan(
+                        text: WelcomeScreenText.title,
+                        style: TextStyle(color: AppColors.tertiary),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.secondary,
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                      ),
+                      child: Text(
+                        'Let\'s Get Started',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              RichText(
+                text: TextSpan(
+                  text: AppTexts.dontHaveAAcc,
+                  style: TextStyle(
+                    color: AppColors.tertiary,
+                    fontSize: 16,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: ' Sign Up',
+                      style: TextStyle(
+                        color: AppColors.secondary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      recognizer: TapGestureRecognizer()..onTap = () {},
+                    ),
                   ],
                 ),
               ),
