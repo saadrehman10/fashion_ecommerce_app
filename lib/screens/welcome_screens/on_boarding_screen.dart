@@ -33,7 +33,7 @@ class OnBoardingScreen extends StatelessWidget {
               subtitle: OnBoardingScreenText.pageOneSubtitle,
               backButtonVisibility: false,
               onNext: () => _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut),
               onSkip: () => _pageController.jumpToPage(2),
             ),
@@ -51,10 +51,10 @@ class OnBoardingScreen extends StatelessWidget {
               subtitle: OnBoardingScreenText.pageTwoSubtitle,
               backButtonVisibility: true,
               onNext: () => _pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut),
               onBack: () => _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut),
               onSkip: () => _pageController.jumpToPage(2),
             ),
@@ -73,8 +73,10 @@ class OnBoardingScreen extends StatelessWidget {
               subtitle: OnBoardingScreenText.pageThreeSubtitle,
               backButtonVisibility: true,
               onBack: () => _pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut),
+              onNext: () => Navigator.pushNamedAndRemoveUntil(
+                  context, '/HomeScreen', (route) => false),
             ),
           ],
           indicatorDotHeight: 7.0,
@@ -135,7 +137,7 @@ class _GetCardsContent extends StatelessWidget {
                   TextButton(
                     onPressed: onSkip,
                     child: const Text(
-                      'Skip',
+                      ButtonText.skip,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
                     ),

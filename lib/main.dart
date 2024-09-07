@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/screens/welcome_screens/on_boarding_screen.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
+        '/HomeScreen': (context) => const HomeScreen(),
       },
     );
   }
