@@ -29,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
                           width: screenWidth / 2,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: Colors.black,
+                            color: Colors.white,
                             image: DecorationImage(
                                 image:
                                     AssetImage(AppImages.welcomeScreenImgOne),
@@ -57,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
                               width: screenWidth / 2,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
-                                color: Colors.black,
+                                color: Colors.white,
                                 image: DecorationImage(
                                     image: AssetImage(
                                         AppImages.welcomeScreenImgTwo),
@@ -68,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
                           const SizedBox(height: 5),
                           CircleAvatar(
                               radius: (screenWidth / 2) * .4,
-                              backgroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               backgroundImage:
                                   AssetImage(AppImages.welcomeScreenImgThree)),
                         ],
@@ -110,7 +110,9 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/onBoardingScreen');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.secondary,
                         padding: const EdgeInsets.symmetric(vertical: 15),

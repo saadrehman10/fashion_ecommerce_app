@@ -13,3 +13,16 @@ class WelcomeScreenText {
   static const String subtitle =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 }
+
+class OnBoardingScreenText {
+  static const String pageOneTitle = '';
+  static const String pageTwoTitle = '';
+  static const String pageThreeTitle = '';
+
+  static const String pageOneSubtitle =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+  static const String pageTwoSubtitle =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+  static const String pageThreeSubtitle =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+}
