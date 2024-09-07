@@ -9,6 +9,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterSplashScreen.fadeIn(
         duration: const Duration(seconds: 2),
+        backgroundColor: Colors.white,
         nextScreen: const OnBoardingScreen(),
         childWidget: SizedBox(
           child: Image.asset('assets/images/splashScreenLogo.png'),
