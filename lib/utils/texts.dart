@@ -2,6 +2,8 @@ class AppTexts {
   static const String appName = 'Fashion App';
   static const String dontHaveAAcc = 'Don\'t have an account?';
   static const String alreadyHaveAAcc = 'Already have an account?';
+  static const String singIn = 'Sing In';
+  static const String singUp = 'Sing Up';
 }
 
 class ButtonText {
@@ -39,4 +41,8 @@ class OnBoardingScreenText {
     'Swift',
     'Reliability'
   ];
+}
+
+class SignInScreenText {
+  static const String welcomeText = 'Hi! Welcome back, you\'ve been missed';
 }
