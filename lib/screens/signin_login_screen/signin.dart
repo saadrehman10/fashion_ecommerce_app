@@ -1,7 +1,9 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -163,6 +165,17 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          otherLoginIcon(svgPath: AppSvg.apple),
+                          const SizedBox(width: 20),
+                          otherLoginIcon(svgPath: AppSvg.facebook),
+                          const SizedBox(width: 20),
+                          otherLoginIcon(svgPath: AppSvg.google),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
                       RichText(
                         text: TextSpan(
                           text: AppTexts.dontHaveAAcc,
@@ -191,6 +204,27 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget otherLoginIcon({required String svgPath}) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: AppColors.textColorSubtitles),
+          borderRadius: BorderRadius.circular(100)),
+      child: GestureDetector(
+        onTap: () {
+          debugPrint('working signin other');
+        },
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 27,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: SvgPicture.asset(svgPath),
           ),
         ),
       ),
