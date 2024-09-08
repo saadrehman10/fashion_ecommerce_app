@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fashion_ecommerce_app/apis/slider_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+  late Future<dynamic> futureData;
+
+  @override
+  void initState() {
+    super.initState();
+    futureData = SliderApi.sliderData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {});
+                        },
                         style: IconButton.styleFrom(
                             backgroundColor: AppColors.textColorSubtitles),
                         padding: const EdgeInsets.all(10),
@@ -149,14 +159,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                                 color: Colors.pink[200],
                                 borderRadius: BorderRadius.circular(20)),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Text('$itemIndex'),
-                                  ],
-                                )
-                              ],
+                            child: FutureBuilder(
+                              future: futureData,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text(snapshot.error.toString());
+                                } else if (snapshot.hasData) {
+                                  return Row(
+                                    children: [],
+                                  );
+                                } else {
+                                  return const Placeholder();
+                                }
+                              },
                             ),
                           );
                         }),
