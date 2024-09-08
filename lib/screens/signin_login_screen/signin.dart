@@ -40,7 +40,8 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
     setState(() {
-      debugPrint('login working ');
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/HomeScreen', (route) => false);
     });
   }
 
@@ -68,7 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         color: AppColors.textColorSubtitles,
                         fontSize: 20,
                       )),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 100),
                   Form(
                     key: _formKey,
                     child: Column(children: [
@@ -87,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       CustomTextFromFelid(
                         controller: _passwordController,
                         obscureText: _obscureText,
@@ -113,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 13),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -131,7 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 25),
                       Row(
                         children: [
                           Expanded(
@@ -156,7 +157,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 30),
                       Text(
                         SignInScreenText.orSingIn,
                         style: TextStyle(
@@ -164,7 +165,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           fontSize: 15,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -175,7 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           otherLoginIcon(svgPath: AppSvg.google),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 40),
                       RichText(
                         text: TextSpan(
                           text: AppTexts.dontHaveAAcc,
