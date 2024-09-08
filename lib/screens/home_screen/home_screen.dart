@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -74,13 +75,23 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        prefix: Icon(Icons.search,
-                            size: 20, color: AppColors.secondary),
+                    child: SizedBox(
+                      height: 50,
+                      child: TextField(
+                        controller: _searchController,
+                        selectionHeightStyle: BoxHeightStyle.max,
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          hintStyle: TextStyle(
+                              color: AppColors.tertiary, fontSize: 13),
+                          prefixIcon:
+                              Icon(Icons.search, color: AppColors.secondary),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
                   ),
