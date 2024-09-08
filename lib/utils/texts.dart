@@ -4,6 +4,7 @@ class AppTexts {
   static const String alreadyHaveAAcc = 'Already have an account?';
   static const String singIn = 'Sing In';
   static const String singUp = 'Sing Up';
+  static const String search = 'Search';
 }
 
 class ButtonText {

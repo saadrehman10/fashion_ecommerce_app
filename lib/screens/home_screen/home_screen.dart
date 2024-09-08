@@ -81,16 +81,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller: _searchController,
                         selectionHeightStyle: BoxHeightStyle.max,
                         decoration: InputDecoration(
-                          hintText: 'Search',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
+                            borderSide: BorderSide(
+                              color: AppColors.secondary,
+                              style: BorderStyle.solid,
+                              width: 1.5,
+                            ),
+                          ),
+                          hintText: AppTexts.search,
                           hintStyle: TextStyle(
-                              color: AppColors.tertiary, fontSize: 13),
+                              color: AppColors.tertiary, fontSize: 16),
                           prefixIcon:
                               Icon(Icons.search, color: AppColors.secondary),
                           border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                strokeAlign: 1,
+                                color: AppColors.textColorSubtitles),
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          filled: true,
-                          fillColor: Colors.white,
                         ),
                       ),
                     ),
