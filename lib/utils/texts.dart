@@ -48,3 +48,8 @@ class SignInScreenText {
   static const String forgetPassword = 'Forget Password ? ';
   static const String orSingIn = '------------ or sing in with ------------';
 }
+
+class HomeScreenText {
+  static const String location = 'Location';
+  static const String dropDownMenuItemOne = 'New York , USA';
+}
