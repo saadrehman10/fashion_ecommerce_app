@@ -46,5 +46,5 @@ class OnBoardingScreenText {
 class SignInScreenText {
   static const String welcomeText = 'Hi! Welcome back, you\'ve been missed';
   static const String forgetPassword = 'Forget Password ? ';
-  static const String orSingIn = '-------- or sing in with ---------';
+  static const String orSingIn = '------------ or sing in with ------------';
 }

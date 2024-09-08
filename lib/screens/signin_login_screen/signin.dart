@@ -155,6 +155,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         ],
                       ),
                       const SizedBox(height: 20),
+                      Text(
+                        SignInScreenText.orSingIn,
+                        style: TextStyle(
+                          color: AppColors.textColorSubtitles,
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       RichText(
                         text: TextSpan(
                           text: AppTexts.dontHaveAAcc,

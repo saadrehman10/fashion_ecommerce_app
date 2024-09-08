@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color: Colors.white,
-                            image: DecorationImage(
+                            image: const DecorationImage(
                                 image:
                                     AssetImage(AppImages.welcomeScreenImgOne),
                                 fit: BoxFit.fill),
@@ -59,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 color: Colors.white,
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: AssetImage(
                                         AppImages.welcomeScreenImgTwo),
                                     fit: BoxFit.fill),
@@ -70,8 +70,8 @@ class WelcomeScreen extends StatelessWidget {
                           CircleAvatar(
                               radius: (screenWidth / 2) * .4,
                               backgroundColor: Colors.white,
-                              backgroundImage:
-                                  AssetImage(AppImages.welcomeScreenImgThree)),
+                              backgroundImage: const AssetImage(
+                                  AppImages.welcomeScreenImgThree)),
                         ],
                       ),
                     )
