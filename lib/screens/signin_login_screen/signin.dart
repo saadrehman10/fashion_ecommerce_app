@@ -98,8 +98,11 @@ class _SignInScreenState extends State<SignInScreen> {
                               _obscureText = !_obscureText;
                             });
                           },
-                          icon: const Icon(Icons.remove_red_eye,
-                              size: 20, color: Colors.white),
+                          icon: _obscureText
+                              ? Icon(FontAwesomeIcons.eye,
+                                  size: 15, color: AppColors.secondary)
+                              : Icon(FontAwesomeIcons.eyeSlash,
+                                  size: 15, color: AppColors.secondary),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -115,24 +118,39 @@ class _SignInScreenState extends State<SignInScreen> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 0),
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                      vertical: 15, horizontal: 0),
+                                  backgroundColor: AppColors.secondary,
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     _loginFunction();
                                   }
                                 },
-                                child: const Text(
-                                  'login',
+                                child: Text(
+                                  ButtonText.singIn,
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: AppColors.primary,
                                     fontSize: 20,
                                   ),
                                 )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  debugPrint('Forget pass working');
+                                },
+                              text: SignInScreenText.forgetPassword,
+                              style: TextStyle(
+                                  fontSize: 13, color: AppColors.secondary),
+                            ),
                           ),
                         ],
                       ),
