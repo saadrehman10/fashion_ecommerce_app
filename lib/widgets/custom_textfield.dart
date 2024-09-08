@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -19,7 +20,6 @@ class CustomTextFromFelid extends StatelessWidget {
       this.suffixIcon,
       this.obscureText,
       super.key});
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -27,26 +27,26 @@ class CustomTextFromFelid extends StatelessWidget {
       obscureText: obscureText ?? false,
       keyboardType: keyboardType,
       autofocus: false,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: AppColors.tertiary),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        fillColor: Colors.white,
+        fillColor: AppColors.tertiary,
         border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        floatingLabelStyle: const TextStyle(
-          color: Colors.white,
+        floatingLabelStyle: TextStyle(
+          color: AppColors.tertiary,
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
           borderSide: BorderSide(
-            color: Colors.white,
+            color: AppColors.secondary,
             style: BorderStyle.solid,
             width: 2,
           ),
         ),
-        hintStyle: const TextStyle(
-          color: Color.fromARGB(183, 158, 158, 158),
+        hintStyle: TextStyle(
+          color: AppColors.textColorSubtitles,
         ),
         labelText: labelText,
         hintText: hintText,
