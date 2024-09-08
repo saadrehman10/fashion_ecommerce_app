@@ -13,8 +13,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -124,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(8),
                     child: CarouselSlider.builder(
                         options: CarouselOptions(
-                          height: 400,
+                          height: screenHeight * .2,
                           aspectRatio: 16 / 9,
                           viewportFraction: 0.8,
                           initialPage: 0,
@@ -139,13 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           enlargeFactor: 0.3,
                           // onPageChanged: callbackFunction,
                           scrollDirection: Axis.horizontal,
-                          
                         ),
                         itemCount: 15,
                         itemBuilder: (BuildContext context, int itemIndex,
                             int pageViewIndex) {
                           return Container(
-                            color: Colors.pink[200],
+                            decoration: BoxDecoration(
+                                color: Colors.pink[200],
+                                borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               children: [
                                 Column(
