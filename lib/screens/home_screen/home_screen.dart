@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -114,7 +115,51 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icon(Icons.tune, size: 27, color: AppColors.primary),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(width: 10),
+              SingleChildScrollView(
+                  child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: CarouselSlider.builder(
+                        options: CarouselOptions(
+                          height: 400,
+                          aspectRatio: 16 / 9,
+                          viewportFraction: 0.8,
+                          initialPage: 0,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                          autoPlayInterval: const Duration(seconds: 3),
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          pageSnapping: false,
+                          enlargeCenterPage: true,
+                          enlargeFactor: 0.3,
+                          // onPageChanged: callbackFunction,
+                          scrollDirection: Axis.horizontal,
+                          
+                        ),
+                        itemCount: 15,
+                        itemBuilder: (BuildContext context, int itemIndex,
+                            int pageViewIndex) {
+                          return Container(
+                            color: Colors.pink[200],
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text('$itemIndex'),
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              )),
             ],
           ),
         ),
