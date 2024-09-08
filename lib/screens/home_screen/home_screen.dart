@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,32 +19,40 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              const SizedBox(height: 20),
               SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           HomeScreenText.location,
                           style: TextStyle(
                               color: AppColors.textColorSubtitles,
-                              fontSize: 10),
+                              fontSize: 15),
                         ),
                         DropdownButton<String>(
+                          iconSize: 20,
+                          underline: const SizedBox.shrink(),
+                          iconEnabledColor: Colors.black,
                           borderRadius: BorderRadius.circular(20),
+                          icon: const Icon(Icons.keyboard_arrow_down,
+                              color: Colors.black),
                           items: [
                             DropdownMenuItem(
                                 child: Row(
                               children: [
                                 Icon(Icons.location_on,
-                                    size: 20, color: AppColors.secondary),
+                                    size: 18, color: AppColors.secondary),
                                 const SizedBox(width: 5),
                                 Text(HomeScreenText.dropDownMenuItemOne,
                                     style: TextStyle(
                                         color: AppColors.tertiary,
-                                        fontSize: 20)),
+                                        fontSize: 17)),
                               ],
                             ))
                           ],
@@ -55,12 +64,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {},
                         style: IconButton.styleFrom(
                             backgroundColor: AppColors.textColorSubtitles),
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(10),
                         icon: Icon(Icons.notifications,
-                            size: 25, color: AppColors.tertiary))
+                            size: 20, color: AppColors.tertiary))
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        prefix: Icon(Icons.search,
+                            size: 20, color: AppColors.secondary),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  IconButton(
+                    onPressed: () {},
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppColors.secondary,
+                    ),
+                    icon: Icon(Icons.tune, size: 27, color: AppColors.primary),
+                  ),
+                ],
+              )
             ],
           ),
         ),
