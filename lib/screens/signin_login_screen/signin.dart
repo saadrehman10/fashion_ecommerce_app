@@ -111,6 +111,24 @@ class _SignInScreenState extends State<SignInScreen> {
                           return null;
                         },
                       ),
+                      const SizedBox(height: 13),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  debugPrint('Forget pass working');
+                                },
+                              text: SignInScreenText.forgetPassword,
+                              style: TextStyle(
+                                  fontSize: 13, color: AppColors.secondary),
+                            ),
+                          ),
+                        ],
+                      ),
                       const SizedBox(height: 20),
                       Row(
                         children: [
@@ -133,24 +151,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                     fontSize: 20,
                                   ),
                                 )),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          RichText(
-                            textAlign: TextAlign.start,
-                            text: TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  debugPrint('Forget pass working');
-                                },
-                              text: SignInScreenText.forgetPassword,
-                              style: TextStyle(
-                                  fontSize: 13, color: AppColors.secondary),
-                            ),
                           ),
                         ],
                       ),
