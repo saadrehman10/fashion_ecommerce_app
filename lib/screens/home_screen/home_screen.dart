@@ -131,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 20),
               SingleChildScrollView(
+                scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
                     Container(
