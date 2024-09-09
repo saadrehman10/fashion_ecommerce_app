@@ -13,6 +13,7 @@ class ButtonText {
   static const String skip = 'Skip ';
   static const String next = 'Next ';
   static const String cart = 'Cart ';
+  static const String shopNow = 'Shop Now ';
 }
 
 class WelcomeScreenText {

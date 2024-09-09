@@ -152,12 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           // onPageChanged: callbackFunction,
                           scrollDirection: Axis.horizontal,
                         ),
-                        itemCount: 15,
+                        itemCount: 10,
                         itemBuilder: (BuildContext context, int itemIndex,
                             int pageViewIndex) {
                           return Container(
                             decoration: BoxDecoration(
-                                color: Colors.pink[200],
+                                color: AppColors.background,
                                 borderRadius: BorderRadius.circular(20)),
                             child: FutureBuilder(
                               future: futureData,
@@ -169,10 +169,55 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (snapshot.hasError) {
+                                  setState(() {
+                                    futureData = SliderApi.sliderData();
+                                  });
                                   return Text(snapshot.error.toString());
                                 } else if (snapshot.hasData) {
+                                  final data = snapshot.data!["slider"];
                                   return Row(
-                                    children: [],
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            data[itemIndex]['title'],
+                                            style: TextStyle(
+                                              color: AppColors.tertiary,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Text(
+                                            data[itemIndex]['subtitle'],
+                                            style: TextStyle(
+                                              color:
+                                                  AppColors.textColorSubtitles,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          ElevatedButton(
+                                            onPressed: () {},
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  AppColors.secondary,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                            child: Text(ButtonText.shopNow,
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: AppColors.primary)),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   );
                                 } else {
                                   return const Placeholder();
