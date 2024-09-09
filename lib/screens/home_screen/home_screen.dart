@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fashion_ecommerce_app/apis/slider_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/data.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
   late Future<dynamic> futureData;
-
   @override
   void initState() {
     super.initState();
@@ -240,6 +240,66 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           }),
                     ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(HomeScreenText.headingCategory,
+                            style: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 30,
+                                fontWeight: FontWeight.normal)),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            ButtonText.seeAll,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      height: screenHeight * .08,
+                      child: ListView.builder(
+                          itemCount: AppData.categoryIcons.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: AppColors.background,
+                                child: Icon(AppData.categoryIcons[index],
+                                    color: AppColors.secondary),
+                              ),
+                            );
+                          }),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          HomeScreenText.headingFlashSale,
+                          style: TextStyle(
+                              color: AppColors.tertiary,
+                              fontSize: 30,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        SizedBox(
+                            child: Row(
+                          children: [
+                            Text(HomeScreenText.closingIn,
+                                style: TextStyle(
+                                    color: AppColors.textColorSubtitles,
+                                    fontSize: 15)),
+                          ],
+                        ))
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -14,6 +14,7 @@ class ButtonText {
   static const String next = 'Next ';
   static const String cart = 'Cart ';
   static const String shopNow = 'Shop Now ';
+  static const String seeAll = 'See All';
 }
 
 class WelcomeScreenText {
@@ -54,4 +55,7 @@ class SignInScreenText {
 class HomeScreenText {
   static const String location = 'Location';
   static const String dropDownMenuItemOne = 'New York , USA';
+  static const String headingCategory = 'Category';
+  static const String headingFlashSale = 'Flash Sale';
+  static const String closingIn = 'Closing in';
 }
