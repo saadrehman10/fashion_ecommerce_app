@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fashion_ecommerce_app/apis/slider_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -128,107 +129,120 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 20),
               SingleChildScrollView(
-                  child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          height: screenHeight * .2,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          autoPlay: true,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          pageSnapping: false,
-                          enlargeCenterPage: true,
-                          enlargeFactor: 0.3,
-                          // onPageChanged: callbackFunction,
-                          scrollDirection: Axis.horizontal,
-                        ),
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int itemIndex,
-                            int pageViewIndex) {
-                          return Container(
-                            decoration: BoxDecoration(
-                                color: AppColors.background,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: FutureBuilder(
-                              future: futureData,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  setState(() {
-                                    futureData = SliderApi.sliderData();
-                                  });
-                                  return Text(snapshot.error.toString());
-                                } else if (snapshot.hasData) {
-                                  final data = snapshot.data!["slider"];
-                                  return Row(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            data[itemIndex]['title'],
-                                            style: TextStyle(
-                                              color: AppColors.tertiary,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Text(
-                                            data[itemIndex]['subtitle'],
-                                            style: TextStyle(
-                                              color:
-                                                  AppColors.textColorSubtitles,
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  AppColors.secondary,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      child: CarouselSlider.builder(
+                          options: CarouselOptions(
+                            height: screenHeight * .2,
+                            aspectRatio: 16 / 9,
+                            viewportFraction: 0.8,
+                            initialPage: 0,
+                            enableInfiniteScroll: true,
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 3),
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 800),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            pageSnapping: false,
+                            enlargeCenterPage: true,
+                            enlargeFactor: 0.3,
+                            // onPageChanged: callbackFunction,
+                            scrollDirection: Axis.horizontal,
+                          ),
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int itemIndex,
+                              int pageViewIndex) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                  color: AppColors.background,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: FutureBuilder(
+                                future: futureData,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    setState(() {
+                                      futureData = SliderApi.sliderData();
+                                    });
+                                    return Text(snapshot.error.toString());
+                                  } else if (snapshot.hasData) {
+                                    final data = snapshot.data!["slider"];
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              data[itemIndex]['title'],
+                                              style: TextStyle(
+                                                color: AppColors.tertiary,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            child: Text(ButtonText.shopNow,
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: AppColors.primary)),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  );
-                                } else {
-                                  return const Placeholder();
-                                }
-                              },
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              )),
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              data[itemIndex]['subtitle'],
+                                              style: TextStyle(
+                                                color: AppColors
+                                                    .textColorSubtitles,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    AppColors.secondary,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                              ),
+                                              child: Text(ButtonText.shopNow,
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color:
+                                                          AppColors.primary)),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 100,
+                                          width: 100,
+                                          child: data[itemIndex]['imgPath'] ==
+                                                  null
+                                              ? Image.asset(AppImages
+                                                  .welcomeScreenImgThree)
+                                              : Image.network(data['imgPath']),
+                                        )
+                                      ],
+                                    );
+                                  } else {
+                                    return const Placeholder();
+                                  }
+                                },
+                              ),
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
