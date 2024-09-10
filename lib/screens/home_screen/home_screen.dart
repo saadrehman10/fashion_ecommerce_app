@@ -318,7 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               rating: 4.94,
                               stock: 30,
                               title: 'Essence ',
-                              productId: 1,
+                              productId: 3,
                             );
                           }),
                     )
