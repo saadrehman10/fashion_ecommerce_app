@@ -1,21 +1,31 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
   final num discountPercentage, rating, stock;
+  final int productId;
   const ProductCard(
       {super.key,
       required this.thumbnailUrl,
       required this.discountPercentage,
       required this.rating,
       required this.stock,
-      required this.title});
+      required this.title,
+      required this.productId});
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
 
 class _ProductCardState extends State<ProductCard> {
+  Future<void> _favrouitButton({required int productId}) async {
+    final SharedPreferences _sharedPreferences =
+        await SharedPreferences.getInstance();
+    
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
