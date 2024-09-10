@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ProductApi {
-  static Future<Map<String, dynamic>> apiResponse() async {
+  static Future<Map<String, dynamic>> allProduct() async {
     final jsonResponse =
         await http.get(Uri.parse('https://dummyjson.com/products'));
     if (jsonResponse.statusCode == 200) {
