@@ -21,6 +21,7 @@ class _ProductCardState extends State<ProductCard> {
     return InkWell(
       onTap: () {},
       child: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           color: const Color.fromARGB(56, 0, 0, 0),
           borderRadius: BorderRadius.circular(8),
@@ -29,29 +30,49 @@ class _ProductCardState extends State<ProductCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Expanded(
-                    child: Image.network(
+              Expanded(
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Image.network(
                       widget.thumbnailUrl,
                       fit: BoxFit.fitWidth,
                     ),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      style: IconButton.styleFrom(
-                          padding: const EdgeInsets.all(3),
-                          backgroundColor: Colors.white.withOpacity(.8)),
-                      icon: Icon(Icons.favorite_border,
-                          size: 25, color: AppColors.secondary)),
-                ],
+                    IconButton(
+                        onPressed: () {},
+                        style: IconButton.styleFrom(
+                            padding: const EdgeInsets.all(3),
+                            backgroundColor: Colors.white.withOpacity(.8)),
+                        icon: Icon(Icons.favorite_border,
+                            size: 25, color: AppColors.secondary)),
+                  ],
+                ),
               ),
-              Text(
-                widget.title,
-                overflow: TextOverflow.fade,
-                style: const TextStyle(
-                  fontSize: 15,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.title,
+                      overflow: TextOverflow.fade,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.star, size: 20, color: Colors.yellow[800]),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${widget.rating}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),

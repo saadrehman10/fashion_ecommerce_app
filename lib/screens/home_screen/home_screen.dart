@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               discountPercentage: 7.17,
                               rating: 4.94,
                               stock: 30,
-                              title: 'Essence Mascara Lash Princess',
+                              title: 'Essence ',
                             );
                           }),
                     )
