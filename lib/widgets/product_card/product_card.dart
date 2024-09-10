@@ -22,8 +22,14 @@ class _ProductCardState extends State<ProductCard> {
   Future<void> _favrouitButton({required int productId}) async {
     final SharedPreferences _sharedPreferences =
         await SharedPreferences.getInstance();
-    
-    
+    List<String>? _wishList = _sharedPreferences.getStringList('wishList');
+    if (_wishList == null) {
+      bool successful = await _sharedPreferences
+          .setStringList('wishList', [productId.toString()]);
+      if (successful) {
+        
+      }
+    } else {}
   }
 
   @override
