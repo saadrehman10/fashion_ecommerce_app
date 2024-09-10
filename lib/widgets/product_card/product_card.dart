@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatefulWidget {
@@ -17,12 +18,11 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(56, 160, 160, 160),
+          color: const Color.fromARGB(56, 0, 0, 0),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -32,58 +32,29 @@ class _ProductCardState extends State<ProductCard> {
               Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  Image.network(
-                    widget.thumbnailUrl,
-                    fit: BoxFit.fitWidth,
+                  Expanded(
+                    child: Image.network(
+                      widget.thumbnailUrl,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(4)),
-                    padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                    child: Text((widget.discountPercentage).toString() + r' %',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
+                  IconButton(
+                      onPressed: () {},
+                      style: IconButton.styleFrom(
+                          padding: const EdgeInsets.all(3),
+                          backgroundColor: Colors.white.withOpacity(.8)),
+                      icon: Icon(Icons.favorite_border,
+                          size: 25, color: AppColors.secondary)),
                 ],
               ),
-              SizedBox(
-                height: 30,
-                child: Text(
-                  widget.title!,
-                  overflow: TextOverflow.fade,
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
+              Text(
+                widget.title,
+                overflow: TextOverflow.fade,
+                style: const TextStyle(
+                  fontSize: 15,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(widget.rating.toString(),
-                      style: const TextStyle(
-                        fontSize: 16,
-                      )),
-                  Row(
-                    children: List.generate(
-                        5,
-                        (index) => const Icon(Icons.star,
-                            color: Colors.yellow, size: 20)),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text('Item left : ${widget.stock!}',
-                  style: const TextStyle(
-                    fontSize: 13,
-                  )),
+              const SizedBox(height: 10),
             ]),
       ),
     );

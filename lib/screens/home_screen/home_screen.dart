@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
   late Future<dynamic> futureData;
+
   @override
   void initState() {
     super.initState();
@@ -302,14 +303,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))
                       ],
                     ),
-                    const ProductCard(
-                      thumbnailUrl:
-                          'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
-                      discountPercentage: 7.17,
-                      rating: 4.94,
-                      stock: 30,
-                      title: 'Essence Mascara Lash Princess',
-                    ),
+                    SizedBox(
+                      height: 500,
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2),
+                          itemCount: 1,
+                          itemBuilder: (context, index) {
+                            return const ProductCard(
+                              thumbnailUrl:
+                                  'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
+                              discountPercentage: 7.17,
+                              rating: 4.94,
+                              stock: 30,
+                              title: 'Essence Mascara Lash Princess',
+                            );
+                          }),
+                    )
                   ],
                 ),
               ],
