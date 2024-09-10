@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
@@ -19,17 +20,36 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  Future<void> _favrouitButton({required int productId}) async {
-    final SharedPreferences _sharedPreferences =
+  Future<void> _favoriteButton({required int productId}) async {
+    final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    List<String>? _wishList = _sharedPreferences.getStringList('wishList');
-    if (_wishList == null) {
-      bool successful = await _sharedPreferences
+    List<String>? wishList = sharedPreferences.getStringList('wishList');
+    debugPrint(wishList.toString());
+    if (wishList == null) {
+      bool successful = await sharedPreferences
           .setStringList('wishList', [productId.toString()]);
-      if (successful) {
-        
-      }
-    } else {}
+      successful
+          ? _showToast(message: 'Item added')
+          : _showToast(message: 'Error');
+    } else {
+      wishList.add(productId.toString());
+      bool successful =
+          await sharedPreferences.setStringList('wishList', wishList);
+      successful
+          ? _showToast(message: 'Item added')
+          : _showToast(message: 'Error');
+    }
+  }
+
+  void _showToast({required String message}) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: AppColors.background,
+        textColor: AppColors.tertiary,
+        fontSize: 20);
   }
 
   @override
@@ -55,7 +75,9 @@ class _ProductCardState extends State<ProductCard> {
                       fit: BoxFit.fitWidth,
                     ),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _favoriteButton(productId: 1);
+                        },
                         style: IconButton.styleFrom(
                             padding: const EdgeInsets.all(3),
                             backgroundColor: Colors.white.withOpacity(.8)),

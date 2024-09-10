@@ -313,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (context, index) {
                             return const ProductCard(
                               thumbnailUrl:
-                                  'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
+                                  'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png',
                               discountPercentage: 7.17,
                               rating: 4.94,
                               stock: 30,
