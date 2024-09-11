@@ -18,16 +18,31 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   final List<dynamic> slider = [
-    {"title": "Title 1", "subtitle": "Subtitle 1"},
-    {"title": "Title 2", "subtitle": "Subtitle 2"},
-    {"title": "Title 3", "subtitle": "Subtitle 3"},
-    {"title": "Title 4", "subtitle": "Subtitle 4"},
-    {"title": "Title 5", "subtitle": "Subtitle 5"},
-    {"title": "Title 6", "subtitle": "Subtitle 6"},
-    {"title": "Title 7", "subtitle": "Subtitle 7"},
-    {"title": "Title 8", "subtitle": "Subtitle 8"},
-    {"title": "Title 9", "subtitle": "Subtitle 9"},
-    {"title": "Title 10", "subtitle": "Subtitle 10"}
+    {
+      "title": "New Collection",
+      "subtitle": "Discount 50% for the first transaction",
+      "imgPath": '/assets/images/pictures/test_img.png'
+    },
+    {
+      "title": "Summer Vibes",
+      "subtitle": "Feel the heat with 30% off selected items",
+      "imgPath": '/assets/images/pictures/test_img.png'
+    },
+    {
+      "title": "Winter Wonders",
+      "subtitle": "Cozy up with our new winter collection",
+      "imgPath": '/assets/images/pictures/test_img.png'
+    },
+    {
+      "title": "Spring Refresh",
+      "subtitle": "Bring life to your wardrobe this spring",
+      "imgPath": '/assets/images/pictures/test_img.png'
+    },
+    {
+      "title": "Autumn Essentials",
+      "subtitle": "Get ready for fall with our exclusive deals",
+      "imgPath": '/assets/images/pictures/test_img.png'
+    },
   ];
 
   final Map<String, IconData> categoryIcons = {
