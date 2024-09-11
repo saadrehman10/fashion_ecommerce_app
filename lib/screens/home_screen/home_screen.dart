@@ -30,12 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
     {"title": "Title 10", "subtitle": "Subtitle 10"}
   ];
 
-  final List<IconData> categoryIcons = [
-    FontAwesomeIcons.shirt,
-    FontAwesomeIcons.vest,
-    FontAwesomeIcons.socks,
-    FontAwesomeIcons.mitten,
-  ];
+  final Map<String, IconData> categoryIcons = {
+    'Shirts': FontAwesomeIcons.shirt,
+    'Jacket': FontAwesomeIcons.vest,
+    'Socks': FontAwesomeIcons.socks,
+    'Gloves': FontAwesomeIcons.mitten,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -191,20 +191,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: List<Widget>.generate(
                       categoryIcons.length,
-                      (index) => Expanded(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            radius: 35,
-                            backgroundColor: AppColors.background,
-                            child: Icon(categoryIcons[index],
-                                color: AppColors.secondary, size: 30),
+                      (index) {
+                        return Expanded(
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: CircleAvatar(
+                                  radius: 35,
+                                  backgroundColor: AppColors.background,
+                                  child: Icon(
+                                      categoryIcons.values.toList()[index],
+                                      color: AppColors.secondary,
+                                      size: 30),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(categoryIcons.keys.toList()[index],
+                                  style: TextStyle(
+                                    color: AppColors.tertiary,
+                                    fontSize: 15,
+                                  ))
+                            ],
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
