@@ -356,14 +356,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: Container(
-        child: Row(
-          children: [
-            BottomNavigationBar(items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home)),
-              BottomNavigationBarItem(icon: Icon(Icons.home)),
-              BottomNavigationBarItem(icon: Icon(Icons.home)),
-            ])
-          ],
+        width: double.infinity,
+        child: Expanded(
+          child: Row(
+            children: [
+              Icon(Icons.home),
+              Icon(Icons.home),
+              Icon(Icons.home),
+            ],
+          ),
         ),
       ),
     );
