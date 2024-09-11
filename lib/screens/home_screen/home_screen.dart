@@ -294,7 +294,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Placeholder();
+                            return const Center(
+                              child: Text('Loading Products ... '),
+                            );
                           } else if (snapshot.hasError) {
                             return Column(
                               children: [
@@ -327,7 +329,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //  physics: NeverScrollableScrollPhysics(),
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2),
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                ),
                                 itemBuilder: (context, index) {
                                   return ProductCard(
                                       thumbnailUrl:
@@ -348,6 +353,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: Container(
+        child: Row(
+          children: [
+            BottomNavigationBar(items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home)),
+              BottomNavigationBarItem(icon: Icon(Icons.home)),
+              BottomNavigationBarItem(icon: Icon(Icons.home)),
+            ])
+          ],
         ),
       ),
     );
