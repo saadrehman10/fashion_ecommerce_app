@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
-  final num discountPercentage, rating, stock;
+  final num discountPercentage, rating, stock, price;
   final int productId;
   const ProductCard(
       {super.key,
@@ -14,7 +14,8 @@ class ProductCard extends StatefulWidget {
       required this.rating,
       required this.stock,
       required this.title,
-      required this.productId});
+      required this.productId,
+      required this.price});
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -100,63 +101,75 @@ class _ProductCardState extends State<ProductCard> {
     return InkWell(
       onTap: () {},
       child: Container(
+        margin: const EdgeInsets.all(3),
         height: double.infinity,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(56, 0, 0, 0),
-          borderRadius: BorderRadius.circular(8),
-        ),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    Image.network(
-                      widget.thumbnailUrl,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          _favoriteButton(productId: 2);
-                        },
-                        style: IconButton.styleFrom(
-                            padding: const EdgeInsets.all(3),
-                            backgroundColor: Colors.white.withOpacity(.8)),
-                        icon: Icon(_favoriteIcon,
-                            size: 25, color: AppColors.secondary)),
-                  ],
+                child: Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Center(
+                        child: Image.network(
+                          widget.thumbnailUrl,
+                          // fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            _favoriteButton(productId: widget.productId);
+                          },
+                          style: IconButton.styleFrom(
+                              padding: const EdgeInsets.all(3),
+                              backgroundColor: Colors.white.withOpacity(.8)),
+                          icon: Icon(_favoriteIcon,
+                              size: 25, color: AppColors.secondary)),
+                    ],
+                  ),
                 ),
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.title,
-                      overflow: TextOverflow.fade,
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget.title,
+                    overflow: TextOverflow.fade,
+                    style: const TextStyle(
+                      fontSize: 20,
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.star, size: 20, color: Colors.yellow[800]),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${widget.rating}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.star, size: 20, color: Colors.yellow[800]),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${widget.rating}',
+                        style: const TextStyle(
+                          fontSize: 20,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
+              Text(
+                '\$${widget.price.toString()}',
+                style: TextStyle(
+                  color: AppColors.tertiary,
+                  fontSize: 15,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ]),
       ),
     );
