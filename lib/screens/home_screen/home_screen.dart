@@ -6,6 +6,7 @@ import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:onboarding_animation/onboarding_animation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,32 +17,33 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final PageController _pageController = PageController();
 
   final List<dynamic> slider = [
     {
       "title": "New Collection",
       "subtitle": "Discount 50% for the first transaction",
-      "imgPath": '/assets/images/pictures/test_img.png'
+      "imgPath": 'assets/images/pictures/test_img.png'
     },
     {
       "title": "Summer Vibes",
       "subtitle": "Feel the heat with 30% off selected items",
-      "imgPath": '/assets/images/pictures/test_img.png'
+      "imgPath": 'assets/images/pictures/test_img.png'
     },
     {
       "title": "Winter Wonders",
       "subtitle": "Cozy up with our new winter collection",
-      "imgPath": '/assets/images/pictures/test_img.png'
+      "imgPath": 'assets/images/pictures/test_img.png'
     },
     {
       "title": "Spring Refresh",
       "subtitle": "Bring life to your wardrobe this spring",
-      "imgPath": '/assets/images/pictures/test_img.png'
+      "imgPath": 'assets/images/pictures/test_img.png'
     },
     {
       "title": "Autumn Essentials",
       "subtitle": "Get ready for fall with our exclusive deals",
-      "imgPath": '/assets/images/pictures/test_img.png'
+      "imgPath": 'assets/images/pictures/test_img.png'
     },
   ];
 
@@ -163,13 +165,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const SizedBox(height: 10),
                   SizedBox(
-                    height: screenHeight * .25,
+                    height: screenHeight * .23,
                     child: PageView.builder(
-                        itemCount: 3,
+                        controller: _pageController,
+                        itemCount: slider.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Container(
                             margin: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                             width: double.infinity,
                             height: double.maxFinite,
                             decoration: BoxDecoration(
@@ -177,12 +181,64 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: AppColors.background,
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(index.toString()),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(slider[index]['title'],
+                                          style: TextStyle(
+                                            color: AppColors.tertiary,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25,
+                                          )),
+                                      Text(slider[index]['subtitle'],
+                                          style: TextStyle(
+                                            color: AppColors.textColorSubtitles,
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 18,
+                                          )),
+                                      const SizedBox(height: 10),
+                                      ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                AppColors.secondary,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                          child: Text(
+                                            ButtonText.shopNow,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 18,
+                                            ),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                    child:
+                                        Image.asset(slider[index]['imgPath']))
                               ],
                             ),
                           );
                         }),
+                  ),
+                  SmoothPageIndicator(
+                    controller: _pageController,
+                    count: slider.length,
+                    axisDirection: Axis.horizontal,
+                    effect: JumpingDotEffect(
+                      activeDotColor: AppColors.secondary,
+                      dotHeight: 8,
+                      dotWidth: 8,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               GestureDetector(
                                 onTap: () {},
                                 child: CircleAvatar(
-                                  radius: 35,
+                                  radius: 32,
                                   backgroundColor: AppColors.background,
                                   child: Icon(
                                       categoryIcons.values.toList()[index],
