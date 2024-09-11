@@ -5,6 +5,7 @@ import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,29 +16,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  Future<dynamic> futureData() {
-    return Future.delayed(const Duration(seconds: 2), () {
-      return {
-        "slider": [
-          {"title": "Title 1", "subtitle": "Subtitle 1"},
-          {"title": "Title 2", "subtitle": "Subtitle 2"},
-          {"title": "Title 3", "subtitle": "Subtitle 3"},
-          {"title": "Title 4", "subtitle": "Subtitle 4"},
-          {"title": "Title 5", "subtitle": "Subtitle 5"},
-          {"title": "Title 6", "subtitle": "Subtitle 6"},
-          {"title": "Title 7", "subtitle": "Subtitle 7"},
-          {"title": "Title 8", "subtitle": "Subtitle 8"},
-          {"title": "Title 9", "subtitle": "Subtitle 9"},
-          {"title": "Title 10", "subtitle": "Subtitle 10"}
-        ]
-      };
-    });
-  }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final List<dynamic> slider = [
+    {"title": "Title 1", "subtitle": "Subtitle 1"},
+    {"title": "Title 2", "subtitle": "Subtitle 2"},
+    {"title": "Title 3", "subtitle": "Subtitle 3"},
+    {"title": "Title 4", "subtitle": "Subtitle 4"},
+    {"title": "Title 5", "subtitle": "Subtitle 5"},
+    {"title": "Title 6", "subtitle": "Subtitle 6"},
+    {"title": "Title 7", "subtitle": "Subtitle 7"},
+    {"title": "Title 8", "subtitle": "Subtitle 8"},
+    {"title": "Title 9", "subtitle": "Subtitle 9"},
+    {"title": "Title 10", "subtitle": "Subtitle 10"}
+  ];
+
+  final List<IconData> categoryIcons = [
+    FontAwesomeIcons.shirt,
+    FontAwesomeIcons.vest,
+    FontAwesomeIcons.socks,
+    FontAwesomeIcons.mitten,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +147,28 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 children: [
                   const SizedBox(height: 10),
+                  SizedBox(
+                    height: screenHeight * .25,
+                    child: PageView.builder(
+                        itemCount: 3,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.all(10),
+                            width: double.infinity,
+                            height: double.maxFinite,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.background,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(index.toString()),
+                              ],
+                            ),
+                          );
+                        }),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -170,15 +190,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 5),
                   Row(
                     children: List<Widget>.generate(
-                      4,
+                      categoryIcons.length,
                       (index) => Expanded(
                         child: GestureDetector(
                           onTap: () {},
                           child: CircleAvatar(
                             radius: 35,
                             backgroundColor: AppColors.background,
-                            child: Icon(Icons.abc_outlined,
-                                color: AppColors.secondary, size: 20),
+                            child: Icon(categoryIcons[index],
+                                color: AppColors.secondary, size: 30),
                           ),
                         ),
                       ),
@@ -216,27 +236,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
-
- // GridView.builder(
-  //                     shrinkWrap: true,
-  //                     physics: const NeverScrollableScrollPhysics(),
-  //                     gridDelegate:
-  //                         const SliverGridDelegateWithFixedCrossAxisCount(
-  //                       crossAxisCount: 2, //
-  //                       crossAxisSpacing: 10,
-  //                       mainAxisSpacing: 10,
-  //                     ),
-  //                     itemBuilder: (context, index) {
-  //                       return const ProductCard(
-  //                         price: 22.3,
-  //                         thumbnailUrl:
-  //                             'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png',
-  //                         discountPercentage: 7.17,
-  //                         rating: 4.94,
-  //                         stock: 30,
-  //                         title: 'Essence ',
-  //                         productId: 3,
-  //                       );
-  //                     })
-            
+// GridView.builder(
+//                     shrinkWrap: true,
+//                     physics: const NeverScrollableScrollPhysics(),
+//                     gridDelegate:
+//                         const SliverGridDelegateWithFixedCrossAxisCount(
+//                       crossAxisCount: 2, //
+//                       crossAxisSpacing: 10,
+//                       mainAxisSpacing: 10,
+//                     ),
+//                     itemBuilder: (context, index) {
+//                       return const ProductCard(
+//                         price: 22.3,
+//                         thumbnailUrl:
+//                             'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png',
+//                         discountPercentage: 7.17,
+//                         rating: 4.94,
+//                         stock: 30,
+//                         title: 'Essence ',
+//                         productId: 3,
+//                       );
+//                     })
