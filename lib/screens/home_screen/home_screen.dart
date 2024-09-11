@@ -318,6 +318,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           ))
                         ],
                       ),
+                      SizedBox(
+                        height: screenHeight,
+                         
+                        child: GridView.builder(
+                           physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2),
+                            itemBuilder: (context, index) {
+                              return const Placeholder();
+                            }),
+                      ),
                     ],
                   ),
                 ),
