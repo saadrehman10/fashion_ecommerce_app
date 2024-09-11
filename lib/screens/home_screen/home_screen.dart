@@ -161,157 +161,166 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(width: 20),
-              Column(
-                children: [
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: screenHeight * .23,
-                    child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: slider.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.all(10),
-                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            width: double.infinity,
-                            height: double.maxFinite,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.background,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(slider[index]['title'],
-                                          style: TextStyle(
-                                            color: AppColors.tertiary,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 25,
-                                          )),
-                                      Text(slider[index]['subtitle'],
-                                          style: TextStyle(
-                                            color: AppColors.textColorSubtitles,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 18,
-                                          )),
-                                      const SizedBox(height: 10),
-                                      ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                AppColors.secondary,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                          ),
-                                          child: Text(
-                                            ButtonText.shopNow,
-                                            style: TextStyle(
-                                              color: AppColors.primary,
-                                              fontSize: 18,
-                                            ),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                    child:
-                                        Image.asset(slider[index]['imgPath']))
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
-                  SmoothPageIndicator(
-                    controller: _pageController,
-                    count: slider.length,
-                    axisDirection: Axis.horizontal,
-                    effect: JumpingDotEffect(
-                      activeDotColor: AppColors.secondary,
-                      dotHeight: 8,
-                      dotWidth: 8,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Text(HomeScreenText.headingCategory,
-                          style: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 30,
-                              fontWeight: FontWeight.normal)),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          ButtonText.seeAll,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w300),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        height: screenHeight * .23,
+                        child: PageView.builder(
+                            controller: _pageController,
+                            itemCount: slider.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.all(10),
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                                width: double.infinity,
+                                height: double.maxFinite,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColors.background,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(slider[index]['title'],
+                                              style: TextStyle(
+                                                color: AppColors.tertiary,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 25,
+                                              )),
+                                          Text(slider[index]['subtitle'],
+                                              style: TextStyle(
+                                                color: AppColors
+                                                    .textColorSubtitles,
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 18,
+                                              )),
+                                          const SizedBox(height: 10),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    AppColors.secondary,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                              ),
+                                              child: Text(
+                                                ButtonText.shopNow,
+                                                style: TextStyle(
+                                                  color: AppColors.primary,
+                                                  fontSize: 18,
+                                                ),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                        child: Image.asset(
+                                            slider[index]['imgPath']))
+                                  ],
+                                ),
+                              );
+                            }),
+                      ),
+                      SmoothPageIndicator(
+                        controller: _pageController,
+                        count: slider.length,
+                        axisDirection: Axis.horizontal,
+                        effect: JumpingDotEffect(
+                          activeDotColor: AppColors.secondary,
+                          dotHeight: 8,
+                          dotWidth: 8,
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: List<Widget>.generate(
-                      categoryIcons.length,
-                      (index) {
-                        return Expanded(
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: CircleAvatar(
-                                  radius: 32,
-                                  backgroundColor: AppColors.background,
-                                  child: Icon(
-                                      categoryIcons.values.toList()[index],
-                                      color: AppColors.secondary,
-                                      size: 30),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(categoryIcons.keys.toList()[index],
-                                  style: TextStyle(
-                                    color: AppColors.tertiary,
-                                    fontSize: 15,
-                                  ))
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        HomeScreenText.headingFlashSale,
-                        style: TextStyle(
-                            color: AppColors.tertiary,
-                            fontSize: 30,
-                            fontWeight: FontWeight.normal),
-                      ),
-                      SizedBox(
-                          child: Row(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(HomeScreenText.closingIn,
+                          Text(HomeScreenText.headingCategory,
                               style: TextStyle(
-                                  color: AppColors.textColorSubtitles,
-                                  fontSize: 15)),
+                                  color: AppColors.tertiary,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.normal)),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              ButtonText.seeAll,
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w300),
+                            ),
+                          ),
                         ],
-                      ))
+                      ),
+                      const SizedBox(height: 5),
+                      Row(
+                        children: List<Widget>.generate(
+                          categoryIcons.length,
+                          (index) {
+                            return Expanded(
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: CircleAvatar(
+                                      radius: 32,
+                                      backgroundColor: AppColors.background,
+                                      child: Icon(
+                                          categoryIcons.values.toList()[index],
+                                          color: AppColors.secondary,
+                                          size: 30),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(categoryIcons.keys.toList()[index],
+                                      style: TextStyle(
+                                        color: AppColors.tertiary,
+                                        fontSize: 15,
+                                      ))
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            HomeScreenText.headingFlashSale,
+                            style: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 30,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          SizedBox(
+                              child: Row(
+                            children: [
+                              Text(HomeScreenText.closingIn,
+                                  style: TextStyle(
+                                      color: AppColors.textColorSubtitles,
+                                      fontSize: 15)),
+                            ],
+                          ))
+                        ],
+                      ),
                     ],
                   ),
-                ],
+                ),
               ),
             ],
           ),
