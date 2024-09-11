@@ -21,18 +21,32 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   IconData _favoriteIcon = Icons.favorite_border_outlined;
+
+  // Future<void> _favIcon() async {
+  //   final SharedPreferences sharedPreferences =
+  //       await SharedPreferences.getInstance();
+  //   List<String>? wishList = sharedPreferences.getStringList('wishList');
+  //   if (wishList != null && wishList.contains(widget.productId.toString())) {
+  //     setState(() {
+  //       _favoriteIcon = Icons.favorite;
+  //     });
+  //   }
+  // }
+
   // add to wishlist function
   Future<void> _favoriteButton({required int productId}) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     List<String>? wishList = sharedPreferences.getStringList('wishList');
-    sharedPreferences.setStringList('wishList', ['']);
     if (wishList == null) {
-      debugPrint('null is called');
       bool successful = await sharedPreferences
           .setStringList('wishList', [productId.toString()]);
       successful
-          ? {_showToast(message: 'Item added'), _favoriteIcon = Icons.favorite}
+          ? {
+              _showToast(message: 'Item added'),
+              _favoriteIcon = Icons.favorite,
+              setState(() {}),
+            }
           : _showToast(message: 'Error');
     } else {
       if (wishList.contains(productId.toString())) {
@@ -43,7 +57,8 @@ class _ProductCardState extends State<ProductCard> {
         successful
             ? {
                 _showToast(message: 'Item removed'),
-                _favoriteIcon = Icons.favorite_outline
+                _favoriteIcon = Icons.favorite_outline,
+                setState(() {}),
               }
             : _showToast(message: 'Error');
       } else {
@@ -55,7 +70,8 @@ class _ProductCardState extends State<ProductCard> {
         successful
             ? {
                 _showToast(message: 'Item added'),
-                _favoriteIcon = Icons.favorite
+                _favoriteIcon = Icons.favorite,
+                setState(() {}),
               }
             : _showToast(message: 'Error');
       }
@@ -72,6 +88,12 @@ class _ProductCardState extends State<ProductCard> {
         textColor: AppColors.tertiary,
         fontSize: 20);
   }
+
+  // @override
+  // void initState() {
+  //   super.initState;
+  //   _favIcon();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +119,7 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                     IconButton(
                         onPressed: () {
-                          setState(() {
-                            _favoriteButton(productId: 2);
-                          });
+                          _favoriteButton(productId: 2);
                         },
                         style: IconButton.styleFrom(
                             padding: const EdgeInsets.all(3),
