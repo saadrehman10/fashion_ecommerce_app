@@ -17,12 +17,28 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  late Future<dynamic> futureData;
+  Future<dynamic> futureData() {
+    return Future.delayed(const Duration(seconds: 2), () {
+      return {
+        "slider": [
+          {"title": "Title 1", "subtitle": "Subtitle 1"},
+          {"title": "Title 2", "subtitle": "Subtitle 2"},
+          {"title": "Title 3", "subtitle": "Subtitle 3"},
+          {"title": "Title 4", "subtitle": "Subtitle 4"},
+          {"title": "Title 5", "subtitle": "Subtitle 5"},
+          {"title": "Title 6", "subtitle": "Subtitle 6"},
+          {"title": "Title 7", "subtitle": "Subtitle 7"},
+          {"title": "Title 8", "subtitle": "Subtitle 8"},
+          {"title": "Title 9", "subtitle": "Subtitle 9"},
+          {"title": "Title 10", "subtitle": "Subtitle 10"}
+        ]
+      };
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    futureData = SliderApi.sliderData();
   }
 
   @override
@@ -164,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: AppColors.background,
                                   borderRadius: BorderRadius.circular(20)),
                               child: FutureBuilder(
-                                future: futureData,
+                                future: futureData(),
                                 builder: (BuildContext context,
                                     AsyncSnapshot<dynamic> snapshot) {
                                   if (snapshot.connectionState ==
@@ -173,9 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: CircularProgressIndicator(),
                                     );
                                   } else if (snapshot.hasError) {
-                                    setState(() {
-                                      futureData = SliderApi.sliderData();
-                                    });
+                                    // setState(() {
+                                    //   futureData = SliderApi.sliderData();
+                                    // });
                                     return Text(snapshot.error.toString());
                                   } else if (snapshot.hasData) {
                                     final data = snapshot.data!["slider"];
