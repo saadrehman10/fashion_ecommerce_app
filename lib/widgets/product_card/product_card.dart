@@ -5,14 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
-  final num discountPercentage, rating, stock, price;
+  final num rating, price;
   final int productId;
   const ProductCard(
       {super.key,
       required this.thumbnailUrl,
-      required this.discountPercentage,
       required this.rating,
-      required this.stock,
       required this.title,
       required this.productId,
       required this.price});
@@ -52,7 +50,7 @@ class _ProductCardState extends State<ProductCard> {
     } else {
       if (wishList.contains(productId.toString())) {
         wishList.remove(productId.toString());
-        debugPrint(wishList.toString());
+
         bool successful =
             await sharedPreferences.setStringList('wishList', wishList);
         successful
@@ -63,8 +61,6 @@ class _ProductCardState extends State<ProductCard> {
               }
             : _showToast(message: 'Error');
       } else {
-        debugPrint('not null is called');
-        debugPrint(wishList.toString());
         wishList.add(productId.toString());
         bool successful =
             await sharedPreferences.setStringList('wishList', wishList);
@@ -120,6 +116,13 @@ class _ProductCardState extends State<ProductCard> {
                       Center(
                         child: Image.network(
                           widget.thumbnailUrl,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            return const CircularProgressIndicator();
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(Icons.error,
+                                size: 20, color: AppColors.textColorSubtitles);
+                          },
                           // fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -139,11 +142,16 @@ class _ProductCardState extends State<ProductCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.title,
-                    overflow: TextOverflow.fade,
-                    style: const TextStyle(
-                      fontSize: 20,
+                  SizedBox(
+                    width: 100,
+                    height: 30,
+                    child: Text(
+                      widget.title,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                   Row(

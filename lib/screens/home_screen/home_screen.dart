@@ -1,12 +1,12 @@
 import 'dart:ui';
+import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
-import 'package:fashion_ecommerce_app/utils/data.dart';
-import 'package:fashion_ecommerce_app/utils/images.dart';
+import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
+import 'package:fashion_ecommerce_app/apis/data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,49 +18,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
   final PageController _pageController = PageController();
-
-  final List<dynamic> slider = [
-    {
-      "title": "New Collection",
-      "subtitle": "Discount 50% for the first transaction",
-      "imgPath": 'assets/images/pictures/test_img.png'
-    },
-    {
-      "title": "Summer Vibes",
-      "subtitle": "Feel the heat with 30% off selected items",
-      "imgPath": 'assets/images/pictures/test_img.png'
-    },
-    {
-      "title": "Winter Wonders",
-      "subtitle": "Cozy up with our new winter collection",
-      "imgPath": 'assets/images/pictures/test_img.png'
-    },
-    {
-      "title": "Spring Refresh",
-      "subtitle": "Bring life to your wardrobe this spring",
-      "imgPath": 'assets/images/pictures/test_img.png'
-    },
-    {
-      "title": "Autumn Essentials",
-      "subtitle": "Get ready for fall with our exclusive deals",
-      "imgPath": 'assets/images/pictures/test_img.png'
-    },
-  ];
-
-  final Map<String, IconData> categoryIcons = {
-    'Shirts': FontAwesomeIcons.shirt,
-    'Jacket': FontAwesomeIcons.vest,
-    'Socks': FontAwesomeIcons.socks,
-    'Gloves': FontAwesomeIcons.mitten,
-  };
+  late Future<dynamic> _thumbnailsApi;
 
   @override
+  void initState() {
+    super.initState;
+    _thumbnailsApi = ProductApi.allProduct();
+  }
+
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),
           child: Column(
             children: [
               const SizedBox(height: 20),
@@ -318,17 +289,58 @@ class _HomeScreenState extends State<HomeScreen> {
                           ))
                         ],
                       ),
-                      SizedBox(
-                        height: screenHeight,
-                         
-                        child: GridView.builder(
-                           physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2),
-                            itemBuilder: (context, index) {
-                              return const Placeholder();
-                            }),
+                      FutureBuilder(
+                        future: _thumbnailsApi,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Placeholder();
+                          } else if (snapshot.hasError) {
+                            return Column(
+                              children: [
+                                Text(snapshot.error.toString()),
+                                Center(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _thumbnailsApi =
+                                            ProductApi.allProduct();
+                                      });
+                                    },
+                                    icon: Icon(Icons.refresh,
+                                        size: 20, color: AppColors.secondary),
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else if (snapshot.hasData) {
+                            List<Thumbnail> filterData =
+                                List<Thumbnail>.generate(snapshot.data['limit'],
+                                    (index) {
+                              return Thumbnail.formJson(
+                                  snapshot.data['products'][index]);
+                            });
+                            return GridView.builder(
+                                itemCount: snapshot.data['limit'],
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                //  physics: NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2),
+                                itemBuilder: (context, index) {
+                                  return ProductCard(
+                                      thumbnailUrl:
+                                          filterData[index].thumbnailUrl,
+                                      rating: filterData[index].rating!,
+                                      title: filterData[index].title!,
+                                      productId: filterData[index].id,
+                                      price: filterData[index].price!);
+                                });
+                          } else {
+                            return const Placeholder();
+                          }
+                        },
                       ),
                     ],
                   ),
