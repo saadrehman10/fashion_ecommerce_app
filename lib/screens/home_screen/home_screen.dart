@@ -295,8 +295,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Center(
-                              child: Text('Loading Products ... '),
+                            return const Padding(
+                              padding: EdgeInsets.all(20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 4,
+                                    width: 4,
+                                    child: CircularProgressIndicator(
+                                      strokeAlign: 3,
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  Text('Loading Products ... '),
+                                ],
+                              ),
                             );
                           } else if (snapshot.hasError) {
                             return Column(

@@ -59,3 +59,7 @@ class HomeScreenText {
   static const String headingFlashSale = 'Flash Sale';
   static const String closingIn = 'Closing in';
 }
+
+class FutureBuilderText {
+  static const String loading = '';
+}

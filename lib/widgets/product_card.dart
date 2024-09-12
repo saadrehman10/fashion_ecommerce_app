@@ -1,5 +1,6 @@
 import 'package:fashion_ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -43,11 +44,11 @@ class _ProductCardState extends State<ProductCard> {
           .setStringList('wishList', [productId.toString()]);
       successful
           ? {
-              _showToast(message: 'Item added'),
+              FlutterToast.showToast(message: 'Item added'),
               _favoriteIcon = Icons.favorite,
               setState(() {}),
             }
-          : _showToast(message: 'Error');
+          : FlutterToast.showToast(message: 'Error');
     } else {
       if (wishList.contains(productId.toString())) {
         wishList.remove(productId.toString());
@@ -56,35 +57,24 @@ class _ProductCardState extends State<ProductCard> {
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                _showToast(message: 'Item removed'),
+                FlutterToast.showToast(message: 'Item removed'),
                 _favoriteIcon = Icons.favorite_outline,
                 setState(() {}),
               }
-            : _showToast(message: 'Error');
+            : FlutterToast.showToast(message: 'Error');
       } else {
         wishList.add(productId.toString());
         bool successful =
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                _showToast(message: 'Item added'),
+                FlutterToast.showToast(message: 'Item added'),
                 _favoriteIcon = Icons.favorite,
                 setState(() {}),
               }
-            : _showToast(message: 'Error');
+            : FlutterToast.showToast(message: 'Error');
       }
     }
-  }
-
-  void _showToast({required String message}) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: AppColors.background,
-        textColor: AppColors.tertiary,
-        fontSize: 20);
   }
 
   // @override
