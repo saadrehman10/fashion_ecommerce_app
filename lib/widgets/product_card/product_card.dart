@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -95,7 +96,14 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductScreen(
+                      productId: widget.productId,
+                    )));
+      },
       child: Container(
         margin: const EdgeInsets.all(3),
         height: double.infinity,
@@ -117,7 +125,12 @@ class _ProductCardState extends State<ProductCard> {
                         child: Image.network(
                           widget.thumbnailUrl,
                           loadingBuilder: (context, child, loadingProgress) {
-                            return const CircularProgressIndicator();
+                            if (loadingProgress == null) {
+                              return child;
+                            } else {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
                           },
                           errorBuilder: (context, error, stackTrace) {
                             return Icon(Icons.error,

@@ -344,7 +344,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       price: filterData[index].price!);
                                 });
                           } else {
-                            return const Placeholder();
+                            return const Center(child: Text('No text found'));
                           }
                         },
                       ),
