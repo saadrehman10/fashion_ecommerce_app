@@ -3,7 +3,7 @@ import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
-import 'package:fashion_ecommerce_app/widgets/product_card/product_card.dart';
+import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';

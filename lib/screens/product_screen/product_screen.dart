@@ -30,6 +30,8 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
@@ -52,11 +54,23 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               );
             } else if (snapshot.hasError) {
-              Future.delayed(const Duration(seconds: 5), () => setState(() {}));
               return Center(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Error:\n${snapshot.error}'),
+                child: Column(
+                  children: [
+                    Text('Error:\n${snapshot.error}'),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          
+                        });
+                      },
+                      icon: Icon(Icons.refresh,
+                          size: 20, color: AppColors.secondary),
+                    ),
+                  ],
+                ),
               ));
             } else if (snapshot.hasData) {
               Product product = Product.formJson(snapshot.data!);
