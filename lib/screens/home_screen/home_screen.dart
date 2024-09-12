@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _thumbnailsApi = ProductApi.allProduct();
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -355,40 +356,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      floatingActionButton: Container(
-        width: double.infinity,
-        child: Expanded(
-          child: Row(
-            children: [
-              Icon(Icons.home),
-              Icon(Icons.home),
-              Icon(Icons.home),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
-
-// GridView.builder(
-//                     shrinkWrap: true,
-//                     physics: const NeverScrollableScrollPhysics(),
-//                     gridDelegate:
-//                         const SliverGridDelegateWithFixedCrossAxisCount(
-//                       crossAxisCount: 2, //
-//                       crossAxisSpacing: 10,
-//                       mainAxisSpacing: 10,
-//                     ),
-//                     itemBuilder: (context, index) {
-//                       return const ProductCard(
-//                         price: 22.3,
-//                         thumbnailUrl:
-//                             'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png',
-//                         discountPercentage: 7.17,
-//                         rating: 4.94,
-//                         stock: 30,
-//                         title: 'Essence ',
-//                         productId: 3,
-//                       );
-//                     })
