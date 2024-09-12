@@ -1,5 +1,6 @@
 import 'package:fashion_ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +45,7 @@ class _ProductCardState extends State<ProductCard> {
           .setStringList('wishList', [productId.toString()]);
       successful
           ? {
-              FlutterToast.showToast(message: 'Item added'),
+              FlutterToast.showToast(message: ToastMessages.addItem),
               _favoriteIcon = Icons.favorite,
               setState(() {}),
             }
@@ -68,7 +69,7 @@ class _ProductCardState extends State<ProductCard> {
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                FlutterToast.showToast(message: 'Item added'),
+                FlutterToast.showToast(message: ToastMessages.addItem),
                 _favoriteIcon = Icons.favorite,
                 setState(() {}),
               }

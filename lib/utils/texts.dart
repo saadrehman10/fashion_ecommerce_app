@@ -63,3 +63,9 @@ class HomeScreenText {
 class FutureBuilderText {
   static const String loading = '';
 }
+
+class ToastMessages {
+  static const String addItem = 'Item Added';
+  static const String removedItem = 'Item Removed';
+  static const String error = 'Error';
+}
