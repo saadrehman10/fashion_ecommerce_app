@@ -49,7 +49,7 @@ class _ProductCardState extends State<ProductCard> {
               _favoriteIcon = Icons.favorite,
               setState(() {}),
             }
-          : FlutterToast.showToast(message: 'Error');
+          : FlutterToast.showToast(message: ToastMessages.error);
     } else {
       if (wishList.contains(productId.toString())) {
         wishList.remove(productId.toString());
@@ -58,11 +58,11 @@ class _ProductCardState extends State<ProductCard> {
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                FlutterToast.showToast(message: 'Item removed'),
+                FlutterToast.showToast(message: ToastMessages.removedItem),
                 _favoriteIcon = Icons.favorite_outline,
                 setState(() {}),
               }
-            : FlutterToast.showToast(message: 'Error');
+            : FlutterToast.showToast(message: ToastMessages.error);
       } else {
         wishList.add(productId.toString());
         bool successful =
@@ -73,7 +73,7 @@ class _ProductCardState extends State<ProductCard> {
                 _favoriteIcon = Icons.favorite,
                 setState(() {}),
               }
-            : FlutterToast.showToast(message: 'Error');
+            : FlutterToast.showToast(message: ToastMessages.error);
       }
     }
   }

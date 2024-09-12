@@ -61,7 +61,7 @@ class HomeScreenText {
 }
 
 class FutureBuilderText {
-  static const String loading = '';
+  static const String loading = ' Please Wait Loading .... ';
 }
 
 class ToastMessages {
