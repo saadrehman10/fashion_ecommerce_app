@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 
@@ -33,6 +34,17 @@ class _ProductScreenState extends State<ProductScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          ProductScreenText.pageTitle,
+          style: TextStyle(
+            color: AppColors.tertiary,
+            fontSize: 21,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: FutureBuilder(
           future: _apiProduct,
@@ -62,9 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Text('Error:\n${snapshot.error}'),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          
-                        });
+                        setState(() {});
                       },
                       icon: Icon(Icons.refresh,
                           size: 20, color: AppColors.secondary),

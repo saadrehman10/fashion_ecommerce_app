@@ -60,6 +60,10 @@ class HomeScreenText {
   static const String closingIn = 'Closing in';
 }
 
+class ProductScreenText {
+  static const String pageTitle = 'Product Details';
+}
+
 class FutureBuilderText {
   static const String loading = ' Please Wait Loading .... ';
 }
