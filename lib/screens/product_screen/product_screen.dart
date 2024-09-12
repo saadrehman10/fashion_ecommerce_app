@@ -44,6 +44,18 @@ class _ProductScreenState extends State<ProductScreen> {
             fontWeight: FontWeight.w300,
           ),
         ),
+        actions: [
+           IconButton(
+                          onPressed: () {
+                            _favoriteButton(productId: widget.productId);
+                          },
+                          style: IconButton.styleFrom(
+                              padding: const EdgeInsets.all(3),
+                              backgroundColor: Colors.white.withOpacity(.8)),
+                          icon: Icon(_favoriteIcon,
+                              size: 25, color: AppColors.secondary)),
+                    ],
+        ],
       ),
       body: SafeArea(
         child: FutureBuilder(
