@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const HomeScreen(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
