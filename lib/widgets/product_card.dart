@@ -44,7 +44,7 @@ class _ProductCardState extends State<ProductCard> {
           .setStringList('wishList', [productId.toString()]);
       successful
           ? {
-              FlutterToast.showToast(message: ToastMessages.addItem),
+              FlutterToast.showToast(message: ToastMessages.addItemWishList),
               _favoriteIcon = Icons.favorite,
               setState(() {}),
             }
@@ -57,7 +57,8 @@ class _ProductCardState extends State<ProductCard> {
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                FlutterToast.showToast(message: ToastMessages.removedItem),
+                FlutterToast.showToast(
+                    message: ToastMessages.removedItemWishList),
                 _favoriteIcon = Icons.favorite_outline,
                 setState(() {}),
               }
@@ -68,7 +69,7 @@ class _ProductCardState extends State<ProductCard> {
             await sharedPreferences.setStringList('wishList', wishList);
         successful
             ? {
-                FlutterToast.showToast(message: ToastMessages.addItem),
+                FlutterToast.showToast(message: ToastMessages.addItemWishList),
                 _favoriteIcon = Icons.favorite,
                 setState(() {}),
               }

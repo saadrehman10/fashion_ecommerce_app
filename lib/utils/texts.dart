@@ -65,6 +65,10 @@ class ProductScreenText {
 class MyCardScreenText {
   static const String pageTitle = 'My Cart';
 }
+
+class MyWishListScreenText {
+  static const String pageTitle = 'My Wishlist';
+}
 ///////////////////
 //Widgets texts //
 ///////////////////
@@ -85,8 +89,11 @@ class FutureBuilderText {
 }
 
 class ToastMessages {
-  static const String addItem = 'Item added to wishlist';
-  static const String removedItem = 'Item removed from wishlist';
+  static const String addItemWishList = 'Item added to wishlist';
+  static const String removedItemWishList = 'Item removed from wishlist';
+  static const String itemExistCart = 'Item already exist';
+  static const String addItemCart = 'Item added to Cart';
+  static const String removedItemCart = 'Item removed from Cart';
   static const String error = 'Error';
 }
 

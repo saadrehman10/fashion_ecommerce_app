@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
 import 'package:fashion_ecommerce_app/models/product.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,9 +23,8 @@ class _ProductScreenState extends State<ProductScreen> {
   int _currentSizeIndex = 0;
   int _currentColorIndex = 0;
 
-  final CarouselController _controller = CarouselController();
+  // final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
-  Color heartColor = const Color.fromARGB(60, 115, 115, 115);
 
   @override
   void initState() {
@@ -391,8 +392,15 @@ class _ProductScreenState extends State<ProductScreen> {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: () {
-                                
+                              onPressed: () async {
+                                bool temp = await MyCart.addToMyCart(
+                                    productId: product.id);
+
+                                temp
+                                    ? FlutterToast.showToast(
+                                        message: ToastMessages.addItemCart)
+                                    : FlutterToast.showToast(
+                                        message: ToastMessages.itemExistCart);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.secondary,

@@ -11,10 +11,14 @@ class MyCartScreen extends StatefulWidget {
 }
 
 class _MyCartScreenState extends State<MyCartScreen> {
-  late List<String> myCartData;
+  late List<String> _myCartData;
+  bool _isLoading = false;
 
   Future<void> dataLoad() async {
-    myCartData = await MyCart.getCartData();
+    _myCartData = await MyCart.getCartData();
+    setState(() {
+      _isLoading = true;
+    });
   }
 
   @override
@@ -37,6 +41,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
         ),
         centerTitle: true,
       ),
+      body: _isLoading
+          ? ListView.builder(
+              itemCount: _myCartData.length,
+              itemBuilder: (context, index) {
+                return Text(_myCartData[index]);
+              })
+          : null,
     );
   }
 }

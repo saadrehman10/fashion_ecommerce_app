@@ -28,6 +28,8 @@ class MyCart {
         temp.add(productId.toString());
         sp.setStringList('myCart', temp);
         return true;
+      } else if (myCartData.contains(productId.toString())) {
+        return false;
       } else {
         myCartData.add(productId.toString());
         sp.setStringList('myCart', myCartData);

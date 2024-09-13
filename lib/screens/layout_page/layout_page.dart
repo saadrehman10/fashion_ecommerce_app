@@ -30,9 +30,11 @@ class _LayoutPageState extends State<LayoutPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        currentWidget[currentWidgetIndex],
+        SizedBox(
+            height: screenHeight, child: currentWidget[currentWidgetIndex]),
         Positioned(
           bottom: 20,
           left: 20,
