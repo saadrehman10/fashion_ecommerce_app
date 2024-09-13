@@ -244,7 +244,26 @@ class _ProductScreenState extends State<ProductScreen> {
                                 height: 1,
                               )
                             ],
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            ProductScreenText.sizeTitle,
+                            style: TextStyle(
+                              color: AppColors.tertiary,
+                              fontSize: 22,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) => TextButton(
+                              onPressed: (){},
+                              child: Text()
+                            ) ,
                           )
+
                         ],
                       ),
                     ),

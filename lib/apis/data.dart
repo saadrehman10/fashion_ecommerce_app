@@ -35,3 +35,12 @@ final Map<String, IconData> categoryIcons = {
   'Socks': FontAwesomeIcons.socks,
   'Gloves': FontAwesomeIcons.mitten,
 };
+
+final List<String> sizes = [
+  'S',
+  'M',
+  'L',
+  'XL',
+  'XXL',
+  'XXXL',
+];
