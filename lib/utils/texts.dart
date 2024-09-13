@@ -61,6 +61,10 @@ class ProductScreenText {
   static const String sizeColor = 'Select Color';
   static const String totalPrice = 'Total Price';
 }
+
+class MyCardScreenText {
+  static const String pageTitle = 'My Cart';
+}
 ///////////////////
 //Widgets texts //
 ///////////////////
@@ -81,8 +85,8 @@ class FutureBuilderText {
 }
 
 class ToastMessages {
-  static const String addItem = 'Item Added';
-  static const String removedItem = 'Item Removed';
+  static const String addItem = 'Item added to wishlist';
+  static const String removedItem = 'Item removed from wishlist';
   static const String error = 'Error';
 }
 

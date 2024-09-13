@@ -173,6 +173,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                   child: Image.network(
                                     imageUrl,
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) => Icon(
+                                            Icons.error,
+                                            size: 10,
+                                            color:
+                                                AppColors.textColorSubtitles),
                                   ),
                                 ),
                               );
@@ -385,7 +391,9 @@ class _ProductScreenState extends State<ProductScreen> {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.secondary,
                                 padding: const EdgeInsets.symmetric(

@@ -1,3 +1,5 @@
+import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 
 class MyCartScreen extends StatefulWidget {
@@ -12,7 +14,15 @@ class _MyCartScreenState extends State<MyCartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: 
+        title: Text(
+          MyCardScreenText.pageTitle,
+          style: TextStyle(
+            color: AppColors.tertiary,
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        centerTitle: true,
       ),
     );
   }

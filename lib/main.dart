@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
+import 'package:fashion_ecommerce_app/screens/my_cart/my_cart.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
@@ -21,11 +22,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
         '/SignInScreen': (context) => const SignInScreen(),
+        '/MyCartScreen': (context) => const MyCartScreen(),
       },
     );
   }
