@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/models/product.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
-import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductScreen extends StatefulWidget {
