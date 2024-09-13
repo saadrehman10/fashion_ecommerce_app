@@ -34,7 +34,6 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -182,7 +181,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                       ],
                     ),
-                    // Thumbnails Row
+                    const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -373,12 +372,12 @@ class _ProductScreenState extends State<ProductScreen> {
                               Text(ProductScreenText.totalPrice,
                                   style: TextStyle(
                                     color: AppColors.textColorSubtitles,
-                                    fontSize: 20,
+                                    fontSize: 17,
                                   )),
-                              Text('\$ ${product.price}',
+                              Text('\$${product.price}',
                                   style: TextStyle(
                                     color: AppColors.tertiary,
-                                    fontSize: 20,
+                                    fontSize: 22,
                                   )),
                             ],
                           ),
