@@ -103,10 +103,11 @@ class _ProductScreenState extends State<ProductScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(
+                      alignment: Alignment.bottomCenter,
                       children: [
                         CarouselSlider(
                           options: CarouselOptions(
-                            height: screenWidth * 0.8,
+                            height: screenWidth * .9,
                             autoPlay: true,
                             autoPlayAnimationDuration:
                                 const Duration(seconds: 2),
@@ -141,34 +142,41 @@ class _ProductScreenState extends State<ProductScreen> {
                             );
                           }).toList(),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: product.imageUrl!.map((imageUrl) {
-                            int index = product.imageUrl!.indexOf(imageUrl);
-                            return GestureDetector(
-                              onTap: () {
-                                // Jump to the tapped image in the carousel
-                              },
-                              child: Container(
-                                width: 60,
-                                height: 60,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: _current == index
-                                        ? Colors.blue
-                                        : Colors.grey,
+                        Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              borderRadius: BorderRadius.circular(8)),
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: product.imageUrl!.map((imageUrl) {
+                              int index = product.imageUrl!.indexOf(imageUrl);
+                              return GestureDetector(
+                                onTap: () {
+                                  // Jump to the tapped image in the carousel
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: const EdgeInsets.only(right: 5),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: _current == index
+                                          ? AppColors.secondary
+                                          : Colors.grey,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(
+                                    imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                                child: Image.network(
-                                  imageUrl,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          ),
                         ),
                       ],
                     ),
@@ -251,6 +259,3 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 }
-
-
-
