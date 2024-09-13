@@ -73,3 +73,6 @@ class ToastMessages {
   static const String removedItem = 'Item Removed';
   static const String error = 'Error';
 }
+
+
+exception Capatization() on String {}
