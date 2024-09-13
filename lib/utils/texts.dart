@@ -7,16 +7,9 @@ class AppTexts {
   static const String search = 'Search';
 }
 
-class ButtonText {
-  static const String singUp = ' Sing Up ';
-  static const String singIn = ' Sing In ';
-  static const String skip = 'Skip ';
-  static const String next = 'Next ';
-  static const String cart = 'Cart ';
-  static const String shopNow = 'Shop Now ';
-  static const String seeAll = 'See All';
-  static const String addToCart = 'Add To Cart';
-}
+/////////////////
+//Screens Texts//
+/////////////////
 
 class WelcomeScreenText {
   static const String buttonText = 'Let\'s Get Started';
@@ -67,7 +60,20 @@ class ProductScreenText {
   static const String sizeTitle = 'Select Size';
   static const String sizeColor = 'Select Color';
   static const String totalPrice = 'Total Price';
+}
+///////////////////
+//Widgets texts //
+///////////////////
 
+class ButtonText {
+  static const String singUp = ' Sing Up ';
+  static const String singIn = ' Sing In ';
+  static const String skip = 'Skip ';
+  static const String next = 'Next ';
+  static const String cart = 'Cart ';
+  static const String shopNow = 'Shop Now ';
+  static const String seeAll = 'See All';
+  static const String addToCart = 'Add To Cart';
 }
 
 class FutureBuilderText {

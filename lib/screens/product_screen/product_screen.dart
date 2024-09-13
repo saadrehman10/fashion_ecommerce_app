@@ -266,18 +266,21 @@ class _ProductScreenState extends State<ProductScreen> {
                               itemCount: productSizes.length,
                               itemBuilder: (context, index) => Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 8),
-                                child: TextButton(
+                                    horizontal: 3, vertical: 8),
+                                child: ElevatedButton(
                                     onPressed: () {
                                       setState(() {
                                         _currentSizeIndex = index;
                                       });
                                     },
-                                    style: TextButton.styleFrom(
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 3,
+                                        ),
                                         backgroundColor:
                                             _currentSizeIndex == index
                                                 ? AppColors.secondary
-                                                : AppColors.primary,
+                                                : null,
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(8))),
