@@ -338,56 +338,72 @@ class _ProductScreenState extends State<ProductScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(ProductScreenText.totalPrice,
-                                        style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20,
-                                        )),
-                                    Text('\$ ${product.price}',
-                                        style: TextStyle(
-                                          color: AppColors.tertiary,
-                                          fontSize: 20,
-                                        )),
-                                  ],
-                                ),
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.secondary,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 40),
-                                      shadowColor: Colors.black,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(FontAwesomeIcons.bagShopping,
-                                            size: 20, color: AppColors.primary),
-                                        const SizedBox(width: 10),
-                                        Text(ButtonText.addToCart,
-                                            style: TextStyle(
-                                              color: AppColors.primary,
-                                              fontSize: 20,
-                                            )),
-                                      ],
-                                    ))
-                              ],
-                            ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            offset: const Offset(
+                                0, 2), // Shadow below the container
+                            blurRadius: 8,
                           ),
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            offset:
+                                const Offset(0, -2), // Shadow on the top part
+                            blurRadius: 8,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Text(ProductScreenText.totalPrice,
+                                  style: TextStyle(
+                                    color: AppColors.textColorSubtitles,
+                                    fontSize: 20,
+                                  )),
+                              Text('\$ ${product.price}',
+                                  style: TextStyle(
+                                    color: AppColors.tertiary,
+                                    fontSize: 20,
+                                  )),
+                            ],
+                          ),
+                          ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.secondary,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 40),
+                                shadowColor: Colors.black,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(FontAwesomeIcons.bagShopping,
+                                      size: 20, color: AppColors.primary),
+                                  const SizedBox(width: 10),
+                                  Text(ButtonText.addToCart,
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 20,
+                                      )),
+                                ],
+                              ))
                         ],
                       ),
                     ),
