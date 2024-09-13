@@ -234,6 +234,17 @@ class _ProductScreenState extends State<ProductScreen> {
                               fontWeight: FontWeight.normal,
                             ),
                           ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                color: Colors.grey.withOpacity(.50),
+                                width: screenWidth * .85,
+                                height: 1,
+                              )
+                            ],
+                          )
                         ],
                       ),
                     ),
