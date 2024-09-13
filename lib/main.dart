@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/LayoutPage': (context) => const LayoutPage(),
-        '/HomeScreen': (context) => const HomeScreen(),
         '/SignInScreen': (context) => const SignInScreen(),
         '/MyCartScreen': (context) => const MyCartScreen(),
       },

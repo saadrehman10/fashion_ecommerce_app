@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart/my_cart.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,17 @@ class LayoutPage extends StatefulWidget {
 
 class _LayoutPageState extends State<LayoutPage> {
   int currentWidgetIndex = 0;
-  final List<Widget> currentWidget = const [
-    HomeScreen(),
-    MyCartScreen(),
-  ];
+  late List<Widget> currentWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    currentWidget = [
+      HomeScreen(thumbnailsApi: ProductApi.allProduct()),
+      const MyCartScreen(),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(

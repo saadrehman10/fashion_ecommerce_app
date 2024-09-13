@@ -5,12 +5,13 @@ import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  Future<dynamic> thumbnailsApi;
+  HomeScreen({super.key, required this.thumbnailsApi});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,12 +20,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
   final PageController _pageController = PageController();
-  late Future<dynamic> _thumbnailsApi;
 
   @override
   void initState() {
     super.initState;
-    _thumbnailsApi = ProductApi.allProduct();
   }
 
   @override
@@ -292,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       FutureBuilder(
-                        future: _thumbnailsApi,
+                        future: widget.thumbnailsApi,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -321,7 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: IconButton(
                                     onPressed: () {
                                       setState(() {
-                                        _thumbnailsApi =
+                                        widget.thumbnailsApi =
                                             ProductApi.allProduct();
                                       });
                                     },
