@@ -64,6 +64,7 @@ class ProductScreenText {
   static const String pageTitle = 'Product Details';
   static const String productDetailsTitle = 'Product Details';
   static const String sizeTitle = 'Select Size';
+  static const String sizeColor = 'Select Color';
 }
 
 class FutureBuilderText {

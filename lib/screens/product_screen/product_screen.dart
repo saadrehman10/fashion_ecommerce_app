@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
@@ -7,6 +8,7 @@ import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
 
 class ProductScreen extends StatefulWidget {
   final int productId;
+
   const ProductScreen({super.key, required this.productId});
 
   @override
@@ -15,6 +17,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   int _current = 0;
+  int _currentSizeIndex = 0;
   final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
   Color heartColor = const Color.fromARGB(60, 115, 115, 115);
@@ -254,16 +257,53 @@ class _ProductScreenState extends State<ProductScreen> {
                               fontWeight: FontWeight.normal,
                             ),
                           ),
+                          SizedBox(
+                            height: 50,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: sizes.length,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 8),
+                                child: TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _currentSizeIndex = index;
+                                      });
+                                    },
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            _currentSizeIndex == index
+                                                ? AppColors.secondary
+                                                : AppColors.primary,
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8))),
+                                        side: const BorderSide(
+                                          color: Colors.grey,
+                                          width: .5,
+                                        )),
+                                    child: Text(
+                                      sizes[index],
+                                      style: TextStyle(
+                                        color: _currentSizeIndex == index
+                                            ? AppColors.primary
+                                            : AppColors.tertiary,
+                                        fontSize: 16,
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          ),
                           const SizedBox(height: 10),
-                          ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) => TextButton(
-                              onPressed: (){},
-                              child: Text()
-                            ) ,
-                          )
-
+                          Text(
+                            ProductScreenText.sizeColor,
+                            style: TextStyle(
+                              color: AppColors.tertiary,
+                              fontSize: 22,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
                         ],
                       ),
                     ),
