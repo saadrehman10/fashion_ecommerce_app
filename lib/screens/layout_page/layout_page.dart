@@ -1,6 +1,6 @@
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
-import 'package:fashion_ecommerce_app/screens/my_cart/my_cart.dart';
+import 'package:fashion_ecommerce_app/screens/my_cart_screen/my_cart_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_wishlist_screen/my_wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
