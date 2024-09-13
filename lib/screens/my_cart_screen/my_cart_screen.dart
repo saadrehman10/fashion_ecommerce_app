@@ -3,8 +3,10 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MyCartScreen extends StatefulWidget {
-  const MyCartScreen({super.key});
+  Future<dynamic> thumbnailsApi;
+  MyCartScreen({super.key, required this.thumbnailsApi});
 
   @override
   State<MyCartScreen> createState() => _MyCartScreenState();
@@ -42,7 +44,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
         centerTitle: true,
       ),
       body: _isLoading
-          ? FutureBuilder(future: future, builder: builder)
+          ? FutureBuilder(
+              future: widget.thumbnailsApi,
+              builder: (context, snapshot) {
+                return ListView.builder(
+                    itemCount: _myCartData.length,
+                    itemBuilder: (context, index) {
+                      return Text(_myCartData[index]);
+                    });
+              },
+            )
           : null,
     );
   }

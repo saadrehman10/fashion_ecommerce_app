@@ -1,11 +1,9 @@
-import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
-import 'package:fashion_ecommerce_app/screens/my_cart_screen/my_cart_screen.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
+import 'package:fashion_ecommerce_app/screens/welcome_screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/screens/welcome_screens/on_boarding_screen.dart';
-import 'package:fashion_ecommerce_app/screens/welcome_screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
         useMaterial3: true,
       ),
-      home: const LayoutPage(),
+      home: const SplashScreen(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/LayoutPage': (context) => const LayoutPage(),

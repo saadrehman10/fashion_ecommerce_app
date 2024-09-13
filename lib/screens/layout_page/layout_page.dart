@@ -21,7 +21,7 @@ class _LayoutPageState extends State<LayoutPage> {
     super.initState();
     currentWidget = [
       HomeScreen(thumbnailsApi: ProductApi.allProduct()),
-      const MyCartScreen(),
+      MyCartScreen(thumbnailsApi: ProductApi.allProduct()),
       const MyWishlistScreen(),
       const ProfileScreen(),
       const ProfileScreen(),
