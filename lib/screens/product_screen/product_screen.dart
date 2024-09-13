@@ -14,6 +14,8 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
   Color heartColor = const Color.fromARGB(60, 115, 115, 115);
   void _colorChange() {
@@ -35,6 +37,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.background,
         centerTitle: true,
         title: Text(
           ProductScreenText.pageTitle,
@@ -99,31 +102,78 @@ class _ProductScreenState extends State<ProductScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CarouselSlider(
-                        options: CarouselOptions(
-                          height: screenWidth * 0.8,
-                          autoPlay: true,
-                          autoPlayAnimationDuration: Durations.long1,
+                    Stack(
+                      children: [
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            height: screenWidth * 0.8,
+                            autoPlay: true,
+                            autoPlayAnimationDuration:
+                                const Duration(seconds: 2),
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _current = index;
+                              });
+                            },
+                          ),
+                          items: product.imageUrl!.map((imageUrl) {
+                            return Container(
+                              color: AppColors.background,
+                              child: Image.network(
+                                imageUrl,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child, loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  } else {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  }
+                                },
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.error,
+                                    size: 20,
+                                    color: Colors.red,
+                                  );
+                                },
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        items: List.generate(product.imageUrl!.length, (index) {
-                          return Image.network(
-                            product.imageUrl![index],
-                            loadingBuilder: (BuildContext context, Widget child,
-                                loadingProgress) {
-                              if (loadingProgress == null) {
-                                return child;
-                              } else {
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              }
-                            },
-                            errorBuilder: (context, error, stackTrace) {
-                              return Icon(Icons.error,
-                                  size: 20,
-                                  color: AppColors.textColorSubtitles);
-                            },
-                          );
-                        })),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: product.imageUrl!.map((imageUrl) {
+                            int index = product.imageUrl!.indexOf(imageUrl);
+                            return GestureDetector(
+                              onTap: () {
+                                // Jump to the tapped image in the carousel
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: _current == index
+                                        ? Colors.blue
+                                        : Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                    // Thumbnails Row
+
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -154,12 +204,31 @@ class _ProductScreenState extends State<ProductScreen> {
                                   ],
                                 ),
                               ]),
+                          const SizedBox(height: 10),
                           Text(
                             product.title!,
                             style: TextStyle(
                               color: AppColors.tertiary,
                               fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            ProductScreenText.productDetailsTitle,
+                            style: TextStyle(
+                              color: AppColors.tertiary,
+                              fontSize: 22,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            product.description!,
+                            style: TextStyle(
+                              color: AppColors.textColorSubtitles,
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal,
                             ),
                           ),
                         ],
@@ -182,3 +251,6 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 }
+
+
+

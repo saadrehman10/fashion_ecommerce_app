@@ -62,6 +62,7 @@ class HomeScreenText {
 
 class ProductScreenText {
   static const String pageTitle = 'Product Details';
+  static const String productDetailsTitle = 'Product Details';
 }
 
 class FutureBuilderText {
