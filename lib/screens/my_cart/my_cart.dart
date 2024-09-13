@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,14 @@ class MyCartScreen extends StatefulWidget {
 }
 
 class _MyCartScreenState extends State<MyCartScreen> {
+  late List<String> myCartData;
+
+  @override
+  void initState() async {
+    super.initState();
+    myCartData = await MyCart.getCartData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
+import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart/my_cart.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
+        '/LayoutPage': (context) => const LayoutPage(),
         '/HomeScreen': (context) => const HomeScreen(),
         '/SignInScreen': (context) => const SignInScreen(),
         '/MyCartScreen': (context) => const MyCartScreen(),

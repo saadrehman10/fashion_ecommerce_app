@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCart {
-  Future<void> createMyCart() async {
+  static Future<void> createMyCart() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setStringList('myCart', []);
   }
 
-  Future<List<String>> getCartData() async {
+  static Future<List<String>> getCartData() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final List<String>? myCartData = sp.getStringList('myCart');
     if (myCartData == null) {
@@ -18,7 +18,7 @@ class MyCart {
     }
   }
 
-  Future<bool> addToMyCart({required int productId}) async {
+  static Future<bool> addToMyCart({required int productId}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final List<String>? myCartData = sp.getStringList('myCart');
     try {
@@ -38,7 +38,7 @@ class MyCart {
     }
   }
 
-  Future<bool> deleteMyCart({required int productId}) async {
+  static Future<bool> deleteMyCart({required int productId}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final List<String>? myCartData = sp.getStringList('myCart');
     try {
