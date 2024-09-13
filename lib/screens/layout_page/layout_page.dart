@@ -1,6 +1,6 @@
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
+import 'package:fashion_ecommerce_app/screens/my_cart/my_cart.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
@@ -13,6 +13,7 @@ class _LayoutPageState extends State<LayoutPage> {
   int currentWidgetIndex = 0;
   final List<Widget> currentWidget = const [
     HomeScreen(),
+    MyCartScreen(),
   ];
   @override
   Widget build(BuildContext context) {

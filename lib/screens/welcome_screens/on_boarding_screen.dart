@@ -76,7 +76,7 @@ class OnBoardingScreen extends StatelessWidget {
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut),
               onNext: () => Navigator.pushNamedAndRemoveUntil(
-                  context, '/HomeScreen', (route) => false),
+                  context, '/LayoutPage', (route) => false),
             ),
           ],
           indicatorDotHeight: 7.0,

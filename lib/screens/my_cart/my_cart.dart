@@ -13,10 +13,14 @@ class MyCartScreen extends StatefulWidget {
 class _MyCartScreenState extends State<MyCartScreen> {
   late List<String> myCartData;
 
-  @override
-  void initState() async {
-    super.initState();
+  Future<void> dataLoad() async {
     myCartData = await MyCart.getCartData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    dataLoad();
   }
 
   @override
