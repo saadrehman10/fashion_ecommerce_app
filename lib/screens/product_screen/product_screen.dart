@@ -18,11 +18,6 @@ class _ProductScreenState extends State<ProductScreen> {
   final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
   Color heartColor = const Color.fromARGB(60, 115, 115, 115);
-  void _colorChange() {
-    heartColor == Colors.red
-        ? heartColor = const Color.fromARGB(60, 115, 115, 115)
-        : heartColor = Colors.red;
-  }
 
   @override
   void initState() {
@@ -132,10 +127,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                   }
                                 },
                                 errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
+                                  return Icon(
                                     Icons.error,
                                     size: 20,
-                                    color: Colors.red,
+                                    color: AppColors.textColorSubtitles,
                                   );
                                 },
                               ),
@@ -146,7 +141,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           decoration: BoxDecoration(
                               color: AppColors.primary,
                               borderRadius: BorderRadius.circular(8)),
-                          padding: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
                           margin: const EdgeInsets.all(10),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -162,10 +157,11 @@ class _ProductScreenState extends State<ProductScreen> {
                                   height: 50,
                                   margin: const EdgeInsets.only(right: 5),
                                   decoration: BoxDecoration(
+                                    color: AppColors.background,
                                     border: Border.all(
                                       color: _current == index
                                           ? AppColors.secondary
-                                          : Colors.grey,
+                                          : AppColors.background,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -181,7 +177,6 @@ class _ProductScreenState extends State<ProductScreen> {
                       ],
                     ),
                     // Thumbnails Row
-
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
