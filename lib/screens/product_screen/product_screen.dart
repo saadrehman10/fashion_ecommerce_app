@@ -133,7 +133,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  product.category!,
+                                  product.category!.capitalize,
                                   style: TextStyle(
                                     color: AppColors.textColorSubtitles,
                                     fontSize: 20,
@@ -154,6 +154,14 @@ class _ProductScreenState extends State<ProductScreen> {
                                   ],
                                 ),
                               ]),
+                          Text(
+                            product.title!,
+                            style: TextStyle(
+                              color: AppColors.tertiary,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                     ),

@@ -74,5 +74,6 @@ class ToastMessages {
   static const String error = 'Error';
 }
 
-
-exception Capatization() on String {}
+extension StringCaps on String {
+  String get capitalize => this[0].toUpperCase() + substring(1);
+}
