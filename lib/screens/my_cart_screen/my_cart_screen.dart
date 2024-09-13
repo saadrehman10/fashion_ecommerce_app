@@ -42,11 +42,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
         centerTitle: true,
       ),
       body: _isLoading
-          ? ListView.builder(
-              itemCount: _myCartData.length,
-              itemBuilder: (context, index) {
-                return Text(_myCartData[index]);
-              })
+          ? FutureBuilder(future: future, builder: builder)
           : null,
     );
   }
