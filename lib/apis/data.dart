@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -36,11 +37,21 @@ final Map<String, IconData> categoryIcons = {
   'Gloves': FontAwesomeIcons.mitten,
 };
 
-final List<String> sizes = [
+final List<String> productSizes = [
   'S',
   'M',
   'L',
   'XL',
   'XXL',
   'XXXL',
+];
+
+final List<Color> productColors = [
+  const Color(0xFFd4a88e), // Deep Blue
+  const Color(0xFF79665c), // Bright Red
+  const Color(0xFFd99567), // Vibrant Green
+  const Color(0xFFb9773b), // Sunset Orange
+  const Color(0xFF252525), // Purple
+  const Color(0xFFebe1da),
+  const Color(0xFF81766f), // Teal
 ];

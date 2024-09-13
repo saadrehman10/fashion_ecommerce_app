@@ -18,6 +18,8 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   int _current = 0;
   int _currentSizeIndex = 0;
+  int _currentColorIndex = 0;
+
   final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
   Color heartColor = const Color.fromARGB(60, 115, 115, 115);
@@ -261,7 +263,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             height: 50,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: sizes.length,
+                              itemCount: productSizes.length,
                               itemBuilder: (context, index) => Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 5, vertical: 8),
@@ -284,7 +286,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           width: .5,
                                         )),
                                     child: Text(
-                                      sizes[index],
+                                      productSizes[index],
                                       style: TextStyle(
                                         color: _currentSizeIndex == index
                                             ? AppColors.primary
@@ -303,6 +305,40 @@ class _ProductScreenState extends State<ProductScreen> {
                               fontSize: 22,
                               fontWeight: FontWeight.normal,
                             ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: productColors.length,
+                                itemBuilder: (context, index) =>
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _currentColorIndex =
+                                              productColors.indexOf(
+                                            productColors[index],
+                                          );
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: CircleAvatar(
+                                            backgroundColor:
+                                                productColors[index],
+                                            radius: 15,
+                                            child: _currentColorIndex ==
+                                                    productColors.indexOf(
+                                                      productColors[index],
+                                                    )
+                                                ? const CircleAvatar(
+                                                    radius: 7,
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                  )
+                                                : null),
+                                      ),
+                                    )),
                           ),
                         ],
                       ),
