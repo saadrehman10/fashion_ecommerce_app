@@ -15,6 +15,7 @@ class ButtonText {
   static const String cart = 'Cart ';
   static const String shopNow = 'Shop Now ';
   static const String seeAll = 'See All';
+  static const String addToCart = 'Add To Cart';
 }
 
 class WelcomeScreenText {
@@ -65,6 +66,8 @@ class ProductScreenText {
   static const String productDetailsTitle = 'Product Details';
   static const String sizeTitle = 'Select Size';
   static const String sizeColor = 'Select Color';
+  static const String totalPrice = 'Total Price';
+
 }
 
 class FutureBuilderText {

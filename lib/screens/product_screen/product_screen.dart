@@ -5,6 +5,7 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/formatted_data.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductScreen extends StatefulWidget {
   final int productId;
@@ -309,36 +310,83 @@ class _ProductScreenState extends State<ProductScreen> {
                           SizedBox(
                             height: 50,
                             child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: productColors.length,
-                                itemBuilder: (context, index) =>
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _currentColorIndex =
+                              scrollDirection: Axis.horizontal,
+                              itemCount: productColors.length,
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _currentColorIndex = productColors.indexOf(
+                                      productColors[index],
+                                    );
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: CircleAvatar(
+                                      backgroundColor: productColors[index],
+                                      radius: 15,
+                                      child: _currentColorIndex ==
                                               productColors.indexOf(
-                                            productColors[index],
-                                          );
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5),
-                                        child: CircleAvatar(
-                                            backgroundColor:
                                                 productColors[index],
-                                            radius: 15,
-                                            child: _currentColorIndex ==
-                                                    productColors.indexOf(
-                                                      productColors[index],
-                                                    )
-                                                ? const CircleAvatar(
-                                                    radius: 7,
-                                                    backgroundColor:
-                                                        Colors.white,
-                                                  )
-                                                : null),
-                                      ),
-                                    )),
+                                              )
+                                          ? const CircleAvatar(
+                                              radius: 7,
+                                              backgroundColor: Colors.white,
+                                            )
+                                          : null),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(ProductScreenText.totalPrice,
+                                        style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20,
+                                        )),
+                                    Text('\$ ${product.price}',
+                                        style: TextStyle(
+                                          color: AppColors.tertiary,
+                                          fontSize: 20,
+                                        )),
+                                  ],
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.secondary,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 40),
+                                      shadowColor: Colors.black,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(FontAwesomeIcons.bagShopping,
+                                            size: 20, color: AppColors.primary),
+                                        const SizedBox(width: 10),
+                                        Text(ButtonText.addToCart,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 20,
+                                            )),
+                                      ],
+                                    ))
+                              ],
+                            ),
                           ),
                         ],
                       ),
