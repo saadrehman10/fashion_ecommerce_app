@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wear_craft/widgets/custom_app_bar/custom_app_bar.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -39,7 +38,6 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: CustomAppBar(title: 'Change Password'),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -144,7 +142,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           color: Colors.black,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius:const  BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
             color: Theme.of(context).primaryColor,
             style: BorderStyle.solid,
@@ -152,7 +150,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           ),
         ),
         hintStyle: const TextStyle(
-          color:  Color.fromARGB(183, 158, 158, 158),
+          color: Color.fromARGB(183, 158, 158, 158),
         ),
         labelText: labelText,
         hintText: hintText,
