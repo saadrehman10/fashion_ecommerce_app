@@ -33,6 +33,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -68,10 +69,78 @@ class _MyCartScreenState extends State<MyCartScreen> {
                     ],
                   );
                 } else if (snapshot.hasData) {
-                  Map<String, dynamic> data = snapshot.data['products'];
-                  return ListView.builder(itemBuilder: (context, index) {
-                    
-                  },)
+                  List<Thumbnail> filteredData = List<Thumbnail>.generate(
+                      snapshot.data['limit'],
+                      (index) =>
+                          Thumbnail.formJson(snapshot.data['products'][index]));
+                  filteredData.removeWhere(
+                      (value) => !_myCartData.contains(value.id.toString()));
+                  return ListView.builder(
+                      itemCount: filteredData.length,
+                      itemBuilder: (context, index) {
+                        return Dismissible(
+                            key: Key(filteredData[index].id.toString()),
+                            background: Container(
+                              color: Colors.red[400],
+                              child: const Icon(Icons.delete,
+                                  size: 25, color: Colors.white),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  Container(
+                                      height: screenHeight * .1,
+                                      width: screenHeight * .1,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.background,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Image.network(
+                                        filteredData[index].thumbnailUrl,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Icon(Icons.error,
+                                                    size: 25,
+                                                    color: AppColors
+                                                        .textColorSubtitles),
+                                      )),
+                                  const SizedBox(width: 20),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        filteredData[index].title!,
+                                        style: TextStyle(
+                                          color: AppColors.tertiary,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        'Size: XL',
+                                        style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        '\$${filteredData[index].price}',
+                                        style: TextStyle(
+                                          color: AppColors.tertiary,
+                                          fontSize: 15,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ));
+                      });
                 } else {
                   return const Placeholder();
                 }
