@@ -164,7 +164,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                         decoration:
                                                             BoxDecoration(
                                                           color: AppColors
-                                                              .textColorSubtitles,
+                                                              .textColorSubtitles
+                                                              .withOpacity(.20),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(5),
