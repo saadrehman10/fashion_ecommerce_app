@@ -142,27 +142,28 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                               fontSize: 15,
                                             ),
                                           ),
+                                          const SizedBox(width: 100),
                                           Row(
                                             children: [
-                                              SizedBox(
-                                                height: 20,
-                                                width: 20,
-                                                child: IconButton(
-                                                    onPressed: () {},
-                                                    style: IconButton.styleFrom(
-                                                        backgroundColor: AppColors
-                                                            .textColorSubtitles,
-                                                        shape: const RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            4)))),
-                                                    icon: Icon(
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors
+                                                        .textColorSubtitles,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                  ),
+                                                  child: const Center(
+                                                    child: Icon(
                                                         FontAwesomeIcons.minus,
-                                                        size: 10,
-                                                        color: AppColors
-                                                            .tertiary)),
+                                                        color: Colors.black,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                               ),
                                               const SizedBox(width: 5),
                                               Text('1',
@@ -171,25 +172,24 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     color: AppColors.tertiary,
                                                   )),
                                               const SizedBox(width: 5),
-                                              SizedBox(
-                                                height: 20,
-                                                width: 20,
-                                                child: IconButton(
-                                                    onPressed: () {},
-                                                    style: IconButton.styleFrom(
-                                                        backgroundColor:
-                                                            AppColors.secondary,
-                                                        shape: const RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            4)))),
-                                                    icon: Icon(Icons.add,
-                                                        size: 10,
-                                                        color:
-                                                            AppColors.primary)),
-                                              )
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.secondary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                  ),
+                                                  child: const Center(
+                                                    child: Icon(Icons.add,
+                                                        color: Colors.white,
+                                                        size: 15),
+                                                  ),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ],
