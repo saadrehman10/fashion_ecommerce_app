@@ -86,10 +86,45 @@ class _MyCartScreenState extends State<MyCartScreen> {
                       itemBuilder: (context, index) {
                         return Dismissible(
                             key: Key(filteredData[index].id.toString()),
+                            direction: DismissDirection.endToStart,
+                            dismissThresholds: const {
+                              DismissDirection.endToStart: 0.35,
+                            },
+                            confirmDismiss: (DismissDirection direction) async {
+                              if (direction == DismissDirection.endToStart) {
+                                return await showDialog<bool>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Confirm'),
+                                    content: const Text(
+                                        'Are you sure you want to delete?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(false),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(true),
+                                        child: const Text('Delete'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                              return true;
+                            },
                             background: Container(
+                              padding: const EdgeInsets.only(right: 30),
                               color: Colors.red[400],
-                              child: const Icon(Icons.delete,
-                                  size: 25, color: Colors.white),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(Icons.delete,
+                                      size: 25, color: Colors.white),
+                                ],
+                              ),
                             ),
                             child: Column(
                               children: [
