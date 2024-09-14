@@ -1,4 +1,6 @@
+import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
+import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -47,11 +49,30 @@ class _MyCartScreenState extends State<MyCartScreen> {
           ? FutureBuilder(
               future: widget.thumbnailsApi,
               builder: (context, snapshot) {
-                return ListView.builder(
-                    itemCount: _myCartData.length,
-                    itemBuilder: (context, index) {
-                      return Text(_myCartData[index]);
-                    });
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Column(
+                    children: [
+                      Text(
+                        snapshot.error.toString(),
+                      ),
+                      IconButton(
+                        onPressed: () => setState(() {
+                          widget.thumbnailsApi = ProductApi.allProduct();
+                        }),
+                        icon: const Icon(Icons.refresh),
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasData) {
+                  Map<String, dynamic> data = snapshot.data['products'];
+                  return ListV
+                } else {
+                  return const Placeholder();
+                }
               },
             )
           : null,
