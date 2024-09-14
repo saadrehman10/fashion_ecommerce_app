@@ -5,7 +5,6 @@ import 'package:fashion_ecommerce_app/screens/my_cart_screen/widgets.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: must_be_immutable
 class MyCartScreen extends StatefulWidget {
@@ -35,12 +34,6 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-    if (screenHeight < screenWidth) {
-      screenWidth *= 1.45;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -115,6 +108,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 );
                               }
                               return true;
+                            },
+                            onDismissed: (direction) {
+                              setState(() {
+                                MyCart.deleteMyCart(
+                                    productId: filteredData[index].id);
+                              });
                             },
                             background: Container(
                               padding: const EdgeInsets.only(right: 30),
