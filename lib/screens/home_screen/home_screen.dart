@@ -29,6 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    if (screenHeight < screenWidth) {
+      screenWidth *= 1.45;
+    }
     return Scaffold(
       body: SafeArea(
         child: Padding(
