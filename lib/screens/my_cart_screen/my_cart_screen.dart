@@ -4,6 +4,7 @@ import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: must_be_immutable
 class MyCartScreen extends StatefulWidget {
@@ -119,7 +120,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                           fontSize: 16,
                                         ),
                                       ),
-                                      const SizedBox(height: 10),
+                                      const SizedBox(height: 8),
                                       Text(
                                         'Size: XL',
                                         style: TextStyle(
@@ -127,13 +128,71 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                           fontSize: 15,
                                         ),
                                       ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        '\$${filteredData[index].price}',
-                                        style: TextStyle(
-                                          color: AppColors.tertiary,
-                                          fontSize: 15,
-                                        ),
+                                      const SizedBox(height: 8),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '\$${filteredData[index].price}',
+                                            style: TextStyle(
+                                              color: AppColors.tertiary,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child: IconButton(
+                                                    onPressed: () {},
+                                                    style: IconButton.styleFrom(
+                                                        backgroundColor: AppColors
+                                                            .textColorSubtitles,
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            4)))),
+                                                    icon: Icon(
+                                                        FontAwesomeIcons.minus,
+                                                        size: 10,
+                                                        color: AppColors
+                                                            .tertiary)),
+                                              ),
+                                              const SizedBox(width: 5),
+                                              Text('1',
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: AppColors.tertiary,
+                                                  )),
+                                              const SizedBox(width: 5),
+                                              SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child: IconButton(
+                                                    onPressed: () {},
+                                                    style: IconButton.styleFrom(
+                                                        backgroundColor:
+                                                            AppColors.secondary,
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            4)))),
+                                                    icon: Icon(Icons.add,
+                                                        size: 10,
+                                                        color:
+                                                            AppColors.primary)),
+                                              )
+                                            ],
+                                          ),
+                                        ],
                                       )
                                     ],
                                   ),
