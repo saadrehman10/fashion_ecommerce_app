@@ -117,12 +117,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             },
                             background: Container(
                               padding: const EdgeInsets.only(right: 30),
-                              color: Colors.red[400],
+                              color: Colors.red[100],
                               child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Icon(Icons.delete,
-                                      size: 25, color: Colors.white),
+                                      size: 25, color: Colors.red),
                                 ],
                               ),
                             ),
