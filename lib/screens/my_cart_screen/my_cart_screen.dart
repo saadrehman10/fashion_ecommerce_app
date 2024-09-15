@@ -20,13 +20,25 @@ class _MyCartScreenState extends State<MyCartScreen> {
   late List<String> _myCartData;
   bool _isLoading = false;
 
-  double _subtotal = 0;
+  double _subtotal = 0, _discount = 0, _delivery = 0;
 
   Future<void> dataLoad() async {
     _myCartData = await MyCart.getCartData();
     setState(() {
       _isLoading = true;
     });
+  }
+
+  double _deliveryPrice() {
+    _delivery = _subtotal * .3;
+    return _delivery;
+    ;
+  }
+
+  double _discountPrice() {
+    _discount = _subtotal * .1;
+    return _discount;
+    ;
   }
 
   double _subTotal({required List<Thumbnail> prices}) {
@@ -36,6 +48,10 @@ class _MyCartScreenState extends State<MyCartScreen> {
     }
     _subtotal = sum;
     return sum;
+  }
+
+  double _total() {
+    return (_subtotal + _delivery) - _discount;
   }
 
   @override
@@ -48,6 +64,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -72,8 +89,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                         CircularProgressIndicator(
                           strokeAlign: 3,
                         ),
-                        SizedBox(width: 15),
-                        Text('Loading Cart ... '),
+                        SizedBox(height: 15),
+                        Text('Loading Cart ....'),
                       ],
                     ),
                   );
@@ -104,11 +121,10 @@ class _MyCartScreenState extends State<MyCartScreen> {
                       Expanded(
                         child: ListView.builder(
                             shrinkWrap: true,
-                            // physics: const NeverScrollableScrollPhysics(),
                             itemCount: _filteredData.length,
                             itemBuilder: (context, index) {
                               return Dismissible(
-                                key: Key(_filteredData[index].id.toString()),
+                                key: UniqueKey(),
                                 direction: DismissDirection.endToStart,
                                 dismissThresholds: const {
                                   DismissDirection.endToStart: 0.35,
@@ -141,11 +157,14 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   }
                                   return true;
                                 },
-                                onDismissed: (direction) {
+                                onDismissed: (direction) async {
                                   if (direction ==
                                       DismissDirection.endToStart) {
                                     MyCart.deleteMyCart(
                                         productId: _filteredData[index].id);
+                                    setState(() {
+                                      _filteredData.removeAt(index);
+                                    });
                                   }
                                 },
                                 background: Container(
@@ -246,8 +265,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     style: TextStyle(
                                         color: AppColors.textColorSubtitles,
                                         fontSize: 17)),
-                                Text(
-                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                Text('\$${_deliveryPrice().toStringAsFixed(2)}',
                                     style: TextStyle(
                                         color: AppColors.tertiary,
                                         fontSize: 17)),
@@ -261,8 +279,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     style: TextStyle(
                                         color: AppColors.textColorSubtitles,
                                         fontSize: 17)),
-                                Text(
-                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                Text('\$${_discountPrice().toStringAsFixed(2)}',
                                     style: TextStyle(
                                         color: AppColors.tertiary,
                                         fontSize: 17)),
@@ -276,8 +293,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     style: TextStyle(
                                         color: AppColors.textColorSubtitles,
                                         fontSize: 20)),
-                                Text(
-                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                Text('\$${_total().toStringAsFixed(2)}',
                                     style: TextStyle(
                                         color: AppColors.tertiary,
                                         fontSize: 20)),

@@ -18,6 +18,7 @@ class CustomListTile extends StatefulWidget {
 }
 
 class _CustomListTileState extends State<CustomListTile> {
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -83,7 +84,13 @@ class _CustomListTileState extends State<CustomListTile> {
                         Row(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                if (quantity > 1) {
+                                  setState(() {
+                                    quantity--;
+                                  });
+                                }
+                              },
                               child: Container(
                                 height: 25,
                                 width: 25,
@@ -99,14 +106,18 @@ class _CustomListTileState extends State<CustomListTile> {
                               ),
                             ),
                             const SizedBox(width: 5),
-                            Text('1',
+                            Text(quantity.toString(),
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: AppColors.tertiary,
                                 )),
                             const SizedBox(width: 5),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
                               child: Container(
                                 height: 25,
                                 width: 25,
