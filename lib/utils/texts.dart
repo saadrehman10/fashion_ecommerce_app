@@ -69,7 +69,7 @@ class MyCartScreenText {
   static const String subTotal = 'Sub-Total';
   static const String delivery = 'Delivery';
   static const String discount = 'Discount';
-  static const String total = 'Total';
+  static const String total = 'Total Cost';
 }
 
 class MyWishListScreenText {
@@ -89,6 +89,7 @@ class ButtonText {
   static const String seeAll = 'See All';
   static const String addToCart = 'Add To Cart';
   static const String apply = 'Apply';
+  static const String checkout = 'Proceed To Checkout';
 }
 
 class FutureBuilderText {

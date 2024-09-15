@@ -20,6 +20,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
   late List<String> _myCartData;
   bool _isLoading = false;
 
+  double _subtotal = 0;
+
   Future<void> dataLoad() async {
     _myCartData = await MyCart.getCartData();
     setState(() {
@@ -32,7 +34,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
     for (var element in prices) {
       sum += element.price!;
     }
-
+    _subtotal = sum;
     return sum;
   }
 
@@ -158,6 +160,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             }),
                       ),
                       Container(
+                        padding: const EdgeInsets.all(30),
                         height: screenHeight * .35,
                         width: screenWidth,
                         decoration: BoxDecoration(
@@ -169,118 +172,131 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             boxShadow: const [
                               BoxShadow(color: Colors.grey, blurRadius: 20)
                             ]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Stack(
-                                      alignment: Alignment.centerRight,
-                                      children: [
-                                        TextField(
-                                          decoration: InputDecoration(
-                                            hintText: MyCartScreenText
-                                                .hintTextTextFelid,
-                                            hintStyle: TextStyle(
-                                                color: Colors.grey
-                                                    .withOpacity(.6)),
-                                            border: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Stack(
+                                    alignment: Alignment.centerRight,
+                                    children: [
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          hintText: MyCartScreenText
+                                              .hintTextTextFelid,
+                                          hintStyle: TextStyle(
+                                              color:
+                                                  Colors.grey.withOpacity(.6)),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                              width: 2,
                                             ),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
                                           ),
                                         ),
-                                        ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 14,
-                                                      horizontal: 30),
-                                              backgroundColor:
-                                                  AppColors.secondary),
-                                          child: Text(ButtonText.apply,
-                                              style: TextStyle(
-                                                color: AppColors.primary,
-                                                fontSize: 20,
-                                              )),
-                                        ),
-                                      ],
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 14, horizontal: 30),
+                                            backgroundColor:
+                                                AppColors.secondary),
+                                        child: Text(ButtonText.apply,
+                                            style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 20,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(MyCartScreenText.subTotal,
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                                Text(
+                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(MyCartScreenText.delivery,
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                                Text(
+                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(MyCartScreenText.discount,
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                                Text(
+                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 17)),
+                              ],
+                            ),
+                            const SizedBox(height: 15),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(MyCartScreenText.total,
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 20)),
+                                Text(
+                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: AppColors.textColorSubtitles,
+                                        fontSize: 20)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15),
+                                      backgroundColor: AppColors.secondary,
+                                    ),
+                                    child: Text(
+                                      ButtonText.checkout,
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(MyCartScreenText.subTotal,
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                  Text(
-                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(MyCartScreenText.subTotal,
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                  Text(
-                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(MyCartScreenText.subTotal,
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                  Text(
-                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                ],
-                              ),
-                              const SizedBox(height: 25),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(MyCartScreenText.subTotal,
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                  Text(
-                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
-                                      style: TextStyle(
-                                          color: AppColors.textColorSubtitles,
-                                          fontSize: 20)),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],
