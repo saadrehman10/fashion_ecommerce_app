@@ -318,20 +318,23 @@ class _ProductScreenState extends State<ProductScreen> {
                               scrollDirection: Axis.horizontal,
                               itemCount: productSizes.length,
                               itemBuilder: (context, index) {
-                                return InkWell(
+                                return GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       _currentSizeIndex = index;
                                     });
                                   },
                                   child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                      margin: const EdgeInsets.all(3),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 6),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 9),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
+                                        borderRadius: BorderRadius.circular(8),
                                         border: _currentSizeIndex != index
                                             ? Border.all(
-                                                color: Colors.black,
+                                                color: Colors.grey[300] ??
+                                                    Colors.white,
                                                 width: .5,
                                               )
                                             : null,
@@ -339,13 +342,15 @@ class _ProductScreenState extends State<ProductScreen> {
                                             ? AppColors.secondary
                                             : null,
                                       ),
-                                      child: Text(
-                                        productSizes[index],
-                                        style: TextStyle(
-                                          color: _currentSizeIndex == index
-                                              ? AppColors.primary
-                                              : AppColors.tertiary,
-                                          fontSize: 16,
+                                      child: Center(
+                                        child: Text(
+                                          productSizes[index],
+                                          style: TextStyle(
+                                            color: _currentSizeIndex == index
+                                                ? AppColors.primary
+                                                : AppColors.tertiary,
+                                            fontSize: 17,
+                                          ),
                                         ),
                                       )),
                                 );
