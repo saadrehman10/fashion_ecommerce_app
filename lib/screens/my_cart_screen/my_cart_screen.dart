@@ -157,13 +157,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   }
                                   return true;
                                 },
-                                onDismissed: (direction) async {
+                                onDismissed: (direction) {
                                   if (direction ==
                                       DismissDirection.endToStart) {
                                     MyCart.deleteMyCart(
                                         productId: _filteredData[index].id);
                                     setState(() {
-                                      _filteredData.removeAt(index);
+                                      dataLoad();
                                     });
                                   }
                                 },
