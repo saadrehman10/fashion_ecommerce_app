@@ -31,9 +31,11 @@ class CategoryScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(),
-                    SizedBox(width: 50),
-                    Text('Loading Wishlist ... '),
+                    CircularProgressIndicator(
+                      strokeAlign: 3,
+                    ),
+                    SizedBox(height: 20),
+                    Text('Loading Wishlist ....'),
                   ],
                 ),
               );
