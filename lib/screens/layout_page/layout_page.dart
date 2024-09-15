@@ -42,10 +42,10 @@ class _LayoutPageState extends State<LayoutPage> {
           left: 20,
           right: 20,
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
             decoration: BoxDecoration(
               color: Colors.black87,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(50),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.3),
@@ -58,6 +58,11 @@ class _LayoutPageState extends State<LayoutPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
+                  style: currentWidgetIndex == 0
+                      ? IconButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          padding: const EdgeInsets.all(15))
+                      : null,
                   icon: Icon(Icons.home,
                       color: currentWidgetIndex == 0
                           ? AppColors.secondary
@@ -81,6 +86,11 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
+                  style: currentWidgetIndex == 2
+                      ? IconButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          padding: const EdgeInsets.all(15))
+                      : null,
                   icon: Icon(Icons.favorite,
                       color: currentWidgetIndex == 2
                           ? AppColors.secondary
@@ -93,6 +103,11 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
+                  style: currentWidgetIndex == 3
+                      ? IconButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          padding: const EdgeInsets.all(15))
+                      : null,
                   icon: Icon(Icons.chat_bubble,
                       color: currentWidgetIndex == 3
                           ? AppColors.secondary
@@ -105,6 +120,11 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
+                  style: currentWidgetIndex == 4
+                      ? IconButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          padding: const EdgeInsets.all(15))
+                      : null,
                   icon: Icon(Icons.person,
                       color: currentWidgetIndex == 4
                           ? AppColors.secondary
