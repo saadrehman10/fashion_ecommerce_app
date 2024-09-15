@@ -355,12 +355,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 itemBuilder: (context, index) {
                                   return ProductCard(
-                                      thumbnailUrl:
-                                          filterData[index].thumbnailUrl,
-                                      rating: filterData[index].rating!,
-                                      title: filterData[index].title!,
-                                      productId: filterData[index].id,
-                                      price: filterData[index].price!);
+                                    thumbnailUrl:
+                                        filterData[index].thumbnailUrl,
+                                    rating: filterData[index].rating!,
+                                    title: filterData[index].title!,
+                                    productId: filterData[index].id,
+                                    price: filterData[index].price!,
+                                   
+                                  );
                                 });
                           } else {
                             return const Center(child: Text('No text found'));

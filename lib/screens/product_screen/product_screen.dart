@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
+import 'package:fashion_ecommerce_app/business_logics/wishlist_logic.dart';
 import 'package:fashion_ecommerce_app/models/product.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
@@ -22,14 +23,31 @@ class _ProductScreenState extends State<ProductScreen> {
   int _current = 0;
   int _currentSizeIndex = 0;
   int _currentColorIndex = 0;
-
   // final CarouselController _controller = CarouselController();
   late Future<dynamic> _apiProduct;
+  late IconData _favoriteIcon;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState;
     _apiProduct = ProductApi.singleProduct(id: widget.productId);
+    _iconColor();
+  }
+
+  Future<void> _iconColor() async {
+    List<String> temp = await WishListLogic.getWishlist();
+    if (temp.contains(widget.productId.toString())) {
+      setState(() {
+        _favoriteIcon = Icons.favorite;
+        _isLoading = true;
+      });
+    } else {
+      setState(() {
+        _favoriteIcon = Icons.favorite_outline;
+        _isLoading = true;
+      });
+    }
   }
 
   @override
@@ -48,14 +66,17 @@ class _ProductScreenState extends State<ProductScreen> {
             fontWeight: FontWeight.w300,
           ),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              style: IconButton.styleFrom(
-                  padding: const EdgeInsets.all(3),
-                  backgroundColor: Colors.white.withOpacity(.8)),
-              icon: Icon(Icons.favorite, size: 25, color: AppColors.secondary)),
-        ],
+        actions: _isLoading
+            ? [
+                IconButton(
+                    onPressed: () {},
+                    style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(3),
+                        backgroundColor: Colors.white.withOpacity(.8)),
+                    icon: Icon(_favoriteIcon,
+                        size: 25, color: AppColors.secondary)),
+              ]
+            : null,
       ),
       body: SafeArea(
         child: FutureBuilder(

@@ -103,11 +103,12 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                         ),
                         itemBuilder: (context, index) {
                           return ProductCard(
-                              thumbnailUrl: _filteredData[index].thumbnailUrl,
-                              rating: _filteredData[index].rating!,
-                              title: _filteredData[index].title!,
-                              productId: _filteredData[index].id,
-                              price: _filteredData[index].price!);
+                            thumbnailUrl: _filteredData[index].thumbnailUrl,
+                            rating: _filteredData[index].rating!,
+                            title: _filteredData[index].title!,
+                            productId: _filteredData[index].id,
+                            price: _filteredData[index].price!,
+                          );
                         }),
                   );
                 } else {
