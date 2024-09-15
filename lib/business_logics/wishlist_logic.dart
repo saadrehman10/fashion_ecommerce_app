@@ -1,49 +1,58 @@
-import 'package:fashion_ecommerce_app/utils/texts.dart';
-import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WishListLogic {
+  static Future<void> createWishlist() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setStringList('wishList', []);
+  }
 
+  static Future<List<String>> getWishlist() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    final List<String>? myWishlistData = sp.getStringList('myCart');
+    if (myWishlistData == null) {
+      await createWishlist();
+      final List<String> temp = sp.getStringList('myCart')!;
+      return temp;
+    } else {
+      return myWishlistData;
+    }
+  }
 
-  
-  // static Future<bool> favoriteButton({required int productId}) async {
-  //   bool iconState = false;
-  //   final SharedPreferences sharedPreferences =
-  //       await SharedPreferences.getInstance();
-  //   List<String>? wishList = sharedPreferences.getStringList('wishList');
-  //   if (wishList == null) {
-  //     bool successful = await sharedPreferences
-  //         .setStringList('wishList', [productId.toString()]);
-  //     successful
-  //         ? {
-  //             FlutterToast.showToast(message: ToastMessages.addItem),
-  //             iconState = true,
-  //           }
-  //         : FlutterToast.showToast(message: ToastMessages.error);
-  //   } else {
-  //     if (wishList.contains(productId.toString())) {
-  //       wishList.remove(productId.toString());
+  static Future<bool> addToWishlist({required int productId}) async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    final List<String>? myCartData = sp.getStringList('myCart');
+    try {
+      if (myCartData == null) {
+        await createWishlist();
+        final List<String> temp = sp.getStringList('myCart')!;
+        temp.add(productId.toString());
+        sp.setStringList('myCart', temp);
+        return true;
+      } else if (myCartData.contains(productId.toString())) {
+        return false;
+      } else {
+        myCartData.add(productId.toString());
+        sp.setStringList('myCart', myCartData);
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 
-  //       bool successful =
-  //           await sharedPreferences.setStringList('wishList', wishList);
-  //       successful
-  //           ? {
-  //               FlutterToast.showToast(message: ToastMessages.removedItem),
-  //               iconState = false,
-  //             }
-  //           : FlutterToast.showToast(message: ToastMessages.error);
-  //     } else {
-  //       wishList.add(productId.toString());
-  //       bool successful =
-  //           await sharedPreferences.setStringList('wishList', wishList);
-  //       successful
-  //           ? {
-  //               FlutterToast.showToast(message: ToastMessages.addItem),
-  //               iconState = true,
-  //             }
-  //           : FlutterToast.showToast(message: ToastMessages.error);
-  //     }
-  //   }
-  //   return iconState;
-  // }
+  static Future<bool> deleteMyCart({required int productId}) async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    final List<String>? myCartData = sp.getStringList('myCart');
+    try {
+      if (myCartData == null) {
+        return false;
+      } else {
+        myCartData.remove(productId.toString());
+        sp.setStringList('myCart', myCartData);
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 }
