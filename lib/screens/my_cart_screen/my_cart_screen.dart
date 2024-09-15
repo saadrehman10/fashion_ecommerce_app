@@ -16,6 +16,7 @@ class MyCartScreen extends StatefulWidget {
 }
 
 class _MyCartScreenState extends State<MyCartScreen> {
+  late List<Thumbnail> _filteredData;
   late List<String> _myCartData;
   bool _isLoading = false;
 
@@ -69,18 +70,18 @@ class _MyCartScreenState extends State<MyCartScreen> {
                     ],
                   );
                 } else if (snapshot.hasData) {
-                  List<Thumbnail> filteredData = List<Thumbnail>.generate(
+                  _filteredData = List<Thumbnail>.generate(
                       snapshot.data['limit'],
                       (index) =>
                           Thumbnail.formJson(snapshot.data['products'][index]));
-                  filteredData.removeWhere(
+                  _filteredData.removeWhere(
                       (value) => !_myCartData.contains(value.id.toString()));
-                  debugPrint(filteredData.toString());
+                  debugPrint(_filteredData.toString());
                   return ListView.builder(
-                      itemCount: filteredData.length,
+                      itemCount: _filteredData.length,
                       itemBuilder: (context, index) {
                         return Dismissible(
-                          key: Key(filteredData[index].id.toString()),
+                          key: Key(_filteredData[index].id.toString()),
                           direction: DismissDirection.endToStart,
                           dismissThresholds: const {
                             DismissDirection.endToStart: 0.35,
@@ -113,7 +114,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                           onDismissed: (direction) {
                             if (direction == DismissDirection.endToStart) {
                               MyCart.deleteMyCart(
-                                  productId: filteredData[index].id);
+                                  productId: _filteredData[index].id);
                             }
                           },
                           background: Container(
@@ -127,9 +128,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             ),
                           ),
                           child: CustomListTile(
-                            thumbnailUrl: filteredData[index].thumbnailUrl,
-                            title: filteredData[index].title!,
-                            price: filteredData[index].price!,
+                            thumbnailUrl: _filteredData[index].thumbnailUrl,
+                            title: _filteredData[index].title!,
+                            price: _filteredData[index].price!,
                           ),
                         );
                       });

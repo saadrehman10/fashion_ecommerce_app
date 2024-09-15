@@ -51,7 +51,7 @@ class _CustomListTileState extends State<CustomListTile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.title!,
+                    widget.title,
                     style: TextStyle(
                       color: AppColors.tertiary,
                       fontSize: 16,
@@ -142,5 +142,3 @@ class _CustomListTileState extends State<CustomListTile> {
     );
   }
 }
-
-
