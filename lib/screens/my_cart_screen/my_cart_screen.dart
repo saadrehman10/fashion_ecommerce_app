@@ -66,7 +66,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          strokeAlign: 3,
+                        ),
+                        SizedBox(width: 15),
+                        Text('Loading Cart ... '),
+                      ],
+                    ),
                   );
                 } else if (snapshot.hasError) {
                   return Column(

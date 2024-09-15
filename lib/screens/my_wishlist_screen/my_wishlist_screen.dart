@@ -47,13 +47,13 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
         ),
         centerTitle: true,
       ),
-      body: _isLoading
+      body: _isLoading && _wishlist.isNotEmpty
           ? FutureBuilder(
               future: widget.thumbnailsApi,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircularProgressIndicator(
@@ -92,7 +92,7 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: GridView.builder(
-                        itemCount: snapshot.data['limit'],
+                        itemCount: _filteredData.length,
                         shrinkWrap: true,
                         //  physics: NeverScrollableScrollPhysics(),
                         gridDelegate:
@@ -115,7 +115,15 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                 }
               },
             )
-          : null,
+          : Center(
+              child: Text(
+                MyWishListScreenText.emptyWishlist,
+                style: TextStyle(
+                    color: AppColors.tertiary,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w300),
+              ),
+            ),
     );
   }
 }

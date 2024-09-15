@@ -74,6 +74,7 @@ class MyCartScreenText {
 
 class MyWishListScreenText {
   static const String pageTitle = 'My Wishlist';
+  static const String emptyWishlist = 'No Favorite';
 }
 ///////////////////
 //Widgets texts //
