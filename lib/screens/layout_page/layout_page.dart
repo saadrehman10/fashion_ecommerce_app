@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/screens/chat_screen/chat_screen.dart';
 import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart_screen/my_cart_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_wishlist_screen/my_wishlist_screen.dart';
@@ -25,7 +26,7 @@ class _LayoutPageState extends State<LayoutPage> {
       HomeScreen(thumbnailsApi: ProductApi.allProduct()),
       MyCartScreen(thumbnailsApi: ProductApi.allProduct()),
       MyWishlistScreen(thumbnailsApi: ProductApi.allProduct()),
-      const ProfileScreen(),
+      ChatPage(),
       const ProfileScreen(),
     ];
   }

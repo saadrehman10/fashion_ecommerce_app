@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
@@ -18,27 +19,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title:  Text(ProfileScreenText.pageTitle , style: TextStyle(
+        title: Text(
+          ProfileScreenText.pageTitle,
+          style: TextStyle(
             color: AppColors.tertiary,
             fontSize: 20,
             fontWeight: FontWeight.w300,
-          ), ),
+          ),
+        ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                child: Image.asset(AppImages.welcomeScreenImgThree),
-              )
-              Text(),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(AppImages.welcomeScreenImgThree),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              ProfileScreenText.username,
+              style: TextStyle(
+                color: AppColors.tertiary,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: profilesData.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Icon(profilesData[index]['leadingIcon'],
+                      size: 25, color: AppColors.secondary),
+                  title: Text(profilesData[index]['title'],
+                      style: TextStyle(
+                        color: AppColors.tertiary,
+                        fontSize: 20,
+                      )),
+                  trailing: Icon(Icons.keyboard_arrow_right,
+                      size: 30, color: AppColors.secondary),
+                );
+              },
+            )
+          ],
         ),
       ),
     );

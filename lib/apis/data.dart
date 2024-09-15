@@ -54,3 +54,14 @@ final List<Color> productColors = [
   const Color(0xFFebe1da),
   const Color(0xFF81766f), // Teal
 ];
+
+final List<Map<String, dynamic>> profilesData = [
+  {'leadingIcon': Icons.person, 'title': 'Your Profile'},
+  {'leadingIcon': Icons.payment, 'title': 'Payment Methods'},
+  {'leadingIcon': Icons.shopping_bag, 'title': 'My Orders'},
+  {'leadingIcon': Icons.settings, 'title': 'Settings'},
+  {'leadingIcon': Icons.help_outline, 'title': 'Help Center'},
+  {'leadingIcon': Icons.privacy_tip, 'title': 'Privacy Policy'},
+  {'leadingIcon': Icons.people, 'title': 'Invite Friends'},
+  {'leadingIcon': Icons.logout, 'title': 'Log out'},
+];
