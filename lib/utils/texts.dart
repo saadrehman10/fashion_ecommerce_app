@@ -67,9 +67,9 @@ class MyCartScreenText {
   static const String emptyCart = 'Your Cart is Empty';
   static const String hintTextTextFelid = 'Promo Code';
   static const String subTotal = 'Sub-Total';
-  static const String delivery = 'Promo Code';
-  static const String discount = 'Promo Code';
-  static const String total = 'Promo Code';
+  static const String delivery = 'Delivery';
+  static const String discount = 'Discount';
+  static const String total = 'Total';
 }
 
 class MyWishListScreenText {

@@ -27,6 +27,15 @@ class _MyCartScreenState extends State<MyCartScreen> {
     });
   }
 
+  double _subTotal({required List<Thumbnail> prices}) {
+    double sum = 0;
+    for (var element in prices) {
+      sum += element.price!;
+    }
+
+    return sum;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -206,14 +215,70 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 10),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Text(MyCartScreenText.subTotal,
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
                                   Text(
-                                    
-                                  ),
+                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
                                 ],
                               ),
-
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(MyCartScreenText.subTotal,
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                  Text(
+                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(MyCartScreenText.subTotal,
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                  Text(
+                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                ],
+                              ),
+                              const SizedBox(height: 25),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(MyCartScreenText.subTotal,
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                  Text(
+                                      '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                          color: AppColors.textColorSubtitles,
+                                          fontSize: 20)),
+                                ],
+                              ),
                             ],
                           ),
                         ),
