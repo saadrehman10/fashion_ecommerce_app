@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/business_logics/wishlist_logic.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
@@ -15,6 +16,23 @@ class MyWishlistScreen extends StatefulWidget {
 }
 
 class _MyWishlistScreenState extends State<MyWishlistScreen> {
+  late List<Thumbnail> _filteredData;
+  late List<String> _wishlist;
+  bool _isLoading = false;
+
+  Future<void> dataLoad() async {
+    _wishlist = await WishListLogic.getWishlist();
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    dataLoad();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,74 +47,75 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
         ),
         centerTitle: true,
       ),
-      body: FutureBuilder(
-        future: widget.thumbnailsApi,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 4,
-                    width: 4,
-                    child: CircularProgressIndicator(
-                      strokeAlign: 3,
+      body: _isLoading
+          ? FutureBuilder(
+              future: widget.thumbnailsApi,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          strokeAlign: 3,
+                        ),
+                        SizedBox(width: 15),
+                        Text('Loading Wishlist ... '),
+                      ],
                     ),
-                  ),
-                  SizedBox(width: 15),
-                  Text('Loading Products ... '),
-                ],
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return Column(
-              children: [
-                Text(snapshot.error.toString()),
-                Center(
-                  child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        widget.thumbnailsApi = ProductApi.allProduct();
-                      });
-                    },
-                    icon: Icon(Icons.refresh,
-                        size: 20, color: AppColors.secondary),
-                  ),
-                ),
-              ],
-            );
-          } else if (snapshot.hasData) {
-            List<Thumbnail> filterData =
-                List<Thumbnail>.generate(snapshot.data['limit'], (index) {
-              return Thumbnail.formJson(snapshot.data['products'][index]);
-            });
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GridView.builder(
-                  itemCount: snapshot.data['limit'],
-                  shrinkWrap: true,
-                  //  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) {
-                    return ProductCard(
-                        thumbnailUrl: filterData[index].thumbnailUrl,
-                        rating: filterData[index].rating!,
-                        title: filterData[index].title!,
-                        productId: filterData[index].id,
-                        price: filterData[index].price!);
-                  }),
-            );
-          } else {
-            return const Center(child: Text('No text found'));
-          }
-        },
-      ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Column(
+                    children: [
+                      Text(snapshot.error.toString()),
+                      Center(
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.thumbnailsApi = ProductApi.allProduct();
+                            });
+                          },
+                          icon: Icon(Icons.refresh,
+                              size: 20, color: AppColors.secondary),
+                        ),
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasData) {
+                  _filteredData = List<Thumbnail>.generate(
+                      snapshot.data['limit'],
+                      (index) =>
+                          Thumbnail.formJson(snapshot.data['products'][index]));
+                  _filteredData.removeWhere(
+                      (value) => !_wishlist.contains(value.id.toString()));
+                  debugPrint(_filteredData.toString());
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: GridView.builder(
+                        itemCount: snapshot.data['limit'],
+                        shrinkWrap: true,
+                        //  physics: NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                        ),
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                              thumbnailUrl: _filteredData[index].thumbnailUrl,
+                              rating: _filteredData[index].rating!,
+                              title: _filteredData[index].title!,
+                              productId: _filteredData[index].id,
+                              price: _filteredData[index].price!);
+                        }),
+                  );
+                } else {
+                  return const Center(child: Text('No text found'));
+                }
+              },
+            )
+          : null,
     );
   }
 }

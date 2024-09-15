@@ -8,31 +8,31 @@ class WishListLogic {
 
   static Future<List<String>> getWishlist() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    final List<String>? myWishlistData = sp.getStringList('myCart');
-    if (myWishlistData == null) {
+    final List<String>? wishlistData = sp.getStringList('wishList');
+    if (wishlistData == null) {
       await createWishlist();
-      final List<String> temp = sp.getStringList('myCart')!;
+      final List<String> temp = sp.getStringList('wishList')!;
       return temp;
     } else {
-      return myWishlistData;
+      return wishlistData;
     }
   }
 
   static Future<bool> addToWishlist({required int productId}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    final List<String>? myCartData = sp.getStringList('myCart');
+    final List<String>? wishListData = sp.getStringList('wishList');
     try {
-      if (myCartData == null) {
+      if (wishListData == null) {
         await createWishlist();
-        final List<String> temp = sp.getStringList('myCart')!;
+        final List<String> temp = sp.getStringList('wishList')!;
         temp.add(productId.toString());
-        sp.setStringList('myCart', temp);
+        sp.setStringList('wishList', temp);
         return true;
-      } else if (myCartData.contains(productId.toString())) {
+      } else if (wishListData.contains(productId.toString())) {
         return false;
       } else {
-        myCartData.add(productId.toString());
-        sp.setStringList('myCart', myCartData);
+        wishListData.add(productId.toString());
+        sp.setStringList('wishList', wishListData);
         return true;
       }
     } catch (e) {
@@ -40,15 +40,15 @@ class WishListLogic {
     }
   }
 
-  static Future<bool> deleteMyCart({required int productId}) async {
+  static Future<bool> deleteWishList({required int productId}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    final List<String>? myCartData = sp.getStringList('myCart');
+    final List<String>? wishListData = sp.getStringList('wishList');
     try {
-      if (myCartData == null) {
+      if (wishListData == null) {
         return false;
       } else {
-        myCartData.remove(productId.toString());
-        sp.setStringList('myCart', myCartData);
+        wishListData.remove(productId.toString());
+        sp.setStringList('wishList', wishListData);
         return true;
       }
     } catch (e) {
