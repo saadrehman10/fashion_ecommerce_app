@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/business_logics/category_logic.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
+import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class CategoryScreen extends StatelessWidget {
         appBar: AppBar(
             centerTitle: true,
             title: Text(
-              category,
+              category.capitalize,
               style: TextStyle(
                 color: AppColors.tertiary,
                 fontSize: 21,
@@ -30,15 +31,14 @@ class CategoryScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(
-                      strokeAlign: 3,
-                    ),
-                    SizedBox(width: 15),
+                    CircularProgressIndicator(),
+                    SizedBox(width: 50),
                     Text('Loading Wishlist ... '),
                   ],
                 ),
               );
             } else if (snapshot.hasError) {
+              debugPrint(snapshot.error.toString());
               return Column(
                 children: [
                   Text(snapshot.error.toString()),
@@ -55,7 +55,7 @@ class CategoryScreen extends StatelessWidget {
               );
             } else if (snapshot.hasData) {
               List<Thumbnail> filteredData = List<Thumbnail>.generate(
-                  snapshot.data!['limit'],
+                  snapshot.data!['products'].length,
                   (index) =>
                       Thumbnail.formJson(snapshot.data!['products'][index]));
 
