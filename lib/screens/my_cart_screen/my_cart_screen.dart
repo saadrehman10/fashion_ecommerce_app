@@ -149,20 +149,75 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             }),
                       ),
                       Container(
-                          height: screenHeight * .4,
-                          width: screenWidth,
-                          decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                topLeft: Radius.circular(20),
-                              ),
-                              boxShadow: [
-                                BoxShadow(color: Colors.grey, blurRadius: 20)
-                              ]),
+                        height: screenHeight * .35,
+                        width: screenWidth,
+                        decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                            ),
+                            boxShadow: const [
+                              BoxShadow(color: Colors.grey, blurRadius: 20)
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
                           child: Column(
-                            children: [],
-                          )),
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Stack(
+                                      alignment: Alignment.centerRight,
+                                      children: [
+                                        TextField(
+                                          decoration: InputDecoration(
+                                            hintText: MyCartScreenText
+                                                .hintTextTextFelid,
+                                            hintStyle: TextStyle(
+                                                color: Colors.grey
+                                                    .withOpacity(.6)),
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                width: 2,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                            ),
+                                          ),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 14,
+                                                      horizontal: 30),
+                                              backgroundColor:
+                                                  AppColors.secondary),
+                                          child: Text(ButtonText.apply,
+                                              style: TextStyle(
+                                                color: AppColors.primary,
+                                                fontSize: 20,
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   );
                 } else {

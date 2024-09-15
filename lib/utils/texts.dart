@@ -65,6 +65,11 @@ class ProductScreenText {
 class MyCartScreenText {
   static const String pageTitle = 'My Cart';
   static const String emptyCart = 'Your Cart is Empty';
+  static const String hintTextTextFelid = 'Promo Code';
+  static const String subTotal = 'Sub-Total';
+  static const String delivery = 'Promo Code';
+  static const String discount = 'Promo Code';
+  static const String total = 'Promo Code';
 }
 
 class MyWishListScreenText {
@@ -83,6 +88,7 @@ class ButtonText {
   static const String shopNow = 'Shop Now ';
   static const String seeAll = 'See All';
   static const String addToCart = 'Add To Cart';
+  static const String apply = 'Apply';
 }
 
 class FutureBuilderText {
