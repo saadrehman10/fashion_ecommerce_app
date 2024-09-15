@@ -76,6 +76,11 @@ class MyWishListScreenText {
   static const String pageTitle = 'My Wishlist';
   static const String emptyWishlist = 'No Favorite';
 }
+
+class ProfileScreenText {
+  static const String pageTitle = 'Profile';
+  static const String username = 'Saad ur Rehman';
+}
 ///////////////////
 //Widgets texts //
 ///////////////////
