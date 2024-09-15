@@ -3,6 +3,7 @@ import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart_screen/my_cart_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_wishlist_screen/my_wishlist_screen.dart';
 import 'package:fashion_ecommerce_app/screens/profile_screen/profile_screen.dart';
+import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -23,7 +24,7 @@ class _LayoutPageState extends State<LayoutPage> {
     currentWidget = [
       HomeScreen(thumbnailsApi: ProductApi.allProduct()),
       MyCartScreen(thumbnailsApi: ProductApi.allProduct()),
-      const MyWishlistScreen(),
+      MyWishlistScreen(thumbnailsApi: ProductApi.allProduct()),
       const ProfileScreen(),
       const ProfileScreen(),
     ];
@@ -57,7 +58,10 @@ class _LayoutPageState extends State<LayoutPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.home, color: Colors.brown),
+                  icon: Icon(Icons.home,
+                      color: currentWidgetIndex == 0
+                          ? AppColors.secondary
+                          : AppColors.primary),
                   onPressed: () {
                     const int index = 0;
                     setState(() {
@@ -77,7 +81,10 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.favorite_border, color: Colors.white),
+                  icon: Icon(Icons.favorite,
+                      color: currentWidgetIndex == 2
+                          ? AppColors.secondary
+                          : AppColors.primary),
                   onPressed: () {
                     const int index = 2;
                     setState(() {
@@ -86,8 +93,10 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.chat_bubble_outline,
-                      color: Colors.white),
+                  icon: Icon(Icons.chat_bubble,
+                      color: currentWidgetIndex == 3
+                          ? AppColors.secondary
+                          : AppColors.primary),
                   onPressed: () {
                     const int index = 3;
                     setState(() {
@@ -96,7 +105,10 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.person_outline, color: Colors.white),
+                  icon: Icon(Icons.person,
+                      color: currentWidgetIndex == 4
+                          ? AppColors.secondary
+                          : AppColors.primary),
                   onPressed: () {
                     const int index = 4;
                     setState(() {
