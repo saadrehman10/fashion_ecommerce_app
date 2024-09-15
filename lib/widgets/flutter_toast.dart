@@ -2,6 +2,8 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class FlutterToast {
+  FlutterToast(toastMessage, {required String message});
+
   static showToast({required String message}) {
     Fluttertoast.showToast(
         msg: message,

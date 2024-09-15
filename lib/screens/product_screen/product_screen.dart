@@ -28,13 +28,6 @@ class _ProductScreenState extends State<ProductScreen> {
   late IconData _favoriteIcon;
   bool _isLoading = false;
 
-  @override
-  void initState() {
-    super.initState;
-    _apiProduct = ProductApi.singleProduct(id: widget.productId);
-    _iconColor();
-  }
-
   Future<void> _iconColor() async {
     List<String> temp = await WishListLogic.getWishlist();
     if (temp.contains(widget.productId.toString())) {
@@ -48,6 +41,36 @@ class _ProductScreenState extends State<ProductScreen> {
         _isLoading = true;
       });
     }
+  }
+
+  Future<void> _iconButtonOnTap() async {
+    List<String> data = await WishListLogic.getWishlist();
+    if (data.contains(widget.productId.toString())) {
+      bool temp =
+          await WishListLogic.deleteWishList(productId: widget.productId);
+      setState(() {
+        _iconColor();
+      });
+      temp
+          ? FlutterToast.showToast(message: ToastMessages.removedItemWishList)
+          : FlutterToast.showToast(message: ToastMessages.error);
+    } else {
+      bool temp =
+          await WishListLogic.addToWishlist(productId: widget.productId);
+      setState(() {
+        _iconColor();
+      });
+      temp
+          ? FlutterToast.showToast(message: ToastMessages.addItemWishList)
+          : FlutterToast.showToast(message: ToastMessages.error);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState;
+    _apiProduct = ProductApi.singleProduct(id: widget.productId);
+    _iconColor();
   }
 
   @override
@@ -69,7 +92,9 @@ class _ProductScreenState extends State<ProductScreen> {
         actions: _isLoading
             ? [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _iconButtonOnTap();
+                    },
                     style: IconButton.styleFrom(
                         padding: const EdgeInsets.all(3),
                         backgroundColor: Colors.white.withOpacity(.8)),

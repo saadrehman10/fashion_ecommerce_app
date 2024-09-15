@@ -28,45 +28,25 @@ class _ProductCardState extends State<ProductCard> {
 
   // add to wishlist function
   Future<void> _favoriteButton({required int productId}) async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    List<String>? wishList = sharedPreferences.getStringList('wishList');
-    if (wishList == null) {
-      bool successful = await sharedPreferences
-          .setStringList('wishList', [productId.toString()]);
-      successful
-          ? {
-              FlutterToast.showToast(message: ToastMessages.addItemWishList),
-              _favoriteIcon = Icons.favorite,
-              setState(() {}),
-            }
+    List<String> data = await WishListLogic.getWishlist();
+    if (data.contains(widget.productId.toString())) {
+      bool temp =
+          await WishListLogic.deleteWishList(productId: widget.productId);
+      setState(() {
+        _iconColor();
+      });
+      temp
+          ? FlutterToast.showToast(message: ToastMessages.removedItemWishList)
           : FlutterToast.showToast(message: ToastMessages.error);
     } else {
-      if (wishList.contains(productId.toString())) {
-        wishList.remove(productId.toString());
-
-        bool successful =
-            await sharedPreferences.setStringList('wishList', wishList);
-        successful
-            ? {
-                FlutterToast.showToast(
-                    message: ToastMessages.removedItemWishList),
-                _favoriteIcon = Icons.favorite_outline,
-                setState(() {}),
-              }
-            : FlutterToast.showToast(message: ToastMessages.error);
-      } else {
-        wishList.add(productId.toString());
-        bool successful =
-            await sharedPreferences.setStringList('wishList', wishList);
-        successful
-            ? {
-                FlutterToast.showToast(message: ToastMessages.addItemWishList),
-                _favoriteIcon = Icons.favorite,
-                setState(() {}),
-              }
-            : FlutterToast.showToast(message: ToastMessages.error);
-      }
+      bool temp =
+          await WishListLogic.addToWishlist(productId: widget.productId);
+      setState(() {
+        _iconColor();
+      });
+      temp
+          ? FlutterToast.showToast(message: ToastMessages.addItemWishList)
+          : FlutterToast.showToast(message: ToastMessages.error);
     }
   }
 
