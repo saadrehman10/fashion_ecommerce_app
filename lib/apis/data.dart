@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final List<dynamic> slider = [
@@ -31,10 +30,10 @@ final List<dynamic> slider = [
 ];
 
 final Map<String, IconData> categoryIcons = {
-  'Shirts': FontAwesomeIcons.shirt,
-  'Jacket': FontAwesomeIcons.vest,
-  'Socks': FontAwesomeIcons.socks,
-  'Gloves': FontAwesomeIcons.mitten,
+  'Beauty': Icons.face,
+  'Fragrances': FontAwesomeIcons.bottleDroplet,
+  'Furniture': FontAwesomeIcons.bed,
+  'Groceries': Icons.local_grocery_store,
 };
 
 final List<String> productSizes = [
