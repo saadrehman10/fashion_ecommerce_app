@@ -4,12 +4,12 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
   final num rating, price;
   final int productId;
+  final Function? onPressIconButton;
   const ProductCard({
     super.key,
     required this.thumbnailUrl,
@@ -17,6 +17,7 @@ class ProductCard extends StatefulWidget {
     required this.title,
     required this.productId,
     required this.price,
+    this.onPressIconButton,
   });
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -121,8 +122,10 @@ class _ProductCardState extends State<ProductCard> {
                               ),
                             ),
                             IconButton(
-                                onPressed: () {
-                                  _favoriteButton(productId: widget.productId);
+                                onPressed: () async {
+                                  await _favoriteButton(
+                                      productId: widget.productId);
+                                  widget.onPressIconButton?.call();
                                 },
                                 style: IconButton.styleFrom(
                                     padding: const EdgeInsets.all(3),

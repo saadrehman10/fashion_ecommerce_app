@@ -88,7 +88,7 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                           Thumbnail.formJson(snapshot.data['products'][index]));
                   _filteredData.removeWhere(
                       (value) => !_wishlist.contains(value.id.toString()));
-              
+
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: GridView.builder(
@@ -108,6 +108,11 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                             title: _filteredData[index].title!,
                             productId: _filteredData[index].id,
                             price: _filteredData[index].price!,
+                            onPressIconButton: () {
+                              setState(() {
+                                dataLoad();
+                              });
+                            },
                           );
                         }),
                   );
