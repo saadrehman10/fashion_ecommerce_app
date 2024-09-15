@@ -35,6 +35,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -77,63 +79,92 @@ class _MyCartScreenState extends State<MyCartScreen> {
                   _filteredData.removeWhere(
                       (value) => !_myCartData.contains(value.id.toString()));
                   debugPrint(_filteredData.toString());
-                  return ListView.builder(
-                      itemCount: _filteredData.length,
-                      itemBuilder: (context, index) {
-                        return Dismissible(
-                          key: Key(_filteredData[index].id.toString()),
-                          direction: DismissDirection.endToStart,
-                          dismissThresholds: const {
-                            DismissDirection.endToStart: 0.35,
-                          },
-                          confirmDismiss: (DismissDirection direction) async {
-                            if (direction == DismissDirection.endToStart) {
-                              return await showDialog<bool>(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: const Text('Confirm'),
-                                  content: const Text(
-                                      'Are you sure you want to delete?'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(false),
-                                      child: const Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(true),
-                                      child: const Text('Delete'),
-                                    ),
-                                  ],
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            // physics: const NeverScrollableScrollPhysics(),
+                            itemCount: _filteredData.length,
+                            itemBuilder: (context, index) {
+                              return Dismissible(
+                                key: Key(_filteredData[index].id.toString()),
+                                direction: DismissDirection.endToStart,
+                                dismissThresholds: const {
+                                  DismissDirection.endToStart: 0.35,
+                                },
+                                confirmDismiss:
+                                    (DismissDirection direction) async {
+                                  if (direction ==
+                                      DismissDirection.endToStart) {
+                                    return await showDialog<bool>(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text('Confirm'),
+                                        content: const Text(
+                                            'Are you sure you want to delete?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.of(context)
+                                                    .pop(false),
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.of(context).pop(true),
+                                            child: const Text('Delete'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }
+                                  return true;
+                                },
+                                onDismissed: (direction) {
+                                  if (direction ==
+                                      DismissDirection.endToStart) {
+                                    MyCart.deleteMyCart(
+                                        productId: _filteredData[index].id);
+                                  }
+                                },
+                                background: Container(
+                                  padding: const EdgeInsets.only(right: 30),
+                                  color: Colors.red[100],
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Icon(Icons.delete,
+                                          size: 25, color: Colors.red),
+                                    ],
+                                  ),
+                                ),
+                                child: CustomListTile(
+                                  thumbnailUrl:
+                                      _filteredData[index].thumbnailUrl,
+                                  title: _filteredData[index].title!,
+                                  price: _filteredData[index].price!,
                                 ),
                               );
-                            }
-                            return true;
-                          },
-                          onDismissed: (direction) {
-                            if (direction == DismissDirection.endToStart) {
-                              MyCart.deleteMyCart(
-                                  productId: _filteredData[index].id);
-                            }
-                          },
-                          background: Container(
-                            padding: const EdgeInsets.only(right: 30),
-                            color: Colors.red[100],
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(Icons.delete, size: 25, color: Colors.red),
-                              ],
-                            ),
-                          ),
-                          child: CustomListTile(
-                            thumbnailUrl: _filteredData[index].thumbnailUrl,
-                            title: _filteredData[index].title!,
-                            price: _filteredData[index].price!,
-                          ),
-                        );
-                      });
+                            }),
+                      ),
+                      Container(
+                          height: screenHeight * .4,
+                          width: screenWidth,
+                          decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                              boxShadow: [
+                                BoxShadow(color: Colors.grey, blurRadius: 20)
+                              ]),
+                          child: Column(
+                            children: [],
+                          )),
+                    ],
+                  );
                 } else {
                   return const Placeholder();
                 }

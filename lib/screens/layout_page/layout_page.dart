@@ -4,6 +4,7 @@ import 'package:fashion_ecommerce_app/screens/my_cart_screen/my_cart_screen.dart
 import 'package:fashion_ecommerce_app/screens/my_wishlist_screen/my_wishlist_screen.dart';
 import 'package:fashion_ecommerce_app/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
@@ -65,12 +66,14 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.lock_outline, color: Colors.white),
+                  icon: const Icon(FontAwesomeIcons.bagShopping,
+                      color: Colors.white),
                   onPressed: () {
-                    const int index = 1;
-                    setState(() {
-                      currentWidgetIndex = index;
-                    });
+                    int index = 1;
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => currentWidget[index]));
                   },
                 ),
                 IconButton(
