@@ -62,8 +62,9 @@ class ProductScreenText {
   static const String totalPrice = 'Total Price';
 }
 
-class MyCardScreenText {
+class MyCartScreenText {
   static const String pageTitle = 'My Cart';
+  static const String emptyCart = 'Your Cart is Empty';
 }
 
 class MyWishListScreenText {

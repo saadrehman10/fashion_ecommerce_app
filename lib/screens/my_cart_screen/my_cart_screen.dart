@@ -37,7 +37,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          MyCardScreenText.pageTitle,
+          MyCartScreenText.pageTitle,
           style: TextStyle(
             color: AppColors.tertiary,
             fontSize: 20,
@@ -46,7 +46,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
         ),
         centerTitle: true,
       ),
-      body: _isLoading
+      body: _isLoading && _myCartData.isNotEmpty
           ? FutureBuilder(
               future: widget.thumbnailsApi,
               builder: (context, snapshot) {
@@ -75,69 +75,78 @@ class _MyCartScreenState extends State<MyCartScreen> {
                           Thumbnail.formJson(snapshot.data['products'][index]));
                   filteredData.removeWhere(
                       (value) => !_myCartData.contains(value.id.toString()));
+                  debugPrint(filteredData.toString());
                   return ListView.builder(
                       itemCount: filteredData.length,
                       itemBuilder: (context, index) {
                         return Dismissible(
-                            key: Key(filteredData[index].id.toString()),
-                            direction: DismissDirection.endToStart,
-                            dismissThresholds: const {
-                              DismissDirection.endToStart: 0.35,
-                            },
-                            confirmDismiss: (DismissDirection direction) async {
-                              if (direction == DismissDirection.endToStart) {
-                                return await showDialog<bool>(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: const Text('Confirm'),
-                                    content: const Text(
-                                        'Are you sure you want to delete?'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(false),
-                                        child: const Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(true),
-                                        child: const Text('Delete'),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }
-                              return true;
-                            },
-                            onDismissed: (direction) {
-                              setState(() {
-                                MyCart.deleteMyCart(
-                                    productId: filteredData[index].id);
-                              });
-                            },
-                            background: Container(
-                              padding: const EdgeInsets.only(right: 30),
-                              color: Colors.red[100],
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Icon(Icons.delete,
-                                      size: 25, color: Colors.red),
-                                ],
-                              ),
+                          key: Key(filteredData[index].id.toString()),
+                          direction: DismissDirection.endToStart,
+                          dismissThresholds: const {
+                            DismissDirection.endToStart: 0.35,
+                          },
+                          confirmDismiss: (DismissDirection direction) async {
+                            if (direction == DismissDirection.endToStart) {
+                              return await showDialog<bool>(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text('Confirm'),
+                                  content: const Text(
+                                      'Are you sure you want to delete?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(false),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(true),
+                                      child: const Text('Delete'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                            return true;
+                          },
+                          onDismissed: (direction) {
+                            if (direction == DismissDirection.endToStart) {
+                              MyCart.deleteMyCart(
+                                  productId: filteredData[index].id);
+                            }
+                          },
+                          background: Container(
+                            padding: const EdgeInsets.only(right: 30),
+                            color: Colors.red[100],
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(Icons.delete, size: 25, color: Colors.red),
+                              ],
                             ),
-                            child: CustomListTile(
-                              thumbnailUrl: filteredData[index].thumbnailUrl,
-                              title: filteredData[index].title!,
-                              price: filteredData[index].price!,
-                            ));
+                          ),
+                          child: CustomListTile(
+                            thumbnailUrl: filteredData[index].thumbnailUrl,
+                            title: filteredData[index].title!,
+                            price: filteredData[index].price!,
+                          ),
+                        );
                       });
                 } else {
                   return const Placeholder();
                 }
               },
             )
-          : null,
+          : Center(
+              child: Text(
+                MyCartScreenText.emptyCart,
+                style: TextStyle(
+                    color: AppColors.tertiary,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w300),
+              ),
+            ),
     );
   }
 }

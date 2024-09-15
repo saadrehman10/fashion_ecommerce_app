@@ -128,9 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fontWeight: FontWeight.w300,
                       )),
                   trailing: const Icon(Icons.keyboard_arrow_right, size: 20),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/accountSetting');
-                  }),
+                  onTap: () {}),
               ListTile(
                 title: const Text('Notification',
                     style: TextStyle(
