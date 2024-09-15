@@ -6,6 +6,7 @@ class CategoryLogic {
     Map<String, dynamic> allProduct = await ProductApi.allProduct();
     allProduct['products'].removeWhere((element) {
       element['category'] != category;
+      allProduct['limit']--;
     });
     return allProduct;
   }

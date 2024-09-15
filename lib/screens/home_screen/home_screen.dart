@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/business_logics/category_logic.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
+import 'package:fashion_ecommerce_app/screens/category/category.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
@@ -251,7 +253,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CategoryScreen(
+                                            category: categoryIcons.keys
+                                                .toList()[index],
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     child: CircleAvatar(
                                       radius: 32,
                                       backgroundColor: AppColors.background,
@@ -361,7 +373,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     title: filterData[index].title!,
                                     productId: filterData[index].id,
                                     price: filterData[index].price!,
-                                   
                                   );
                                 });
                           } else {
