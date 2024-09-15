@@ -317,40 +317,39 @@ class _ProductScreenState extends State<ProductScreen> {
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: productSizes.length,
-                              itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 8),
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _currentSizeIndex = index;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 3,
-                                        ),
-                                        backgroundColor:
-                                            _currentSizeIndex == index
-                                                ? AppColors.secondary
-                                                : null,
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(8))),
-                                        side: const BorderSide(
-                                          color: Colors.grey,
-                                          width: .5,
-                                        )),
-                                    child: Text(
-                                      productSizes[index],
-                                      style: TextStyle(
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _currentSizeIndex = index;
+                                    });
+                                  },
+                                  child: Container(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: _currentSizeIndex != index
+                                            ? Border.all(
+                                                color: Colors.black,
+                                                width: .5,
+                                              )
+                                            : null,
                                         color: _currentSizeIndex == index
-                                            ? AppColors.primary
-                                            : AppColors.tertiary,
-                                        fontSize: 16,
+                                            ? AppColors.secondary
+                                            : null,
                                       ),
-                                    )),
-                              ),
+                                      child: Text(
+                                        productSizes[index],
+                                        style: TextStyle(
+                                          color: _currentSizeIndex == index
+                                              ? AppColors.primary
+                                              : AppColors.tertiary,
+                                          fontSize: 16,
+                                        ),
+                                      )),
+                                );
+                              },
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -488,3 +487,41 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 }
+
+
+
+// Padding(
+//                                 padding: const EdgeInsets.symmetric(
+//                                     horizontal: 3, vertical: 8),
+//                                 child: ElevatedButton(
+//                                     onPressed: () {
+//                                       setState(() {
+//                                         _currentSizeIndex = index;
+//                                       });
+//                                     },
+//                                     style: ElevatedButton.styleFrom(
+//                                         padding: const EdgeInsets.symmetric(
+//                                           horizontal: 3,
+//                                         ),
+//                                         backgroundColor:
+//                                             _currentSizeIndex == index
+//                                                 ? AppColors.secondary
+//                                                 : null,
+//                                         shape: const RoundedRectangleBorder(
+//                                             borderRadius: BorderRadius.all(
+//                                                 Radius.circular(8))),
+//                                         side: const BorderSide(
+//                                           color: Colors.grey,
+//                                           width: .5,
+//                                         )),
+//                                     child: Text(
+//                                       productSizes[index],
+//                                       style: TextStyle(
+//                                         color: _currentSizeIndex == index
+//                                             ? AppColors.primary
+//                                             : AppColors.tertiary,
+//                                         fontSize: 16,
+//                                       ),
+//                                     )),
+//                               ),
+                            
