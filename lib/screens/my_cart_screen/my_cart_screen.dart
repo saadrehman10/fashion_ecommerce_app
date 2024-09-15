@@ -234,7 +234,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Text(
                                     '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
+                                        color: AppColors.tertiary,
                                         fontSize: 17)),
                               ],
                             ),
@@ -249,7 +249,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Text(
                                     '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
+                                        color: AppColors.tertiary,
                                         fontSize: 17)),
                               ],
                             ),
@@ -264,7 +264,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Text(
                                     '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
+                                        color: AppColors.tertiary,
                                         fontSize: 17)),
                               ],
                             ),
@@ -279,7 +279,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 Text(
                                     '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
+                                        color: AppColors.tertiary,
                                         fontSize: 20)),
                               ],
                             ),
