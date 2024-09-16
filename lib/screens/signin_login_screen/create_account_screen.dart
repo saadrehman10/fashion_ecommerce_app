@@ -28,8 +28,29 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     super.dispose();
   }
 
-  void _singUpFunction() async {
+  void _singUpFunction({required String email}) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
+    bool temp = await sp.setString('userEmail', email);
+    if (temp) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushNamed(context, '/VerifyCodeScreen');
+    } else {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.red,
+          closeIconColor: Colors.white,
+          showCloseIcon: true,
+          content: Text(
+            PopMessages.error,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -57,7 +78,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         color: AppColors.textColorSubtitles,
                         fontSize: 20,
                       )),
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 80),
                   Form(
                     key: _formKey,
                     child: Column(children: [
@@ -146,24 +167,27 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   backgroundColor: AppColors.secondary,
                                 ),
                                 onPressed: () {
-                                  if (_termAndConditionCheckBox == false) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        duration: Duration(seconds: 2),
-                                        backgroundColor: Colors.red,
-                                        closeIconColor: Colors.white,
-                                        showCloseIcon: true,
-                                        content: Text(
-                                          PopMessages.agreeWith,
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                  if (_formKey.currentState!.validate()) {
+                                    if (_termAndConditionCheckBox == false) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          duration: Duration(seconds: 2),
+                                          backgroundColor: Colors.red,
+                                          closeIconColor: Colors.white,
+                                          showCloseIcon: true,
+                                          content: Text(
+                                            PopMessages.agreeWith,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                  if (_formKey.currentState!.validate()) {
-                                    _singUpFunction();
+                                      );
+                                    } else {
+                                      _singUpFunction(
+                                          email: _emailController.text);
+                                    }
                                   }
                                 },
                                 child: Text(
