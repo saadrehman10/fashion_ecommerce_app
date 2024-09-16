@@ -111,12 +111,28 @@ class FutureBuilderText {
 }
 
 class ToastMessages {
+  //Wishlist
   static const String addItemWishList = 'Item added to wishlist';
   static const String removedItemWishList = 'Item removed from wishlist';
+  //Cart
   static const String itemExistCart = 'Item already exist';
   static const String addItemCart = 'Item added to Cart';
   static const String removedItemCart = 'Item removed from Cart';
+  //Error
   static const String error = 'Error';
+}
+
+class TextfieldText {
+  //Email
+  static const String emailHeading = 'Email';
+  static const String emailHint = 'Enter your email';
+  static const String emailValidationOne = 'Please enter your email';
+  static const String emailValidationTwo = 'Please enter a valid email';
+  //Passwords
+  ///Login password
+  static const String passwordHeading = 'Password';
+  static const String passwordHint = 'Enter your password';
+  static const String passwordValidationOne = 'Please enter your password';
 }
 
 extension StringCaps on String {

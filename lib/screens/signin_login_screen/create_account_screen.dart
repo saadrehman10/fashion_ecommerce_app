@@ -18,6 +18,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
   bool _obscureText = true;
 
   @override
@@ -38,10 +39,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         backgroundColor: Colors.green,
       ),
     );
-    setState(() {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/HomeScreen', (route) => false);
-    });
+    setState(() {});
   }
 
   @override
@@ -73,6 +71,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   Form(
                     key: _formKey,
                     child: Column(children: [
+                      CustomTextFromFelid(
+                        controller: _emailController,
+                        labelText: 'Email',
+                        hintText: 'Enter your email',
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          if (!value.contains('@') || !value.contains('.')) {
+                            return 'Please enter a valid email';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
                       CustomTextFromFelid(
                         controller: _emailController,
                         labelText: 'Email',
@@ -148,7 +162,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   }
                                 },
                                 child: Text(
-                                  ButtonText.singIn,
+                                  ButtonText.singUp,
                                   style: TextStyle(
                                     color: AppColors.primary,
                                     fontSize: 20,

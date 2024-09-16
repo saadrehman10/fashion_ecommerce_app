@@ -22,10 +22,11 @@ class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
     super.initState();
+    final apiData = ProductApi.allProduct();
     currentWidget = [
-      HomeScreen(thumbnailsApi: ProductApi.allProduct()),
-      MyCartScreen(thumbnailsApi: ProductApi.allProduct()),
-      MyWishlistScreen(thumbnailsApi: ProductApi.allProduct()),
+      HomeScreen(thumbnailsApi: apiData),
+      MyCartScreen(thumbnailsApi: apiData),
+      MyWishlistScreen(thumbnailsApi: apiData),
       ChatPage(),
       const ProfileScreen(),
     ];

@@ -29,8 +29,8 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _loginFunction() async {
-    SharedPreferences sharedPreference = await SharedPreferences.getInstance();
-    sharedPreference.setBool('login', true);
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setBool('login', true);
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
     setState(() {
       Navigator.pushNamedAndRemoveUntil(
-          context, '/HomeScreen', (route) => false);
+          context, '/LayoutPage', (route) => false);
     });
   }
 
@@ -76,15 +76,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(children: [
                       CustomTextFromFelid(
                         controller: _emailController,
-                        labelText: 'Email',
-                        hintText: 'Enter your email',
+                        labelText: TextfieldText.emailHeading,
+                        hintText: TextfieldText.emailHint,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return TextfieldText.emailValidationOne;
                           }
                           if (!value.contains('@') || !value.contains('.')) {
-                            return 'Please enter a valid email';
+                            return TextfieldText.emailValidationTwo;
                           }
                           return null;
                         },
@@ -93,8 +93,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       CustomTextFromFelid(
                         controller: _passwordController,
                         obscureText: _obscureText,
-                        labelText: 'Password',
-                        hintText: 'Enter your password',
+                        labelText: TextfieldText.passwordHeading,
+                        hintText: TextfieldText.passwordHint,
                         keyboardType: TextInputType.visiblePassword,
                         suffixIcon: IconButton(
                           onPressed: () {
@@ -110,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
+                            return TextfieldText.passwordValidationOne;
                           }
                           return null;
                         },
