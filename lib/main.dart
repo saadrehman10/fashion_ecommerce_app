@@ -3,7 +3,7 @@ import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/create_account_screen.dart';
 
-import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin_screen.dart';
 import 'package:fashion_ecommerce_app/screens/welcome_screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
