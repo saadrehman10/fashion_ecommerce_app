@@ -35,7 +35,7 @@ class CategoryScreen extends StatelessWidget {
                       strokeAlign: 3,
                     ),
                     SizedBox(height: 20),
-                    Text('Loading Wishlist ....'),
+                    Text('Loading ...'),
                   ],
                 ),
               );
