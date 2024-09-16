@@ -178,7 +178,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        AppTexts.orSingIn,
+                        AppTexts.orSingUp,
                         style: TextStyle(
                           color: AppColors.textColorSubtitles,
                           fontSize: 15,

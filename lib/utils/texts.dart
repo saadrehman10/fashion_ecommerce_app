@@ -6,6 +6,7 @@ class AppTexts {
   static const String singUp = 'Sing Up';
   static const String search = 'Search';
   static const String orSingIn = '------------ or sing in with ------------';
+  static const String orSingUp = '------------ or sing up with ------------';
 }
 
 /////////////////
