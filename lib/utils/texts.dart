@@ -120,6 +120,8 @@ class ToastMessages {
   static const String removedItemCart = 'Item removed from Cart';
   //Error
   static const String error = 'Error';
+  static const String agreeWith = 'You need to agree with our terms and conditions';
+
 }
 
 class TextfieldText {

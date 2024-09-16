@@ -3,6 +3,7 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
+import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -66,7 +67,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         controller: _nameController,
                         labelText: TextfieldText.nameHeading,
                         hintText: TextfieldText.nameHint,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return TextfieldText.nameValidationOne;
@@ -95,6 +96,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Checkbox(
+                            activeColor: AppColors.secondary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4),
                             ),
@@ -146,6 +148,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   backgroundColor: AppColors.secondary,
                                 ),
                                 onPressed: () {
+                                  if (_termAndConditionCheckBox == false) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.red,
+                                        closeIconColor: Colors.white,
+                                        showCloseIcon: true,
+                                        content: Text(
+                                          ToastMessages.agreeWith,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   if (_formKey.currentState!.validate()) {
                                     _singUpFunction();
                                   }
