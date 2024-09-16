@@ -118,10 +118,12 @@ class PopMessages {
   static const String itemExistCart = 'Item already exist';
   static const String addItemCart = 'Item added to Cart';
   static const String removedItemCart = 'Item removed from Cart';
+  //login & singup
+  static const String loginSuccessful = 'Login Successful';
   //Error
   static const String error = 'Error';
-  static const String agreeWith = 'You need to agree with our terms and conditions';
-
+  static const String agreeWith =
+      'You need to agree with our terms and conditions';
 }
 
 class TextfieldText {

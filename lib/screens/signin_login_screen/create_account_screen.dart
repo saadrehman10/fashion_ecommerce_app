@@ -89,7 +89,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -135,7 +135,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 20),
                       Row(
                         children: [
                           Expanded(

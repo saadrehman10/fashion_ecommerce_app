@@ -34,7 +34,9 @@ class _SignInScreenState extends State<SignInScreen> {
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Login Successful'),
+        showCloseIcon: true,
+        closeIconColor: Colors.white,
+        content: Text(PopMessages.loginSuccessful),
         duration: Duration(seconds: 2),
         backgroundColor: Colors.green,
       ),
