@@ -72,16 +72,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     key: _formKey,
                     child: Column(children: [
                       CustomTextFromFelid(
-                        controller: _emailController,
-                        labelText: 'Email',
-                        hintText: 'Enter your email',
+                        controller: _nameController,
+                        labelText: TextfieldText.nameHeading,
+                        hintText: TextfieldText.nameHint,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
-                          }
-                          if (!value.contains('@') || !value.contains('.')) {
-                            return 'Please enter a valid email';
+                            return TextfieldText.nameValidationOne;
                           }
                           return null;
                         },
@@ -89,41 +86,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       const SizedBox(height: 20),
                       CustomTextFromFelid(
                         controller: _emailController,
-                        labelText: 'Email',
-                        hintText: 'Enter your email',
+                        labelText: TextfieldText.emailHeading,
+                        hintText: TextfieldText.emailHint,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return TextfieldText.emailValidationOne;
                           }
                           if (!value.contains('@') || !value.contains('.')) {
-                            return 'Please enter a valid email';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      CustomTextFromFelid(
-                        controller: _passwordController,
-                        obscureText: _obscureText,
-                        labelText: 'Password',
-                        hintText: 'Enter your password',
-                        keyboardType: TextInputType.visiblePassword,
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                          icon: _obscureText
-                              ? Icon(FontAwesomeIcons.eye,
-                                  size: 15, color: AppColors.secondary)
-                              : Icon(FontAwesomeIcons.eyeSlash,
-                                  size: 15, color: AppColors.secondary),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
+                            return TextfieldText.emailValidationTwo;
                           }
                           return null;
                         },

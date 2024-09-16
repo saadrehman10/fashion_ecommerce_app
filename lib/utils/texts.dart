@@ -123,6 +123,11 @@ class ToastMessages {
 }
 
 class TextfieldText {
+  //Name
+  static const String nameHeading = 'Name';
+  static const String nameHint = 'Enter your full name';
+  static const String nameValidationOne = 'Please enter your name';
+
   //Email
   static const String emailHeading = 'Email';
   static const String emailHint = 'Enter your email';
