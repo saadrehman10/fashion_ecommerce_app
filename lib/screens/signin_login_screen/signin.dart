@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/widget.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
@@ -166,14 +167,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          otherLoginIcon(svgPath: AppSvg.apple),
-                          const SizedBox(width: 20),
-                          otherLoginIcon(svgPath: AppSvg.facebook),
-                          const SizedBox(width: 20),
-                          otherLoginIcon(svgPath: AppSvg.google),
+                          OtherLoginIcon(svgPath: AppSvg.apple),
+                          SizedBox(width: 20),
+                          OtherLoginIcon(svgPath: AppSvg.facebook),
+                          SizedBox(width: 20),
+                          OtherLoginIcon(svgPath: AppSvg.google),
                         ],
                       ),
                       const SizedBox(height: 40),
@@ -194,7 +195,8 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  debugPrint('singup working');
+                                  Navigator.pushNamed(
+                                      context, '/CreateAccountScreen');
                                 },
                             ),
                           ],
@@ -205,27 +207,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget otherLoginIcon({required String svgPath}) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: AppColors.textColorSubtitles),
-          borderRadius: BorderRadius.circular(100)),
-      child: GestureDetector(
-        onTap: () {
-          debugPrint('working signin other');
-        },
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: 27,
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: SvgPicture.asset(svgPath),
           ),
         ),
       ),
