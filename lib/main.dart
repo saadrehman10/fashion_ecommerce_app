@@ -1,5 +1,3 @@
-import 'package:fashion_ecommerce_app/apis/product_api.dart';
-import 'package:fashion_ecommerce_app/screens/home_screen/home_screen.dart';
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/create_account_screen.dart';
 
@@ -33,7 +31,6 @@ class MyApp extends StatelessWidget {
         '/SignInScreen': (context) => const SignInScreen(),
         '/CreateAccountScreen': (context) => const CreateAccountScreen(),
         '/VerifyCodeScreen': (context) => const VerifyCodeScreen(),
-
       },
     );
   }
