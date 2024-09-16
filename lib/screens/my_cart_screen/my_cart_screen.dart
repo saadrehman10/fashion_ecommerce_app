@@ -32,13 +32,11 @@ class _MyCartScreenState extends State<MyCartScreen> {
   double _deliveryPrice() {
     _delivery = _subtotal * .3;
     return _delivery;
-    ;
   }
 
   double _discountPrice() {
     _discount = _subtotal * .1;
     return _discount;
-    ;
   }
 
   double _subTotal({required List<Thumbnail> prices}) {

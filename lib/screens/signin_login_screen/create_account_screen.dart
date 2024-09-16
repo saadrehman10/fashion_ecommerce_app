@@ -29,7 +29,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _singUpFunction() async {
-    SharedPreferences sharedPreference = await SharedPreferences.getInstance();
+    SharedPreferences sp = await SharedPreferences.getInstance();
   }
 
   @override
