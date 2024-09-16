@@ -46,6 +46,14 @@ class SignInScreenText {
   static const String orSingIn = '------------ or sing in with ------------';
 }
 
+class CreateAccountScreenText {
+  static const String createAccountText = 'Create Account';
+  static const String fillYourInfo =
+      'Fill your information below or register with social account';
+  static const String agreeWith = 'Agree with';
+  static const String termsAndCondition = 'Terms & Condition';
+}
+
 class HomeScreenText {
   static const String location = 'Location';
   static const String dropDownMenuItemOne = 'New York , USA';
