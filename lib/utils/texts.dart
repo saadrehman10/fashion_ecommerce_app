@@ -5,6 +5,7 @@ class AppTexts {
   static const String singIn = 'Sing In';
   static const String singUp = 'Sing Up';
   static const String search = 'Search';
+  static const String orSingIn = '------------ or sing in with ------------';
 }
 
 /////////////////
@@ -43,12 +44,11 @@ class OnBoardingScreenText {
 class SignInScreenText {
   static const String welcomeText = 'Hi! Welcome back, you\'ve been missed';
   static const String forgetPassword = 'Forget Password ? ';
-  static const String orSingIn = '------------ or sing in with ------------';
 }
 
 class CreateAccountScreenText {
   static const String createAccountText = 'Create Account';
-  static const String fillYourInfo =
+  static const String welcomeText =
       'Fill your information below or register with social account';
   static const String agreeWith = 'Agree with';
   static const String termsAndCondition = 'Terms & Condition';

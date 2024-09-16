@@ -4,7 +4,6 @@ import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,6 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(SignInScreenText.welcomeText,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.textColorSubtitles,
                         fontSize: 20,
@@ -160,7 +160,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        SignInScreenText.orSingIn,
+                        AppTexts.orSingIn,
                         style: TextStyle(
                           color: AppColors.textColorSubtitles,
                           fontSize: 15,

@@ -63,7 +63,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(SignInScreenText.welcomeText,
+                  Text(CreateAccountScreenText.welcomeText,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.textColorSubtitles,
                         fontSize: 20,
@@ -158,7 +159,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        SignInScreenText.orSingIn,
+                        AppTexts.orSingIn,
                         style: TextStyle(
                           color: AppColors.textColorSubtitles,
                           fontSize: 15,
@@ -178,14 +179,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       const SizedBox(height: 40),
                       RichText(
                         text: TextSpan(
-                          text: AppTexts.dontHaveAAcc,
+                          text: AppTexts.alreadyHaveAAcc,
                           style: TextStyle(
                             color: AppColors.tertiary,
                             fontSize: 16,
                           ),
                           children: [
                             TextSpan(
-                              text: ButtonText.singUp,
+                              text: ButtonText.singIn,
                               style: TextStyle(
                                 color: AppColors.secondary,
                                 fontSize: 16,
@@ -193,8 +194,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamed(
-                                      context, '/CreateAccountScreen');
+                                  Navigator.pushNamed(context, '/SignInScreen');
                                 },
                             ),
                           ],
