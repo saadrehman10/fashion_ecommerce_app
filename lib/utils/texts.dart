@@ -110,7 +110,7 @@ class FutureBuilderText {
   static const String loading = ' Please Wait Loading .... ';
 }
 
-class ToastMessages {
+class PopMessages {
   //Wishlist
   static const String addItemWishList = 'Item added to wishlist';
   static const String removedItemWishList = 'Item removed from wishlist';

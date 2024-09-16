@@ -3,10 +3,8 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
-import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -156,7 +154,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         closeIconColor: Colors.white,
                                         showCloseIcon: true,
                                         content: Text(
-                                          ToastMessages.agreeWith,
+                                          PopMessages.agreeWith,
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),

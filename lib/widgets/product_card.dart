@@ -37,8 +37,8 @@ class _ProductCardState extends State<ProductCard> {
         _iconColor();
       });
       temp
-          ? FlutterToast.showToast(message: ToastMessages.removedItemWishList)
-          : FlutterToast.showToast(message: ToastMessages.error);
+          ? FlutterToast.showToast(message: PopMessages.removedItemWishList)
+          : FlutterToast.showToast(message: PopMessages.error);
     } else {
       bool temp =
           await WishListLogic.addToWishlist(productId: widget.productId);
@@ -46,8 +46,8 @@ class _ProductCardState extends State<ProductCard> {
         _iconColor();
       });
       temp
-          ? FlutterToast.showToast(message: ToastMessages.addItemWishList)
-          : FlutterToast.showToast(message: ToastMessages.error);
+          ? FlutterToast.showToast(message: PopMessages.addItemWishList)
+          : FlutterToast.showToast(message: PopMessages.error);
     }
   }
 

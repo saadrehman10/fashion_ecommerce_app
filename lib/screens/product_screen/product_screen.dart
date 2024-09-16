@@ -52,8 +52,8 @@ class _ProductScreenState extends State<ProductScreen> {
         _iconColor();
       });
       temp
-          ? FlutterToast.showToast(message: ToastMessages.removedItemWishList)
-          : FlutterToast.showToast(message: ToastMessages.error);
+          ? FlutterToast.showToast(message: PopMessages.removedItemWishList)
+          : FlutterToast.showToast(message: PopMessages.error);
     } else {
       bool temp =
           await WishListLogic.addToWishlist(productId: widget.productId);
@@ -61,8 +61,8 @@ class _ProductScreenState extends State<ProductScreen> {
         _iconColor();
       });
       temp
-          ? FlutterToast.showToast(message: ToastMessages.addItemWishList)
-          : FlutterToast.showToast(message: ToastMessages.error);
+          ? FlutterToast.showToast(message: PopMessages.addItemWishList)
+          : FlutterToast.showToast(message: PopMessages.error);
     }
   }
 
@@ -448,9 +448,9 @@ class _ProductScreenState extends State<ProductScreen> {
 
                                 temp
                                     ? FlutterToast.showToast(
-                                        message: ToastMessages.addItemCart)
+                                        message: PopMessages.addItemCart)
                                     : FlutterToast.showToast(
-                                        message: ToastMessages.itemExistCart);
+                                        message: PopMessages.itemExistCart);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.secondary,
