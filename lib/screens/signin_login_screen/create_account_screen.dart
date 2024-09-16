@@ -19,27 +19,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
-  bool _obscureText = true;
+  bool _termAndConditionCheckBox = false;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
-  void _loginFunction() async {
+  void _singUpFunction() async {
     SharedPreferences sharedPreference = await SharedPreferences.getInstance();
-    sharedPreference.setBool('login', true);
-    // ignore: use_build_context_synchronously
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Login Successful'),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.green,
-      ),
-    );
-    setState(() {});
   }
 
   @override
@@ -101,19 +92,46 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const SizedBox(height: 20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Checkbox(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            value: _termAndConditionCheckBox,
+                            onChanged: (value) {
+                              setState(() {
+                                _termAndConditionCheckBox =
+                                    !_termAndConditionCheckBox;
+                              });
+                            },
+                          ),
                           RichText(
                             textAlign: TextAlign.start,
                             text: TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  debugPrint('Forget pass working');
-                                },
-                              text: SignInScreenText.forgetPassword,
-                              style: TextStyle(
-                                  fontSize: 13, color: AppColors.secondary),
-                            ),
+                                text: CreateAccountScreenText.agreeWith,
+                                style: TextStyle(
+                                  color: AppColors.tertiary,
+                                  fontSize: 13,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        debugPrint(
+                                            'Terms and Agreement working');
+                                      },
+                                    text: CreateAccountScreenText
+                                        .termsAndCondition,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: AppColors.secondary,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ]),
                           ),
                         ],
                       ),
@@ -129,7 +147,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    _loginFunction();
+                                    _singUpFunction();
                                   }
                                 },
                                 child: Text(
@@ -179,7 +197,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamed(context, '/SignInScreen');
+                                  Navigator.pop(context);
                                 },
                             ),
                           ],

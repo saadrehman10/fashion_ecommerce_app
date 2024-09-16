@@ -50,7 +50,7 @@ class CreateAccountScreenText {
   static const String createAccountText = 'Create Account';
   static const String welcomeText =
       'Fill your information below or register with social account';
-  static const String agreeWith = 'Agree with';
+  static const String agreeWith = 'Agree with ';
   static const String termsAndCondition = 'Terms & Condition';
 }
 
