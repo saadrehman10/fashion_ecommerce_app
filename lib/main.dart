@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/create_account_screen.dart';
 
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin.dart';
 import 'package:fashion_ecommerce_app/screens/welcome_screens/splash_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/LayoutPage': (context) => const LayoutPage(),
         '/SignInScreen': (context) => const SignInScreen(),
+        '/CreateAccountScreen': (context) => const CreateAccountScreen(),
       },
     );
   }
