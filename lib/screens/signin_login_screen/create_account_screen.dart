@@ -43,7 +43,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               child: Column(
                 children: [
                   Text(
-                    CreateAccountScreenText.createAccountText,
+                    CreateAccountScreenText.createAccountTextTitle,
                     style: TextStyle(
                       color: AppColors.tertiary,
                       fontSize: 40,
@@ -51,7 +51,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(CreateAccountScreenText.welcomeText,
+                  Text(CreateAccountScreenText.createAccountWelcomeText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.textColorSubtitles,

@@ -48,11 +48,18 @@ class SignInScreenText {
 }
 
 class CreateAccountScreenText {
-  static const String createAccountText = 'Create Account';
-  static const String welcomeText =
+  // main
+  static const String createAccountTextTitle = 'Create Account';
+  static const String createAccountWelcomeText =
       'Fill your information below or register with social account';
   static const String agreeWith = 'Agree with ';
   static const String termsAndCondition = 'Terms & Condition';
+  //verification
+  static const String verifyCodeTitle = 'Verify Code';
+  static const String verifyCodeText =
+      'Please enter the code we just sent to email';
+  static const String dontReceiveOtp = 'Didn\'t receive OTP?';
+  static const String resendCode = 'Resend Code';
 }
 
 class HomeScreenText {
@@ -105,6 +112,7 @@ class ButtonText {
   static const String addToCart = 'Add To Cart';
   static const String apply = 'Apply';
   static const String checkout = 'Proceed To Checkout';
+  static const String verify = 'Verify';
 }
 
 class FutureBuilderText {
