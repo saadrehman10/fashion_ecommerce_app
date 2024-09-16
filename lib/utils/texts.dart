@@ -56,7 +56,7 @@ class CreateAccountScreenText {
   static const String termsAndCondition = 'Terms & Condition';
   //verification
   static const String verifyCodeTitle = 'Verify Code';
-  static const String verifyCodeText =
+  static const String verifyCodeWelcomeText =
       'Please enter the code we just sent to email';
   static const String dontReceiveOtp = 'Didn\'t receive OTP?';
   static const String resendCode = 'Resend Code';

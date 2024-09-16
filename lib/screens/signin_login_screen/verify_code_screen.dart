@@ -12,7 +12,7 @@ class VerifyCodeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           Text(
-            CreateAccountScreenText.createAccountText,
+            CreateAccountScreenText.verifyCodeTitle,
             style: TextStyle(
               color: AppColors.tertiary,
               fontSize: 40,
@@ -20,7 +20,7 @@ class VerifyCodeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text(CreateAccountScreenText.welcomeText,
+          Text(CreateAccountScreenText.verifyCodeWelcomeText,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.textColorSubtitles,
