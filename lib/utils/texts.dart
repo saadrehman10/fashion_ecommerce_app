@@ -123,6 +123,7 @@ class ButtonText {
   static const String checkout = 'Proceed To Checkout';
   static const String verify = 'Verify';
   static const String newPassword = 'Create New Password';
+  static const String completeProfile = 'Complete Profile';
 }
 
 class FutureBuilderText {
@@ -156,6 +157,11 @@ class TextfieldText {
   static const String emailHint = 'Enter your email';
   static const String emailValidationOne = 'Please enter your email';
   static const String emailValidationTwo = 'Please enter a valid email';
+
+  //Phone
+  static const String phoneHeading = 'Phone';
+  static const String phoneHint = '123456789';
+  static const String phoneValidationOne = 'Please enter phone number';
 
   //Passwords
   ///Login password

@@ -115,8 +115,8 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                     children: [
                       CustomTextFromFelid(
                         controller: _phoneNoController,
-                        labelText: 'Phone',
-                        hintText: '123456789',
+                        labelText: TextfieldText.phoneHeading,
+                        hintText: TextfieldText.phoneHint,
                         prefix: _isLoading
                             ? DropdownButton<CountryCode>(
                                 padding: const EdgeInsets.only(left: 10),
@@ -173,7 +173,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                             : null,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a phone number';
+                            return TextfieldText.phoneValidationOne;
                           }
                           return null;
                         },
@@ -225,6 +225,29 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                 _genderDropdownValue = value!;
                               });
                             },
+                          )),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 40),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 0),
+                            backgroundColor: AppColors.secondary,
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
+                          child: Text(
+                            ButtonText.completeProfile,
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 20,
+                            ),
                           )),
                     ),
                   ],
