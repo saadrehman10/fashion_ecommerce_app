@@ -80,7 +80,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     vertical: 0, horizontal: screenWidth * .1),
                 child: Row(
                   children: [
-                    // OTP Field 1
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -118,7 +117,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         ),
                       ),
                     ),
-                    // OTP Field 2
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -156,7 +154,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         ),
                       ),
                     ),
-                    // OTP Field 3
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -194,7 +191,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         ),
                       ),
                     ),
-                    // OTP Field 4
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -208,8 +204,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                           ],
                           onChanged: (value) {
                             if (value.length == 1) {
-                              _otp4FocusNode
-                                  .unfocus(); // Unfocus after last input
+                              _otp4FocusNode.unfocus();
                             }
                           },
                           decoration: InputDecoration(
