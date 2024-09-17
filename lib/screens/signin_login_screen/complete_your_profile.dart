@@ -1,6 +1,8 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CompleteYourProfile extends StatefulWidget {
   const CompleteYourProfile({super.key});
@@ -10,6 +12,14 @@ class CompleteYourProfile extends StatefulWidget {
 }
 
 class _CompleteYourProfileState extends State<CompleteYourProfile> {
+  final TextEditingController _phoneNoController = TextEditingController();
+
+  @override
+  void dispose() {
+    _phoneNoController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +44,47 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                       color: AppColors.textColorSubtitles,
                       fontSize: 20,
                     )),
-                const SizedBox(height: 80),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    debugPrint('ON working here');
+                  },
+                  child: Center(
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+                          radius: 70,
+                          backgroundColor: Colors.grey[200],
+                          // ignore: deprecated_member_use
+                          child: const Icon(FontAwesomeIcons.userAlt,
+                              size: 50, color: Colors.grey),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            debugPrint('ON working here');
+                          },
+                          style: IconButton.styleFrom(
+                              padding: const EdgeInsets.all(10),
+                              backgroundColor: AppColors.secondary),
+                          iconSize: 15,
+                          icon: const Icon(
+                            FontAwesomeIcons.pen,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CustomTextFromFelid(
+                    controller: _phoneNoController,
+                    labelText: 'Phone',
+                    hintText: '',
+                    validator: (value) {},
+                    keyboardType: TextInputType.phone),
+                const SizedBox(height: 20),
               ],
             ),
           ),

@@ -8,18 +8,21 @@ class CustomTextFromFelid extends StatelessWidget {
   final String hintText;
   final FormFieldValidator<String>? validator;
   final TextInputType keyboardType;
+  final Widget? prefix;
   Widget? suffixIcon;
   bool? obscureText;
 
-  CustomTextFromFelid(
-      {required this.controller,
-      required this.labelText,
-      required this.hintText,
-      required this.validator,
-      required this.keyboardType,
-      this.suffixIcon,
-      this.obscureText,
-      super.key});
+  CustomTextFromFelid({
+    required this.controller,
+    required this.labelText,
+    required this.hintText,
+    required this.validator,
+    required this.keyboardType,
+    this.suffixIcon,
+    this.obscureText,
+    this.prefix,
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -29,6 +32,7 @@ class CustomTextFromFelid extends StatelessWidget {
       autofocus: false,
       style: TextStyle(color: AppColors.tertiary),
       decoration: InputDecoration(
+        prefix: prefix,
         suffixIcon: suffixIcon,
         fillColor: AppColors.tertiary,
         border: const OutlineInputBorder(

@@ -124,8 +124,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             value: _termAndConditionCheckBox,
                             onChanged: (value) {
                               setState(() {
-                                _termAndConditionCheckBox =
-                                    !_termAndConditionCheckBox;
+                                _termAndConditionCheckBox = value!;
                               });
                             },
                           ),
