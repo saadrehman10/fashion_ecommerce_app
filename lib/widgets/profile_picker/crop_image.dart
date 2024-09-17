@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_image_crop/custom_image_crop.dart';
 import 'dart:math';
@@ -28,12 +29,6 @@ class _CropImageState extends State<CropImage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-        title: const Text('Crop Image', style: TextStyle(color: Colors.white)),
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -47,42 +42,43 @@ class _CropImageState extends State<CropImage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    icon: const Icon(Icons.refresh,
-                        size: 30, color: Colors.black),
+                    icon: Icon(Icons.refresh,
+                        size: 30, color: AppColors.secondary),
                     onPressed: controller.reset),
                 IconButton(
-                    icon: const Icon(Icons.zoom_in,
-                        size: 30, color: Colors.black),
+                    icon: Icon(Icons.zoom_in,
+                        size: 30, color: AppColors.secondary),
                     onPressed: () =>
                         controller.addTransition(CropImageData(scale: 1.33))),
                 IconButton(
-                    icon: const Icon(Icons.zoom_out,
-                        size: 30, color: Colors.black),
+                    icon: Icon(Icons.zoom_out,
+                        size: 30, color: AppColors.secondary),
                     onPressed: () =>
                         controller.addTransition(CropImageData(scale: 0.75))),
                 IconButton(
-                    icon: const Icon(Icons.rotate_left,
-                        size: 30, color: Colors.black),
+                    icon: Icon(Icons.rotate_left,
+                        size: 30, color: AppColors.secondary),
                     onPressed: () => controller
                         .addTransition(CropImageData(angle: -pi / 4))),
                 IconButton(
-                    icon: const Icon(Icons.rotate_right,
-                        size: 30, color: Colors.black),
+                    icon: Icon(Icons.rotate_right,
+                        size: 30, color: AppColors.secondary),
                     onPressed: () =>
                         controller.addTransition(CropImageData(angle: pi / 4))),
                 const Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.check, size: 30, color: Colors.black),
+                  icon: Icon(Icons.check, size: 30, color: AppColors.secondary),
                   onPressed: () async {
                     final croppedImage = await controller.onCropImage();
                     if (croppedImage != null) {
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pop(croppedImage);
                     }
                   },
                 ),
               ],
             ),
-            SizedBox(height: MediaQuery.of(context).padding.bottom),
+            SizedBox(height: MediaQuery.of(context).padding.bottom * 3),
           ],
         ),
       ),

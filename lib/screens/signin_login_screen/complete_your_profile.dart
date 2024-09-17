@@ -85,30 +85,6 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                     )),
                 const SizedBox(height: 40),
                 ProfilePicker(
-                    widget: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: _receiveSelectedImage,
-                          radius: 70,
-                          backgroundColor: Colors.grey[200],
-                          // ignore: deprecated_member_use
-                          child: const Icon(FontAwesomeIcons.userAlt,
-                              size: 50, color: Colors.grey),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          style: IconButton.styleFrom(
-                              padding: const EdgeInsets.all(10),
-                              backgroundColor: AppColors.secondary),
-                          iconSize: 15,
-                          icon: const Icon(
-                            FontAwesomeIcons.pen,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
                     imgReturnFunction: _imgReceiver),
                 const SizedBox(height: 30),
                 Form(
