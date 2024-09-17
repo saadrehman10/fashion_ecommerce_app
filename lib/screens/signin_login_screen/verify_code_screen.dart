@@ -23,10 +23,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   final FocusNode _otp3FocusNode = FocusNode();
   final FocusNode _otp4FocusNode = FocusNode();
 
-  final TextEditingController _optValueOne = TextEditingController();
-  final TextEditingController _optValueTwo = TextEditingController();
-  final TextEditingController _optValueThree = TextEditingController();
-  final TextEditingController _optValueFour = TextEditingController();
+  final TextEditingController _opt1Controller = TextEditingController();
+  final TextEditingController _opt2Controller = TextEditingController();
+  final TextEditingController _opt3Controller = TextEditingController();
+  final TextEditingController _opt4Controller = TextEditingController();
 
   Future<void> _getEmail() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
@@ -49,6 +49,21 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   void initState() {
     super.initState();
     _getEmail();
+  }
+
+  @override
+  void dispose() {
+    _otp1FocusNode.dispose();
+    _otp2FocusNode.dispose();
+    _otp3FocusNode.dispose();
+    _otp4FocusNode.dispose();
+
+    _opt1Controller.dispose();
+    _opt2Controller.dispose();
+    _opt3Controller.dispose();
+    _opt4Controller.dispose();
+
+    super.dispose;
   }
 
   @override
@@ -99,7 +114,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(4),
                           child: TextFormField(
-                            controller: _optValueOne,
+                            controller: _opt1Controller,
                             focusNode: _otp1FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -143,7 +158,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: TextFormField(
-                            controller: _optValueTwo,
+                            controller: _opt2Controller,
                             focusNode: _otp2FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -187,7 +202,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: TextFormField(
-                            controller: _optValueThree,
+                            controller: _opt3Controller,
                             focusNode: _otp3FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -231,7 +246,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: TextFormField(
-                            controller: _optValueFour,
+                            controller: _opt4Controller,
                             focusNode: _otp4FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
