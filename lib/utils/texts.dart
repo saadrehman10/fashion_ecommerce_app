@@ -151,11 +151,25 @@ class TextfieldText {
   static const String emailHint = 'Enter your email';
   static const String emailValidationOne = 'Please enter your email';
   static const String emailValidationTwo = 'Please enter a valid email';
+
   //Passwords
   ///Login password
   static const String passwordHeading = 'Password';
   static const String passwordHint = 'Enter your password';
   static const String passwordValidationOne = 'Please enter your password';
+
+  //Passwords
+  ///New & confirm passwords
+  static const String newPasswordHeading = 'New Password';
+  static const String newPasswordHint = 'Enter your new password';
+  static const String newPasswordValidationOne =
+      'Please enter your new password';
+
+  static const String confirmPasswordHeading = 'Confirm Password';
+  static const String confirmPasswordHint = 'Enter your new password again';
+  static const String confirmPasswordValidationOne =
+      'Please enter your new password again';
+  static const String confirmPasswordValidationTwo = 'Password Don\'t match';
 }
 
 extension StringCaps on String {

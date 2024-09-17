@@ -19,7 +19,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   bool _obscureTextNewPassword = true;
   bool _obscureTextConfirmPassword = true;
 
-  void _loginFunction() async {}
+  final RegExp uppercaseRegExp = RegExp(r'[A-Z]');
+  final RegExp specialCharRegExp = RegExp(r'[!@#\$%^&*(),.?":{}|<>]');
+  final RegExp numberRegExp = RegExp(r'\d');
+
+  void _newPasswordFunction() {}
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +49,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     color: AppColors.textColorSubtitles,
                     fontSize: 20,
                   )),
-              const SizedBox(height: 100),
+              const SizedBox(height: 80),
               Form(
                 key: _formKey,
                 child: Column(
@@ -53,8 +57,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     CustomTextFromFelid(
                       controller: _newPasswordController,
                       obscureText: _obscureTextNewPassword,
-                      labelText: TextfieldText.passwordHeading,
-                      hintText: TextfieldText.passwordHint,
+                      labelText: TextfieldText.newPasswordHeading,
+                      hintText: TextfieldText.newPasswordHint,
                       keyboardType: TextInputType.visiblePassword,
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -70,8 +74,22 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return TextfieldText.passwordValidationOne;
+                          return TextfieldText.newPasswordValidationOne;
+                        } else {
+                          if (!uppercaseRegExp.hasMatch(value)) {
+                            return 'Password must contain at least one uppercase letter';
+                          }
+                          if (!specialCharRegExp.hasMatch(value)) {
+                            return 'Password must contain at least one special character';
+                          }
+                          if (!numberRegExp.hasMatch(value)) {
+                            return 'Password must contain at least one number';
+                          }
+                          if (value.length < 8) {
+                            return 'Password must be at least 8 characters long';
+                          }
                         }
+
                         return null;
                       },
                     ),
@@ -79,8 +97,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     CustomTextFromFelid(
                       controller: _confirmPasswordController,
                       obscureText: _obscureTextConfirmPassword,
-                      labelText: TextfieldText.passwordHeading,
-                      hintText: TextfieldText.passwordHint,
+                      labelText: TextfieldText.confirmPasswordHeading,
+                      hintText: TextfieldText.confirmPasswordHint,
                       keyboardType: TextInputType.visiblePassword,
                       suffixIcon: IconButton(
                         onPressed: () {
@@ -97,12 +115,15 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return TextfieldText.passwordValidationOne;
+                          return TextfieldText.confirmPasswordValidationOne;
+                        }
+                        if (_newPasswordController.text != value) {
+                          return TextfieldText.confirmPasswordValidationTwo;
                         }
                         return null;
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 40),
                     Row(
                       children: [
                         Expanded(
@@ -114,7 +135,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                               ),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  _loginFunction();
+                                  _newPasswordFunction();
                                 }
                               },
                               child: Text(
