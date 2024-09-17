@@ -23,7 +23,7 @@ class WelcomeScreenText {
 
 class OnBoardingScreenText {
   //titles
-  static const String pageOneTitle = 'Shameless Shopping Experience';
+  static const String pageOneTitle = 'Seamless  Shopping Experience';
   static const String pageTwoTitle = 'WishList: Where Fashion Dreams Begins';
   static const String pageThreeTitle = 'Swift and Reliability Delivery';
   //subtitles
@@ -34,7 +34,7 @@ class OnBoardingScreenText {
   static const String pageThreeSubtitle =
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
   //Highlited Words
-  static const List<String> titlePageOneHightedWords = ['Shameless'];
+  static const List<String> titlePageOneHightedWords = ['Seamless'];
   static const List<String> titlePageTwoHightedWords = ['Fashion', 'Dreams'];
   static const List<String> titlePageThreeHightedWords = [
     'Swift',

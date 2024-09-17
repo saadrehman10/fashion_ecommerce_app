@@ -1,9 +1,15 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VerifyCodeScreen extends StatelessWidget {
   const VerifyCodeScreen({super.key});
+
+  Future<void> _getEmail() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String temp = sp.getString('userEmail')!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class VerifyCodeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text(CreateAccountScreenText.verifyCodeWelcomeText,
+          Text('${CreateAccountScreenText.verifyCodeWelcomeText} ',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.textColorSubtitles,
