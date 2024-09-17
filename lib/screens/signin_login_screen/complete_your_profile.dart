@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:fashion_ecommerce_app/models/countries.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CompleteYourProfile extends StatefulWidget {
@@ -16,10 +19,27 @@ class CompleteYourProfile extends StatefulWidget {
 class _CompleteYourProfileState extends State<CompleteYourProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _phoneNoController = TextEditingController();
-  String _dropDownValue = '+92';
-  final List<String> _dropdownItemValues = ['+92', '+93', '+94', '+95'];
+  CountryCode _dropDownValue =
+      const CountryCode(countryName: 'PK', countryCode: '+92');
+  late List<CountryCode> _dropdownItemValues;
+  bool _isLoading = false;
+  Future<void> _countryCodeData() async {
+    String jsonString =
+        await rootBundle.loadString('assets/data/country_code.json');
 
-  Future<void> _countryCodeData() async {}
+    final jsonResponse = json.decode(jsonString);
+    _dropdownItemValues = List.generate(jsonResponse.length,
+        (index) => CountryCode.formJson(jsonResponse[index]));
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _countryCodeData();
+  }
 
   @override
   void dispose() {
@@ -93,36 +113,41 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                         controller: _phoneNoController,
                         labelText: 'Phone',
                         hintText: '123456789',
-                        prefix: DropdownButton<String>(
-                          padding: const EdgeInsets.only(left: 20),
-                          underline: const SizedBox.shrink(),
-                          dropdownColor: AppColors.background,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          autofocus: true,
-                          iconSize: 20,
-                          style: TextStyle(
-                            color: AppColors.tertiary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          iconEnabledColor: AppColors.secondary,
-                          borderRadius: BorderRadius.circular(20),
-                          alignment: Alignment.bottomRight,
-                          value: _dropDownValue,
-                          items: _dropdownItemValues
-                              .map(
-                                (e) => DropdownMenuItem<String>(
-                                  value: e,
-                                  child: Text(e),
+                        prefix: _isLoading
+                            ? DropdownButton<CountryCode>(
+                                padding: const EdgeInsets.only(left: 5),
+                                underline: const SizedBox.shrink(),
+                                dropdownColor: AppColors.background,
+                                icon: const Icon(Icons.keyboard_arrow_down),
+                                autofocus: true,
+                                iconSize: 20,
+                                style: TextStyle(
+                                  color: AppColors.tertiary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
                                 ),
+                                iconEnabledColor: AppColors.secondary,
+                                borderRadius: BorderRadius.circular(20),
+                                alignment: Alignment.bottomRight,
+                                value:
+                                    _dropDownValue, // Now, CountryCode object can be used correctly
+                                items: _dropdownItemValues
+                                    .map(
+                                      (e) => DropdownMenuItem<CountryCode>(
+                                        value:
+                                            e, // CountryCode object assigned to value
+                                        child: Text(
+                                            '${e.countryName} (${e.countryCode})'),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: (CountryCode? value) {
+                                  setState(() {
+                                    _dropDownValue = value!;
+                                  });
+                                },
                               )
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              _dropDownValue = value!;
-                            });
-                          },
-                        ),
+                            : null,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a phone number';
