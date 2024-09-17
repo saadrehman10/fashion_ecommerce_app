@@ -23,7 +23,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   final RegExp specialCharRegExp = RegExp(r'[!@#\$%^&*(),.?":{}|<>]');
   final RegExp numberRegExp = RegExp(r'\d');
 
-  void _newPasswordFunction() {}
+  void _newPasswordFunction() {
+    Navigator.pushNamed(context, '/CompleteYourProfile');
+  }
 
   @override
   void dispose() {

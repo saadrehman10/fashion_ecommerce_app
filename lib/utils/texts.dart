@@ -64,6 +64,11 @@ class CreateAccountScreenText {
   static const String newPasswordTitle = 'New Password';
   static const String newPasswordWelcomeText =
       'Your new password must be differed from previously used';
+
+  //Complete Your Profile
+  static const String completeYourProfileTitle = 'Complete Your Profile';
+  static const String completeYourProfileWelcomeText =
+      'Don\'t worry, only you can see your personal data. No one else will be able to see it.';
 }
 
 class HomeScreenText {
