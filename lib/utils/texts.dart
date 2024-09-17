@@ -60,6 +60,10 @@ class CreateAccountScreenText {
       'Please enter the code we just sent to email';
   static const String dontReceiveOtp = 'Didn\'t receive OTP?';
   static const String resendCode = '\nResend Code';
+  //New Password
+  static const String newPasswordTitle = 'New Password';
+  static const String newPasswordWelcomeText =
+      'Your new password must be differed from previously used';
 }
 
 class HomeScreenText {
@@ -113,6 +117,7 @@ class ButtonText {
   static const String apply = 'Apply';
   static const String checkout = 'Proceed To Checkout';
   static const String verify = 'Verify';
+  static const String newPassword = 'Create New Password';
 }
 
 class FutureBuilderText {

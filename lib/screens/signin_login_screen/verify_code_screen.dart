@@ -36,7 +36,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     });
   }
 
-  // Function to move focus to the next field
   void _moveToNextField(
       {required FocusNode currentFocus, required FocusNode nextFocus}) {
     currentFocus.unfocus();
@@ -50,7 +49,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     required String opt2,
     required String opt3,
     required String opt4,
-  }) {}
+  }) {
+    debugPrint(opt1 + opt2 + opt3 + opt4);
+    Navigator.pushNamed(context, '/NewPasswordScreen');
+  }
 
   @override
   void initState() {
