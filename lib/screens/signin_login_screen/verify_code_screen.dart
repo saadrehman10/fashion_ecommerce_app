@@ -53,209 +53,228 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text(
-              CreateAccountScreenText.verifyCodeTitle,
-              style: TextStyle(
-                color: AppColors.tertiary,
-                fontSize: 40,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 20),
-            _isLoading
-                ? TextHighted(
-                    text:
-                        '${CreateAccountScreenText.verifyCodeWelcomeText} \n $_email',
-                    fontSize: 17,
-                    highlightColor: AppColors.secondary,
-                    normalTextColor: AppColors.textColorSubtitles,
-                    textToHighlight: [_email],
-                    textAlign: TextAlign.center,
-                  )
-                : const Text(''),
-            const SizedBox(height: 80),
-            Form(
-              key: _formKey,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: 0, horizontal: screenWidth * .1),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: TextFormField(
-                          focusNode: _otp1FocusNode,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          onChanged: (value) {
-                            if (value.length == 1) {
-                              _moveToNextField(
-                                  currentFocus: _otp1FocusNode,
-                                  nextFocus: _otp2FocusNode);
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: '-',
-                            hintStyle: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
-                                color: AppColors.textColorSubtitles
-                                    .withOpacity(.20),
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: TextFormField(
-                          focusNode: _otp2FocusNode,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          onChanged: (value) {
-                            if (value.length == 1) {
-                              _moveToNextField(
-                                  currentFocus: _otp2FocusNode,
-                                  nextFocus: _otp3FocusNode);
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: '-',
-                            hintStyle: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
-                                color: AppColors.textColorSubtitles
-                                    .withOpacity(.20),
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: TextFormField(
-                          focusNode: _otp3FocusNode,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          onChanged: (value) {
-                            if (value.length == 1) {
-                              _moveToNextField(
-                                  currentFocus: _otp3FocusNode,
-                                  nextFocus: _otp4FocusNode);
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: '-',
-                            hintStyle: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
-                                color: AppColors.textColorSubtitles
-                                    .withOpacity(.20),
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: TextFormField(
-                          focusNode: _otp4FocusNode,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          onChanged: (value) {
-                            if (value.length == 1) {
-                              _otp4FocusNode.unfocus();
-                            }
-                          },
-                          decoration: InputDecoration(
-                            hintText: '-',
-                            hintStyle: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50),
-                              borderSide: BorderSide(
-                                color: AppColors.textColorSubtitles
-                                    .withOpacity(.20),
-                                width: 4,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Text(
+                CreateAccountScreenText.verifyCodeTitle,
+                style: TextStyle(
+                  color: AppColors.tertiary,
+                  fontSize: 40,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: CreateAccountScreenText.dontReceiveOtp,
-                  style: TextStyle(
-                    color: AppColors.textColorSubtitles,
-                    fontSize: 13,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: CreateAccountScreenText.resendCode,
-                      style: TextStyle(
-                        color: AppColors.secondary,
+              const SizedBox(height: 20),
+              _isLoading
+                  ? TextHighted(
+                      text:
+                          '${CreateAccountScreenText.verifyCodeWelcomeText} \n $_email',
+                      fontSize: 17,
+                      highlightColor: AppColors.secondary,
+                      normalTextColor: AppColors.textColorSubtitles,
+                      textToHighlight: [_email],
+                      textAlign: TextAlign.center,
+                    )
+                  : const Text(''),
+              const SizedBox(height: 80),
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 0, horizontal: screenWidth * .1),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextFormField(
+                            focusNode: _otp1FocusNode,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                _moveToNextField(
+                                    currentFocus: _otp1FocusNode,
+                                    nextFocus: _otp2FocusNode);
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: '-',
+                              hintStyle: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(
+                                  color: AppColors.textColorSubtitles
+                                      .withOpacity(.20),
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          _resendOtp();
-                        },
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextFormField(
+                            focusNode: _otp2FocusNode,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                _moveToNextField(
+                                    currentFocus: _otp2FocusNode,
+                                    nextFocus: _otp3FocusNode);
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: '-',
+                              hintStyle: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(
+                                  color: AppColors.textColorSubtitles
+                                      .withOpacity(.20),
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextFormField(
+                            focusNode: _otp3FocusNode,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                _moveToNextField(
+                                    currentFocus: _otp3FocusNode,
+                                    nextFocus: _otp4FocusNode);
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: '-',
+                              hintStyle: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(
+                                  color: AppColors.textColorSubtitles
+                                      .withOpacity(.20),
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextFormField(
+                            focusNode: _otp4FocusNode,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                _otp4FocusNode.unfocus();
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: '-',
+                              hintStyle: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(
+                                  color: AppColors.textColorSubtitles
+                                      .withOpacity(.20),
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 80),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    text: CreateAccountScreenText.dontReceiveOtp,
+                    style: TextStyle(
+                      color: AppColors.textColorSubtitles,
+                      fontSize: 13,
                     ),
-                  ]),
-            ),
-          ],
+                    children: [
+                      TextSpan(
+                        text: CreateAccountScreenText.resendCode,
+                        style: TextStyle(
+                            color: AppColors.secondary,
+                            decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            _resendOtp();
+                          },
+                      ),
+                    ]),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.secondary,
+                    ),
+                    child: Text(
+                      ButtonText.verify,
+                      style: TextStyle(color: AppColors.primary),
+                    ),
+                  ))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
