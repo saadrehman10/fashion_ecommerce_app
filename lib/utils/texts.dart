@@ -164,6 +164,14 @@ class TextfieldText {
   static const String newPasswordHint = 'Enter your new password';
   static const String newPasswordValidationOne =
       'Please enter your new password';
+  static const String newPasswordValidationTwo =
+      'Password must be at least 8 characters long';
+  static const String newPasswordValidationThree =
+      'Password must contain at least one uppercase letter';
+  static const String newPasswordValidationFour =
+      'Password must contain at least one number';
+  static const String newPasswordValidationFive =
+      'Password must contain at least one special character';
 
   static const String confirmPasswordHeading = 'Confirm Password';
   static const String confirmPasswordHint = 'Enter your new password again';

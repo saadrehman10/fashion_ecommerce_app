@@ -26,6 +26,13 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   void _newPasswordFunction() {}
 
   @override
+  void dispose() {
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
@@ -76,17 +83,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         if (value == null || value.isEmpty) {
                           return TextfieldText.newPasswordValidationOne;
                         } else {
-                          if (!uppercaseRegExp.hasMatch(value)) {
-                            return 'Password must contain at least one uppercase letter';
+                          if (value.length < 8) {
+                            return TextfieldText.newPasswordValidationTwo;
                           }
-                          if (!specialCharRegExp.hasMatch(value)) {
-                            return 'Password must contain at least one special character';
+                          if (!uppercaseRegExp.hasMatch(value)) {
+                            return TextfieldText.newPasswordValidationThree;
                           }
                           if (!numberRegExp.hasMatch(value)) {
-                            return 'Password must contain at least one number';
+                            return TextfieldText.newPasswordValidationFour;
                           }
-                          if (value.length < 8) {
-                            return 'Password must be at least 8 characters long';
+                          if (!specialCharRegExp.hasMatch(value)) {
+                            return TextfieldText.newPasswordValidationFive;
                           }
                         }
 
