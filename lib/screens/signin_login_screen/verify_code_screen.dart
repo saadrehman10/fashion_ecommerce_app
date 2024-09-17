@@ -45,6 +45,13 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
   void _resendOtp() {}
 
+  void _verifyOtp({
+    required String opt1,
+    required String opt2,
+    required String opt3,
+    required String opt4,
+  }) {}
+
   @override
   void initState() {
     super.initState();
@@ -63,7 +70,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     _opt3Controller.dispose();
     _opt4Controller.dispose();
 
-    super.dispose;
+    super.dispose();
   }
 
   @override
@@ -321,7 +328,13 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                           backgroundColor: AppColors.secondary,
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            _verifyOtp(
+                                opt1: _opt1Controller.text,
+                                opt2: _opt2Controller.text,
+                                opt3: _opt3Controller.text,
+                                opt4: _opt4Controller.text);
+                          }
                         },
                         child: Text(
                           ButtonText.verify,
