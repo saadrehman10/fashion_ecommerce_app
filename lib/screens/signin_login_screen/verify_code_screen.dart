@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/text_highlited.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +44,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
+
+  void _resendOtp() {}
 
   @override
   Widget build(BuildContext context) {
@@ -229,6 +232,28 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   ],
                 ),
               ),
+            ),
+            const SizedBox(height: 20),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                  text: CreateAccountScreenText.dontReceiveOtp,
+                  style: TextStyle(
+                    color: AppColors.textColorSubtitles,
+                    fontSize: 13,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: CreateAccountScreenText.resendCode,
+                      style: TextStyle(
+                        color: AppColors.secondary,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          _resendOtp();
+                        },
+                    ),
+                  ]),
             ),
           ],
         ),

@@ -59,7 +59,7 @@ class CreateAccountScreenText {
   static const String verifyCodeWelcomeText =
       'Please enter the code we just sent to email';
   static const String dontReceiveOtp = 'Didn\'t receive OTP?';
-  static const String resendCode = 'Resend Code';
+  static const String resendCode = '\nResend Code';
 }
 
 class HomeScreenText {
