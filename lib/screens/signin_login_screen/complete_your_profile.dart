@@ -3,6 +3,7 @@ import 'package:fashion_ecommerce_app/models/countries.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
+import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,14 +19,15 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _phoneNoController = TextEditingController();
 
+  bool _isLoading = false;
+  ImageProvider? _receiveSelectedImage;
+
   CountryCode _dropDownValue =
       const CountryCode(countryName: 'Pakistan', countryCode: '+92');
-
   late List<CountryCode> _dropdownItemValues;
 
   String _genderDropdownValue = 'Gender';
   final List<String> _genderList = ['Gender', 'Male', 'Female', 'Others'];
-  bool _isLoading = false;
 
   Future<void> _countryCodeData() async {
     String jsonString =
@@ -35,6 +37,12 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
         (index) => CountryCode.formJson(jsonResponse[index]));
     setState(() {
       _isLoading = true;
+    });
+  }
+
+  void _imgReceiver(ImageProvider? img) {
+    setState(() {
+      _receiveSelectedImage = img;
     });
   }
 
@@ -76,12 +84,8 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                       fontSize: 20,
                     )),
                 const SizedBox(height: 40),
-                GestureDetector(
-                  onTap: () {
-                    debugPrint('ON working here');
-                  },
-                  child: Center(
-                    child: Stack(
+                ProfilePicker(
+                    widget: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
                         CircleAvatar(
@@ -92,9 +96,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                               size: 50, color: Colors.grey),
                         ),
                         IconButton(
-                          onPressed: () {
-                            debugPrint('ON working here');
-                          },
+                          onPressed: () {},
                           style: IconButton.styleFrom(
                               padding: const EdgeInsets.all(10),
                               backgroundColor: AppColors.secondary),
@@ -106,8 +108,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                         )
                       ],
                     ),
-                  ),
-                ),
+                    imgReturnFunction: _imgReceiver),
                 const SizedBox(height: 30),
                 Form(
                   key: _formKey,

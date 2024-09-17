@@ -62,9 +62,7 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ProfilePicker(),
-                ],
+                children: [],
               ),
               const SizedBox(height: 20),
               Form(
