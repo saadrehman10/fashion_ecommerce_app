@@ -14,9 +14,10 @@ class CompleteYourProfile extends StatefulWidget {
 }
 
 class _CompleteYourProfileState extends State<CompleteYourProfile> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _phoneNoController = TextEditingController();
   String _dropDownValue = '+92';
-  final List<String> _dropdownItemValues = ['+92', '+93', '94', '95'];
+  final List<String> _dropdownItemValues = ['+92', '+93', '+94', '+95'];
 
   @override
   void dispose() {
@@ -82,34 +83,42 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                CustomTextFromFelid(
-                  controller: _phoneNoController,
-                  labelText: 'Phone',
-                  hintText: '123456789',
-                  prefix: DropdownButton<String>(
-                    value: _dropDownValue,
-                    items: _dropdownItemValues
-                        .map(
-                          (e) => DropdownMenuItem<String>(
-                            value: e, // Set the value for each DropdownMenuItem
-                            child: Text(e),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _dropDownValue =
-                            value!; // Update the value when changed
-                      });
-                    },
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      CustomTextFromFelid(
+                        controller: _phoneNoController,
+                        labelText: 'Phone',
+                        hintText: '123456789',
+                        prefix: DropdownButton<String>(
+                          padding: const EdgeInsets.only(left: 20),
+                          underline: const SizedBox.shrink(),
+                          value: _dropDownValue,
+                          items: _dropdownItemValues
+                              .map(
+                                (e) => DropdownMenuItem<String>(
+                                  value: e,
+                                  child: Text(e),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _dropDownValue = value!;
+                            });
+                          },
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a phone number';
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.phone,
+                      ),
+                    ],
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a phone number';
-                    }
-                    return null;
-                  },
-                  keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 20),
               ],

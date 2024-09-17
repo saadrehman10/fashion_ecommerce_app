@@ -32,7 +32,7 @@ class CustomTextFromFelid extends StatelessWidget {
       autofocus: false,
       style: TextStyle(color: AppColors.tertiary),
       decoration: InputDecoration(
-        prefix: prefix,
+        prefixIcon: prefix,
         suffixIcon: suffixIcon,
         fillColor: AppColors.tertiary,
         border: const OutlineInputBorder(
