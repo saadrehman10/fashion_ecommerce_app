@@ -1,4 +1,4 @@
-import 'package:fashion_ecommerce_app/widgets/profile_picker.dart';
+import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_image_crop/custom_image_crop.dart';
 

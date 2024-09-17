@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:fashion_ecommerce_app/widgets/crop_image.dart';
+import 'package:fashion_ecommerce_app/widgets/profile_picker/crop_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
