@@ -89,6 +89,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                       alignment: Alignment.bottomRight,
                       children: [
                         CircleAvatar(
+                          backgroundImage: _receiveSelectedImage,
                           radius: 70,
                           backgroundColor: Colors.grey[200],
                           // ignore: deprecated_member_use
