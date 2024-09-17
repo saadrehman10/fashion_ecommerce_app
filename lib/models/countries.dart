@@ -21,7 +21,7 @@ class CountryCode {
 
   factory CountryCode.formJson(Map<String, dynamic> map) {
     return CountryCode(
-      countryName: map['code']!,
+      countryName: map['name']!,
       countryCode: map['dial_code']!,
     );
   }
