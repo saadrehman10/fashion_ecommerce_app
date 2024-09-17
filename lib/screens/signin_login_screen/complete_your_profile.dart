@@ -71,7 +71,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                       color: AppColors.textColorSubtitles,
                       fontSize: 20,
                     )),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
                 GestureDetector(
                   onTap: () {
                     debugPrint('ON working here');
@@ -104,7 +104,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -121,6 +121,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                 icon: const Icon(Icons.keyboard_arrow_down),
                                 autofocus: true,
                                 iconSize: 20,
+                                menuMaxHeight: 300,
                                 style: TextStyle(
                                   color: AppColors.tertiary,
                                   fontSize: 16,
@@ -160,6 +161,18 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          color: Colors.red,
+                          child: DropdownButton(
+                            items: [],
+                            onChanged: (value) {},
+                          )),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
