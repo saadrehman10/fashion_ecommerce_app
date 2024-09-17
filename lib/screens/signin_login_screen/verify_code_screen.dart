@@ -18,11 +18,15 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   late String _email;
   bool _isLoading = false;
 
-  // Declare FocusNodes for each OTP field
   final FocusNode _otp1FocusNode = FocusNode();
   final FocusNode _otp2FocusNode = FocusNode();
   final FocusNode _otp3FocusNode = FocusNode();
   final FocusNode _otp4FocusNode = FocusNode();
+
+  final TextEditingController _optValueOne = TextEditingController();
+  final TextEditingController _optValueTwo = TextEditingController();
+  final TextEditingController _optValueThree = TextEditingController();
+  final TextEditingController _optValueFour = TextEditingController();
 
   Future<void> _getEmail() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
@@ -30,12 +34,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     setState(() {
       _isLoading = true;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getEmail();
   }
 
   // Function to move focus to the next field
@@ -46,6 +44,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   }
 
   void _resendOtp() {}
+
+  @override
+  void initState() {
+    super.initState();
+    _getEmail();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +99,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(4),
                           child: TextFormField(
+                            controller: _optValueOne,
                             focusNode: _otp1FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -109,6 +114,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                                     nextFocus: _otp2FocusNode);
                               }
                             },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '';
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                               hintText: '-',
                               hintStyle: TextStyle(
@@ -132,6 +143,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: TextFormField(
+                            controller: _optValueTwo,
                             focusNode: _otp2FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -146,42 +158,11 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                                     nextFocus: _otp3FocusNode);
                               }
                             },
-                            decoration: InputDecoration(
-                              hintText: '-',
-                              hintStyle: TextStyle(
-                                color: AppColors.tertiary,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: BorderSide(
-                                  color: AppColors.textColorSubtitles
-                                      .withOpacity(.20),
-                                  width: 4,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: TextFormField(
-                            focusNode: _otp3FocusNode,
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                            onChanged: (value) {
-                              if (value.length == 1) {
-                                _moveToNextField(
-                                    currentFocus: _otp3FocusNode,
-                                    nextFocus: _otp4FocusNode);
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '';
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
                               hintText: '-',
@@ -206,6 +187,51 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(5),
                           child: TextFormField(
+                            controller: _optValueThree,
+                            focusNode: _otp3FocusNode,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                _moveToNextField(
+                                    currentFocus: _otp3FocusNode,
+                                    nextFocus: _otp4FocusNode);
+                              }
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              hintText: '-',
+                              hintStyle: TextStyle(
+                                color: AppColors.tertiary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: BorderSide(
+                                  color: AppColors.textColorSubtitles
+                                      .withOpacity(.20),
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextFormField(
+                            controller: _optValueFour,
                             focusNode: _otp4FocusNode,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
@@ -217,6 +243,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                               if (value.length == 1) {
                                 _otp4FocusNode.unfocus();
                               }
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '';
+                              }
+                              return null;
                             },
                             decoration: InputDecoration(
                               hintText: '-',
