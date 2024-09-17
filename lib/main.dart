@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.secondary),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const CompleteYourProfile(),
       routes: {
         '/onBoardingScreen': (context) => OnBoardingScreen(),
         '/LayoutPage': (context) => const LayoutPage(),
