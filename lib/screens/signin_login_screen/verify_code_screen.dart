@@ -50,6 +50,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    if (screenHeight < screenWidth) {
+      screenWidth *= 4;
+    }
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -77,17 +83,17 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       textAlign: TextAlign.center,
                     )
                   : const Text(''),
-              const SizedBox(height: 80),
+              const SizedBox(height: 70),
               Form(
                 key: _formKey,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      vertical: 0, horizontal: screenWidth * .1),
+                      vertical: 0, horizontal: screenWidth * .03),
                   child: Row(
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(4),
                           child: TextFormField(
                             focusNode: _otp1FocusNode,
                             textAlign: TextAlign.center,
@@ -235,7 +241,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 70),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -261,16 +267,23 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               Row(
                 children: [
                   Expanded(
-                      child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondary,
-                    ),
-                    child: Text(
-                      ButtonText.verify,
-                      style: TextStyle(color: AppColors.primary),
-                    ),
-                  ))
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 0),
+                          backgroundColor: AppColors.secondary,
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {}
+                        },
+                        child: Text(
+                          ButtonText.verify,
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 20,
+                          ),
+                        )),
+                  ),
                 ],
               ),
             ],
