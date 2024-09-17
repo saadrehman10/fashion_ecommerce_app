@@ -19,6 +19,8 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
   String _dropDownValue = '+92';
   final List<String> _dropdownItemValues = ['+92', '+93', '+94', '+95'];
 
+  Future<void> _countryCodeData() async {}
+
   @override
   void dispose() {
     _phoneNoController.dispose();
@@ -94,6 +96,18 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                         prefix: DropdownButton<String>(
                           padding: const EdgeInsets.only(left: 20),
                           underline: const SizedBox.shrink(),
+                          dropdownColor: AppColors.background,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          autofocus: true,
+                          iconSize: 20,
+                          style: TextStyle(
+                            color: AppColors.tertiary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          iconEnabledColor: AppColors.secondary,
+                          borderRadius: BorderRadius.circular(20),
+                          alignment: Alignment.bottomRight,
                           value: _dropDownValue,
                           items: _dropdownItemValues
                               .map(
