@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         '/LayoutPage': (context) => const LayoutPage(),
         '/SignInScreen': (context) => const SignInScreen(),
         '/CreateAccountScreen': (context) => const CreateAccountScreen(),
-        '/VerifyCodeScreen': (context) => const VerifyCodeScreen(),
+        '/VerifyCodeScreen': (context) =>  VerifyCodeScreen(),
       },
     );
   }
