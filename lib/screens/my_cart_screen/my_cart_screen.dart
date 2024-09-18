@@ -162,7 +162,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 20,
-                                                        vertical: 0),
+                                                        vertical: 10),
                                                 child: Row(
                                                   children: [
                                                     Expanded(
@@ -176,13 +176,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .symmetric(
-                                                                  vertical: 20),
+                                                                  vertical: 15),
                                                           backgroundColor:
                                                               AppColors
                                                                   .background,
                                                         ),
                                                         child: Text(
-                                                            ButtonText.cenacle,
+                                                            ButtonText.cancel,
                                                             style: TextStyle(
                                                               color: AppColors
                                                                   .secondary,
@@ -202,7 +202,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .symmetric(
-                                                                  vertical: 20),
+                                                                  vertical: 15),
                                                           backgroundColor:
                                                               AppColors
                                                                   .secondary,

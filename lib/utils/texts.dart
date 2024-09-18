@@ -125,7 +125,7 @@ class ButtonText {
   static const String newPassword = 'Create New Password';
   static const String completeProfile = 'Complete Profile';
   static const String remove = 'Yes, Remove';
-  static const String cenacle = 'Cenacle';
+  static const String cancel = 'Cancel';
 }
 
 class FutureBuilderText {

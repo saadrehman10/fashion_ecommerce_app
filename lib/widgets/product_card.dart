@@ -53,14 +53,14 @@ class _ProductCardState extends State<ProductCard> {
 
   Future<void> _iconColor() async {
     List<String> temp = await WishListLogic.getWishlist();
-    if (temp.contains(widget.productId.toString())) {
+    if (!temp.contains(widget.productId.toString())) {
       setState(() {
-        _favoriteIcon = Icons.favorite;
+        _favoriteIcon = Icons.favorite_outline;
         _isLoading = true;
       });
     } else {
       setState(() {
-        _favoriteIcon = Icons.favorite_outline;
+        _favoriteIcon = Icons.favorite;
         _isLoading = true;
       });
     }
