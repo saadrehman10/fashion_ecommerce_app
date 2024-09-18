@@ -73,11 +73,11 @@ class _ProfilePickerState extends State<ProfilePicker> {
                       children: [
                         Icon(Icons.image, size: 20, color: AppColors.secondary),
                         const SizedBox(width: 10),
-                        const Text(
+                        Text(
                           'Gallery',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.black,
+                            color: AppColors.tertiary,
                           ),
                         )
                       ],
@@ -94,14 +94,14 @@ class _ProfilePickerState extends State<ProfilePicker> {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.camera,
+                        Icon(FontAwesomeIcons.camera,
                             size: 20, color: AppColors.secondary),
                         const SizedBox(width: 10),
-                        const Text(
+                        Text(
                           'Camera',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.black,
+                            color: AppColors.tertiary,
                           ),
                         )
                       ],
@@ -126,11 +126,11 @@ class _ProfilePickerState extends State<ProfilePicker> {
                           Icon(Icons.cancel,
                               size: 20, color: AppColors.secondary),
                           const SizedBox(width: 10),
-                          const Text(
+                          Text(
                             'Remove Profile',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.black,
+                              color: AppColors.tertiary,
                             ),
                           )
                         ],
