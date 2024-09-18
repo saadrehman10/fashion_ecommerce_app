@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,12 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomListTile extends StatefulWidget {
   final String thumbnailUrl, title;
   final num price;
+  final int productId;
 
   const CustomListTile({
     super.key,
     required this.thumbnailUrl,
     required this.title,
     required this.price,
+    required this.productId,
   });
 
   @override
@@ -32,30 +35,44 @@ class _CustomListTileState extends State<CustomListTile> {
           padding: const EdgeInsets.all(20),
           child: Row(
             children: [
-              Container(
-                  height: screenHeight * .12,
-                  width: screenHeight * .12,
-                  decoration: BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.network(
-                    widget.thumbnailUrl,
-                    errorBuilder: (context, error, stackTrace) => Icon(
-                        Icons.error,
-                        size: 25,
-                        color: AppColors.textColorSubtitles),
-                  )),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductScreen(
+                                productId: widget.productId,
+                              )));
+                },
+                child: Container(
+                    height: screenHeight * .12,
+                    width: screenHeight * .12,
+                    decoration: BoxDecoration(
+                      color: AppColors.background,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Image.network(
+                      widget.thumbnailUrl,
+                      errorBuilder: (context, error, stackTrace) => Icon(
+                          Icons.error,
+                          size: 25,
+                          color: AppColors.textColorSubtitles),
+                    )),
+              ),
               const SizedBox(width: 20),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      color: AppColors.tertiary,
-                      fontSize: 16,
+                  SizedBox(
+                    width: screenWidth * .5,
+                    child: Text(
+                      widget.title,
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(
+                        color: AppColors.tertiary,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),

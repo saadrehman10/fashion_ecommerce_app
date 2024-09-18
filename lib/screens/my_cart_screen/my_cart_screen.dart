@@ -131,26 +131,98 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     (DismissDirection direction) async {
                                   if (direction ==
                                       DismissDirection.endToStart) {
-                                    return await showDialog<bool>(
+                                    return await showModalBottomSheet<bool>(
                                       context: context,
-                                      builder: (context) => AlertDialog(
-                                        title: const Text('Confirm'),
-                                        content: const Text(
-                                            'Are you sure you want to delete?'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.of(context)
-                                                    .pop(false),
-                                            child: const Text('Cancel'),
+                                      builder: (context) {
+                                        return Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 20),
+                                          height: screenWidth * .75,
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                PopMessages.deleteFromCart,
+                                                style: TextStyle(
+                                                  color: AppColors.tertiary,
+                                                  fontSize: 30,
+                                                ),
+                                              ),
+                                              CustomListTile(
+                                                thumbnailUrl:
+                                                    _filteredData[index]
+                                                        .thumbnailUrl,
+                                                title:
+                                                    _filteredData[index].title!,
+                                                price:
+                                                    _filteredData[index].price!,
+                                                productId:
+                                                    _filteredData[index].id,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20,
+                                                        vertical: 0),
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop(false);
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  vertical: 20),
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .background,
+                                                        ),
+                                                        child: Text(
+                                                            ButtonText.cenacle,
+                                                            style: TextStyle(
+                                                              color: AppColors
+                                                                  .secondary,
+                                                              fontSize: 18,
+                                                            )),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 10),
+                                                    Expanded(
+                                                      child: ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop(true);
+                                                        },
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  vertical: 20),
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .secondary,
+                                                        ),
+                                                        child: Text(
+                                                            ButtonText.remove,
+                                                            style: TextStyle(
+                                                              color: AppColors
+                                                                  .primary,
+                                                              fontSize: 18,
+                                                            )),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.of(context).pop(true),
-                                            child: const Text('Delete'),
-                                          ),
-                                        ],
-                                      ),
+                                        );
+                                      },
                                     );
                                   }
                                   return true;
@@ -181,6 +253,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       _filteredData[index].thumbnailUrl,
                                   title: _filteredData[index].title!,
                                   price: _filteredData[index].price!,
+                                  productId: _filteredData[index].id,
                                 ),
                               );
                             }),
@@ -341,3 +414,25 @@ class _MyCartScreenState extends State<MyCartScreen> {
     );
   }
 }
+
+// return await showDialog<bool>(
+//                                       context: context,
+//                                       builder: (context) => AlertDialog(
+//                                         title: const Text('Confirm'),
+//                                         content: const Text(
+//                                             'Are you sure you want to delete?'),
+//                                         actions: [
+//                                           TextButton(
+//                                             onPressed: () =>
+//                                                 Navigator.of(context)
+//                                                     .pop(false),
+//                                             child: const Text('Cancel'),
+//                                           ),
+//                                           TextButton(
+//                                             onPressed: () =>
+//                                                 Navigator.of(context).pop(true),
+//                                             child: const Text('Delete'),
+//                                           ),
+//                                         ],
+//                                       ),
+//                                     );

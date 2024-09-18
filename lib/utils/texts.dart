@@ -124,6 +124,8 @@ class ButtonText {
   static const String verify = 'Verify';
   static const String newPassword = 'Create New Password';
   static const String completeProfile = 'Complete Profile';
+  static const String remove = 'Yes, Remove';
+  static const String cenacle = 'Cenacle';
 }
 
 class FutureBuilderText {
@@ -138,6 +140,7 @@ class PopMessages {
   static const String itemExistCart = 'Item already exist';
   static const String addItemCart = 'Item added to Cart';
   static const String removedItemCart = 'Item removed from Cart';
+  static const String deleteFromCart = 'Remove from Cart?';
   //login & singup
   static const String loginSuccessful = 'Login Successful';
   //Error
