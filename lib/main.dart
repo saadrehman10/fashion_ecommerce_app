@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/VerifyCodeScreen': (context) => const VerifyCodeScreen(),
         '/NewPasswordScreen': (context) => const NewPasswordScreen(),
         '/CompleteYourProfile': (context) => const CompleteYourProfile(),
+        '/SplashScreen': (context) => const SplashScreen(),
       },
     );
   }
