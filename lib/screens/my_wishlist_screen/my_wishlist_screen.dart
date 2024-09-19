@@ -59,7 +59,7 @@ class _MyWishlistScreenState extends State<MyWishlistScreen> {
                         CircularProgressIndicator(
                           strokeAlign: 3,
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(height: 15),
                         Text('Loading Wishlist ... '),
                       ],
                     ),

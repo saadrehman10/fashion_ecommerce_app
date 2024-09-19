@@ -4,6 +4,7 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProductCard extends StatefulWidget {
   final String thumbnailUrl, title;
@@ -55,12 +56,12 @@ class _ProductCardState extends State<ProductCard> {
     List<String> temp = await WishListLogic.getWishlist();
     if (!temp.contains(widget.productId.toString())) {
       setState(() {
-        _favoriteIcon = Icons.favorite_outline;
+        _favoriteIcon = Iconsax.heart;
         _isLoading = true;
       });
     } else {
       setState(() {
-        _favoriteIcon = Icons.favorite;
+        _favoriteIcon = Iconsax.heart5;
         _isLoading = true;
       });
     }
@@ -132,7 +133,7 @@ class _ProductCardState extends State<ProductCard> {
                                     backgroundColor:
                                         Colors.white.withOpacity(.8)),
                                 icon: Icon(_favoriteIcon,
-                                    size: 25, color: AppColors.secondary)),
+                                    size: 24, color: AppColors.secondary)),
                           ],
                         ),
                       ),
