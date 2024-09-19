@@ -1,12 +1,12 @@
-import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:custom_image_crop/custom_image_crop.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  const EditProfile({super.key});
 
   @override
-  _EditProfileState createState() => _EditProfileState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
