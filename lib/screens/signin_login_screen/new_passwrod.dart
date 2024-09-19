@@ -2,7 +2,7 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
@@ -76,10 +76,10 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                           });
                         },
                         icon: _obscureTextNewPassword
-                            ? Icon(FontAwesomeIcons.eye,
-                                size: 15, color: AppColors.secondary)
-                            : Icon(FontAwesomeIcons.eyeSlash,
-                                size: 15, color: AppColors.secondary),
+                            ? Icon(Iconsax.eye,
+                                size: 23, color: AppColors.secondary)
+                            : Icon(Iconsax.eye_slash,
+                                size: 23, color: AppColors.secondary),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -117,10 +117,10 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                           });
                         },
                         icon: _obscureTextConfirmPassword
-                            ? Icon(FontAwesomeIcons.eye,
-                                size: 15, color: AppColors.secondary)
-                            : Icon(FontAwesomeIcons.eyeSlash,
-                                size: 15, color: AppColors.secondary),
+                            ? Icon(Iconsax.eye,
+                                size: 23, color: AppColors.secondary)
+                            : Icon(Iconsax.eye_slash,
+                                size: 23, color: AppColors.secondary),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {

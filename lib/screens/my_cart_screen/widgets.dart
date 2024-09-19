@@ -1,7 +1,7 @@
 import 'package:fashion_ecommerce_app/screens/product_screen/product_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CustomListTile extends StatefulWidget {
   final String thumbnailUrl, title;
@@ -117,7 +117,7 @@ class _CustomListTileState extends State<CustomListTile> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: const Center(
-                                  child: Icon(FontAwesomeIcons.minus,
+                                  child: Icon(Iconsax.minus,
                                       color: Colors.black, size: 13),
                                 ),
                               ),

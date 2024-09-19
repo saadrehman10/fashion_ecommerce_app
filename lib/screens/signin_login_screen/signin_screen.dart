@@ -3,9 +3,9 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -105,10 +105,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             });
                           },
                           icon: _obscureText
-                              ? Icon(FontAwesomeIcons.eye,
-                                  size: 15, color: AppColors.secondary)
-                              : Icon(FontAwesomeIcons.eyeSlash,
-                                  size: 15, color: AppColors.secondary),
+                              ? Icon(Iconsax.eye,
+                                  size: 23, color: AppColors.secondary)
+                              : Icon(Iconsax.eye_slash,
+                                  size: 23, color: AppColors.secondary),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {

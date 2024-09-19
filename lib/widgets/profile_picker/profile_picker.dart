@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/widgets/profile_picker/crop_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfilePicker extends StatefulWidget {
@@ -94,7 +94,7 @@ class _ProfilePickerState extends State<ProfilePicker> {
                     ),
                     child: Row(
                       children: [
-                        Icon(FontAwesomeIcons.camera,
+                        Icon(Iconsax.camera5,
                             size: 20, color: AppColors.secondary),
                         const SizedBox(width: 10),
                         Text(
@@ -165,9 +165,7 @@ class _ProfilePickerState extends State<ProfilePicker> {
             radius: 70,
             backgroundColor: Colors.grey[200],
             child: _selectedImage == null
-                // ignore: deprecated_member_use
-                ? const Icon(FontAwesomeIcons.userAlt,
-                    size: 50, color: Colors.grey)
+                ? const Icon(Icons.person, size: 80, color: Colors.grey)
                 : null,
           ),
           IconButton(
@@ -177,9 +175,9 @@ class _ProfilePickerState extends State<ProfilePicker> {
             style: IconButton.styleFrom(
                 padding: const EdgeInsets.all(10),
                 backgroundColor: AppColors.secondary),
-            iconSize: 15,
+            iconSize: 20,
             icon: const Icon(
-              FontAwesomeIcons.pen,
+              Icons.edit,
               color: Colors.white,
             ),
           )

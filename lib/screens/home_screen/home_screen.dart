@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         onTap: () => setState(() {
                           _searchFocus.unfocus();
-                          Navigator.pushNamed(context, '/SplashScreen');
+                          Navigator.pushNamed(context, '/SearchScreen');
                         }),
                         onChanged: (text) {},
                         selectionHeightStyle: BoxHeightStyle.max,

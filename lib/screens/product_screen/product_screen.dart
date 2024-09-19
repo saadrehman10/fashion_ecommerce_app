@@ -8,7 +8,7 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProductScreen extends StatefulWidget {
   final int productId;
@@ -462,7 +462,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(FontAwesomeIcons.bagShopping,
+                                  Icon(Iconsax.bag_25,
                                       size: 20, color: AppColors.primary),
                                   const SizedBox(width: 10),
                                   Text(ButtonText.addToCart,
