@@ -6,7 +6,7 @@ import 'package:fashion_ecommerce_app/screens/my_wishlist_screen/my_wishlist_scr
 import 'package:fashion_ecommerce_app/screens/profile_screen/profile_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
@@ -65,7 +65,10 @@ class _LayoutPageState extends State<LayoutPage> {
                           backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(Icons.home,
+                  icon: Icon(
+                      currentWidgetIndex == 0
+                          ? Iconsax.home_25
+                          : Iconsax.home_2,
                       color: currentWidgetIndex == 0
                           ? AppColors.secondary
                           : AppColors.primary),
@@ -77,8 +80,7 @@ class _LayoutPageState extends State<LayoutPage> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(FontAwesomeIcons.bagShopping,
-                      color: Colors.white),
+                  icon: const Icon(Iconsax.bag_2, color: Colors.white),
                   onPressed: () {
                     int index = 1;
                     Navigator.push(
@@ -93,7 +95,8 @@ class _LayoutPageState extends State<LayoutPage> {
                           backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(Icons.favorite,
+                  icon: Icon(
+                      currentWidgetIndex == 2 ? Iconsax.heart5 : Iconsax.heart,
                       color: currentWidgetIndex == 2
                           ? AppColors.secondary
                           : AppColors.primary),
@@ -110,7 +113,10 @@ class _LayoutPageState extends State<LayoutPage> {
                           backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(Icons.chat_bubble,
+                  icon: Icon(
+                      currentWidgetIndex == 3
+                          ? Iconsax.message5
+                          : Iconsax.message4,
                       color: currentWidgetIndex == 3
                           ? AppColors.secondary
                           : AppColors.primary),

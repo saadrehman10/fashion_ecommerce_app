@@ -7,6 +7,7 @@ import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:fashion_ecommerce_app/apis/data.dart';
 
 // ignore: must_be_immutable
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             DropdownMenuItem(
                                 child: Row(
                               children: [
-                                Icon(Icons.location_on,
+                                Icon(Iconsax.location5,
                                     size: 18, color: AppColors.secondary),
                                 const SizedBox(width: 5),
                                 Text(HomeScreenText.dropDownMenuItemOne,
@@ -84,9 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         style: IconButton.styleFrom(
                             backgroundColor: AppColors.textColorSubtitles),
-                        padding: const EdgeInsets.all(10),
-                        icon: Icon(Icons.notifications,
-                            size: 20, color: AppColors.tertiary))
+                        padding: const EdgeInsets.all(5),
+                        icon: Icon(Iconsax.notification_bing5,
+                            size: 27, color: AppColors.tertiary))
                   ],
                 ),
               ),
@@ -122,9 +123,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           hintText: AppTexts.search,
                           hintStyle: TextStyle(
-                              color: AppColors.tertiary, fontSize: 16),
-                          prefixIcon:
-                              Icon(Icons.search, color: AppColors.secondary),
+                              color: AppColors.textColorSubtitles,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400),
+                          prefixIcon: Icon(Iconsax.search_normal_14,
+                              color: AppColors.secondary),
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 strokeAlign: 1,
@@ -140,8 +143,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {},
                     style: IconButton.styleFrom(
                       backgroundColor: AppColors.secondary,
+                      padding: const EdgeInsets.all(10),
                     ),
-                    icon: Icon(Icons.tune, size: 27, color: AppColors.primary),
+                    icon: Icon(Iconsax.setting_4,
+                        size: 25, color: AppColors.primary),
                   ),
                 ],
               ),
