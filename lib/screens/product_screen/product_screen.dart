@@ -32,12 +32,12 @@ class _ProductScreenState extends State<ProductScreen> {
     List<String> temp = await WishListLogic.getWishlist();
     if (temp.contains(widget.productId.toString())) {
       setState(() {
-        _favoriteIcon = Icons.favorite;
+        _favoriteIcon = Iconsax.heart5;
         _isLoading = true;
       });
     } else {
       setState(() {
-        _favoriteIcon = Icons.favorite_outline;
+        _favoriteIcon = Iconsax.heart;
         _isLoading = true;
       });
     }

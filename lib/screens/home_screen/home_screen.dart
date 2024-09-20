@@ -122,7 +122,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           hintText: AppTexts.search,
-                        
                           hintStyle: TextStyle(
                               color: AppColors.textColorSubtitles,
                               fontSize: 20,
