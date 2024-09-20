@@ -4,8 +4,10 @@ import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  Future<dynamic> thumbnailsApi;
+  SearchScreen({super.key, required this.thumbnailsApi});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -14,6 +16,8 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocus = FocusNode();
+
+  final List<Map<String, dynamic>> filterData = [{}, {}];
 
   @override
   void initState() {
@@ -79,7 +83,16 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            
+            Expanded(
+              child: GridView.builder(
+                itemCount: filterData.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return const Placeholder();
+                },
+              ),
+            )
           ],
         ),
       ),

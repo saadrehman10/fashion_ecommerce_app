@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/screens/category/category.dart';
+import 'package:fashion_ecommerce_app/screens/search_screen/search_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const SizedBox(height: 20),
               Container(
-                padding: const EdgeInsets.only(bottom: 10);
+                padding: const EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,7 +109,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         onTap: () => setState(() {
                           _searchFocus.unfocus();
-                          Navigator.pushNamed(context, '/SearchScreen');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SearchScreen(
+                                  thumbnailsApi: widget.thumbnailsApi),
+                            ),
+                          );
                         }),
                         onChanged: (text) {},
                         selectionHeightStyle: BoxHeightStyle.max,
