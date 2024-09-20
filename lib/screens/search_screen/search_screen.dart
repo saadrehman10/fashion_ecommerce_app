@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -23,10 +24,14 @@ class _SearchScreenState extends State<SearchScreen> {
   List<Thumbnail> _dataHolder = [];
 
   Future<void> _loadData() async {
-    final temp = await widget.thumbnailsApi;
-    _dataHolder = List.generate(
-        temp['limit'], (index) => Thumbnail.formJson(temp['products'][index]));
-    setState(() {});
+    try {
+      final temp = await widget.thumbnailsApi;
+      _dataHolder = List.generate(temp['limit'],
+          (index) => Thumbnail.formJson(temp['products'][index]));
+      setState(() {});
+    } catch (e) {
+      FlutterToast.showToast(message: e.toString());
+    }
   }
 
   void _searchFunction(String enterKeyword) {
