@@ -106,6 +106,10 @@ class ProfileScreenText {
   static const String pageTitle = 'Profile';
   static const String username = 'Saad ur Rehman';
 }
+
+class SearchScreenText {
+  static const String pageTitle = 'Search';
+}
 ///////////////////
 //Widgets texts //
 ///////////////////
