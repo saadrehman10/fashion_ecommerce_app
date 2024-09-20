@@ -30,8 +30,8 @@ final List<dynamic> slider = [
 
 final Map<String, IconData> categoryIcons = {
   'beauty': Icons.face,
-  'fragrances': Icons.face,
-  'furniture': Icons.face,
+  'fragrances': Icons.filter_frames,
+  'furniture': Icons.hotel,
   'groceries': Icons.local_grocery_store,
 };
 

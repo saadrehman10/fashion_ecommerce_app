@@ -116,9 +116,6 @@ class _SearchScreenState extends State<SearchScreen> {
             Expanded(
                 child: GridView.builder(
                     itemCount: _displayFilterData.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    //  physics: NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,

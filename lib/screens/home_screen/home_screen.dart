@@ -377,7 +377,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemCount: snapshot.data['limit'],
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                //  physics: NeverScrollableScrollPhysics(),
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
