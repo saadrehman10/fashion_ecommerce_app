@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +18,20 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocus = FocusNode();
 
-  final List<Map<String, dynamic>> filterData = [{}, {}];
+  List<Thumbnail> _displayFilterData = [];
+  List<Thumbnail> _dataHolder = [];
+
+  Future<void> _loadData() async {
+    final temp = await widget.thumbnailsApi;
+    _dataHolder = List.generate(
+        temp['limit'], (index) => Thumbnail.formJson(temp['products'][index]));
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
+    _loadData();
     _searchFocus.requestFocus();
   }
 
@@ -85,7 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(height: 20),
             Expanded(
               child: GridView.builder(
-                itemCount: filterData.length,
+                itemCount: _displayFilterData.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
