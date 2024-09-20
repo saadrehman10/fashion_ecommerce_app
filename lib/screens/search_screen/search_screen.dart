@@ -18,7 +18,17 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          MyWishListScreenText.pageTitle,
+          style: TextStyle(
+            color: AppColors.tertiary,
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           TextField(
