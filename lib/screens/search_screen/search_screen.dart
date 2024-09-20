@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -80,10 +79,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            // GridView.builder(
-            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //         crossAxisCount: 2),
-            //     itemBuilder: ())
+            
           ],
         ),
       ),
