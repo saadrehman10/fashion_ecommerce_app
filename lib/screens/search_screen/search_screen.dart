@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -26,6 +27,16 @@ class _SearchScreenState extends State<SearchScreen> {
     _dataHolder = List.generate(
         temp['limit'], (index) => Thumbnail.formJson(temp['products'][index]));
     setState(() {});
+  }
+
+  void _searchFunction(String enterKeyword) {
+    if (enterKeyword == '') {
+      _displayFilterData = [];
+    } else {
+      _displayFilterData = _dataHolder.where((index) {
+        return index.title!.toLowerCase().contains(enterKeyword.toLowerCase());
+      }).toList();
+    }
   }
 
   @override
@@ -67,7 +78,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   _searchFocus.unfocus();
                 });
               },
-              onChanged: (text) {},
+              onChanged: (text) {
+                setState(() {
+                  _searchFunction(text);
+                });
+              },
               selectionHeightStyle: BoxHeightStyle.max,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -94,15 +109,26 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: GridView.builder(
-                itemCount: _displayFilterData.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  return const Placeholder();
-                },
-              ),
-            )
+                child: GridView.builder(
+                    itemCount: _displayFilterData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    //  physics: NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ProductCard(
+                        thumbnailUrl: _displayFilterData[index].thumbnailUrl,
+                        rating: _displayFilterData[index].rating!,
+                        title: _displayFilterData[index].title!,
+                        productId: _displayFilterData[index].id,
+                        price: _displayFilterData[index].price!,
+                      );
+                    }))
           ],
         ),
       ),
