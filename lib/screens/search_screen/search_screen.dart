@@ -22,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   List<Thumbnail> _displayFilterData = [];
   List<Thumbnail> _dataHolder = [];
+  bool _showText = false;
 
   Future<void> _loadData() async {
     try {
@@ -37,7 +38,9 @@ class _SearchScreenState extends State<SearchScreen> {
   void _searchFunction(String enterKeyword) {
     if (enterKeyword == '') {
       _displayFilterData = [];
+      _showText = true;
     } else {
+      _showText = false;
       _displayFilterData = _dataHolder.where((index) {
         return index.title!.toLowerCase().contains(enterKeyword.toLowerCase());
       }).toList();
@@ -113,24 +116,35 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            Expanded(
-                child: GridView.builder(
-                    itemCount: _displayFilterData.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
+            _showText
+                ? Expanded(
+                    child: Text(
+                      SearchScreenText.noFound,
+                      style: TextStyle(
+                          color: AppColors.tertiary,
+                          fontSize: 40,
+                          fontWeight: FontWeight.w300),
                     ),
-                    itemBuilder: (context, index) {
-                      return ProductCard(
-                        thumbnailUrl: _displayFilterData[index].thumbnailUrl,
-                        rating: _displayFilterData[index].rating!,
-                        title: _displayFilterData[index].title!,
-                        productId: _displayFilterData[index].id,
-                        price: _displayFilterData[index].price!,
-                      );
-                    }))
+                  )
+                : Expanded(
+                    child: GridView.builder(
+                        itemCount: _displayFilterData.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                        ),
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                            thumbnailUrl:
+                                _displayFilterData[index].thumbnailUrl,
+                            rating: _displayFilterData[index].rating!,
+                            title: _displayFilterData[index].title!,
+                            productId: _displayFilterData[index].id,
+                            price: _displayFilterData[index].price!,
+                          );
+                        }))
           ],
         ),
       ),

@@ -133,7 +133,10 @@ class _LayoutPageState extends State<LayoutPage> {
                           backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(Icons.person,
+                  icon: Icon(
+                      currentWidgetIndex == 4
+                          ? Icons.person
+                          : Icons.person_outline,
                       color: currentWidgetIndex == 4
                           ? AppColors.secondary
                           : AppColors.primary),

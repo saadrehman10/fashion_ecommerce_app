@@ -109,6 +109,7 @@ class ProfileScreenText {
 
 class SearchScreenText {
   static const String pageTitle = 'Search';
+  static const String noFound = 'Nothing Found';
 }
 ///////////////////
 //Widgets texts //
