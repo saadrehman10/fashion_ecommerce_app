@@ -38,12 +38,15 @@ class _SearchScreenState extends State<SearchScreen> {
   void _searchFunction(String enterKeyword) {
     if (enterKeyword == '') {
       _displayFilterData = [];
-      _showText = true;
     } else {
-      _showText = false;
       _displayFilterData = _dataHolder.where((index) {
         return index.title!.toLowerCase().contains(enterKeyword.toLowerCase());
       }).toList();
+      if (_displayFilterData.isEmpty) {
+        _showText = true;
+      } else {
+        _showText = false;
+      }
     }
   }
 
@@ -118,12 +121,14 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(height: 20),
             _showText
                 ? Expanded(
-                    child: Text(
-                      SearchScreenText.noFound,
-                      style: TextStyle(
-                          color: AppColors.tertiary,
-                          fontSize: 40,
-                          fontWeight: FontWeight.w300),
+                    child: Center(
+                      child: Text(
+                        SearchScreenText.noFound,
+                        style: TextStyle(
+                            color: AppColors.tertiary,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w300),
+                      ),
                     ),
                   )
                 : Expanded(
