@@ -15,7 +15,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocus = FocusNode();
-  
+
+  @override
+  void initState() {
+    super.initState();
+    _searchFocus.requestFocus();
+  }
+
+  @override
+  void dispose() {
+    _searchFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +80,10 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: ())
+            // GridView.builder(
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 2),
+            //     itemBuilder: ())
           ],
         ),
       ),
