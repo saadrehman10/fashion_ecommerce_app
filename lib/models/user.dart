@@ -52,4 +52,13 @@ class User {
       age: map['age'],
     );
   }
+
+  factory User.onlyIdAndPassFromJson(Map<String, dynamic> map) {
+    return User.onlyIdAndPass(
+      id: map['id'],
+      email: map['email'],
+      password: map['password'],
+      username: map['username'],
+    );
+  }
 }
