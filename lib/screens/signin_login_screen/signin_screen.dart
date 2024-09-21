@@ -44,7 +44,6 @@ class _SignInScreenState extends State<SignInScreen> {
           backgroundColor: Colors.green,
         ),
       );
-
       Navigator.pushNamedAndRemoveUntil(
           // ignore: use_build_context_synchronously
           context,
