@@ -1,8 +1,10 @@
+import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/widget.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
+import 'package:fashion_ecommerce_app/widgets/flutter_toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -27,21 +29,30 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-  void _loginFunction() async {
-    // ignore: use_build_context_synchronously
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        showCloseIcon: true,
-        closeIconColor: Colors.white,
-        content: Text(PopMessages.loginSuccessful),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.green,
-      ),
-    );
-    setState(() {
+  void _loginFunction({required String email, required String password}) async {
+    bool loginStatus =
+        await LoginValidation.validateUser(email: email, password: password);
+
+    if (loginStatus) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          showCloseIcon: true,
+          closeIconColor: Colors.white,
+          content: Text(PopMessages.loginSuccessful),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.green,
+        ),
+      );
+
       Navigator.pushNamedAndRemoveUntil(
-          context, '/LayoutPage', (route) => false);
-    });
+          // ignore: use_build_context_synchronously
+          context,
+          '/LayoutPage',
+          (route) => false);
+    } else {
+      FlutterToast.showToast(message: PopMessages.loginFailed);
+    }
   }
 
   @override
@@ -144,7 +155,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    _loginFunction();
+                                    _loginFunction(
+                                        email: _emailController.text,
+                                        password: _passwordController.text);
                                   }
                                 },
                                 child: Text(

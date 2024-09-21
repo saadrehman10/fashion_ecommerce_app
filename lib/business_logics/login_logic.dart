@@ -21,7 +21,7 @@ class LoginStatusLogic {
 }
 
 class LoginValidation {
-  Future<bool> validateUser(
+  static Future<bool> validateUser(
       {required String email, required String password}) async {
     final Map<String, dynamic> apiData = await UserApi.getUserData();
     final List<User> userValidationData = List<User>.generate(apiData['limit'],

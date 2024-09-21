@@ -148,6 +148,7 @@ class PopMessages {
   static const String deleteFromCart = 'Remove from Cart?';
   //login & singup
   static const String loginSuccessful = 'Login Successful';
+  static const String loginFailed = 'Your Email and Password don\'t match';
   //Error
   static const String error = 'Error';
   static const String agreeWith =
