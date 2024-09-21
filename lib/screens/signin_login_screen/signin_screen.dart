@@ -6,7 +6,6 @@ import 'package:fashion_ecommerce_app/widgets/custom_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -29,8 +28,6 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _loginFunction() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.setBool('login', true);
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
