@@ -1,5 +1,5 @@
 class User {
-  final String firstName,
+  final String? firstName,
       maidenName,
       lastName,
       email,
@@ -8,7 +8,7 @@ class User {
       password,
       birthDate,
       image;
-  final int age, id;
+  final int? age, id;
 
   const User({
     required this.id,
@@ -23,6 +23,19 @@ class User {
     required this.image,
     required this.age,
   });
+
+  const User.onlyIdAndPass({
+    required this.id,
+    required this.email,
+    required this.password,
+    required this.username,
+  })  : firstName = null,
+        maidenName = null,
+        lastName = null,
+        phone = null,
+        birthDate = null,
+        image = null,
+        age = null;
 
   factory User.fromJson(Map<String, dynamic> map) {
     return User(
@@ -40,4 +53,3 @@ class User {
     );
   }
 }
-
