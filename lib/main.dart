@@ -1,5 +1,4 @@
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
-import 'package:fashion_ecommerce_app/screens/search_screen/search_screen.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/complete_your_profile.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/create_account_screen.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/new_password.dart';

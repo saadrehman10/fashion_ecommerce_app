@@ -19,6 +19,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
   final TextEditingController _phoneNoController = TextEditingController();
 
   bool _isLoading = false;
+  // ignore: unused_field
   ImageProvider? _receiveSelectedImage;
 
   CountryCode _dropDownValue =
