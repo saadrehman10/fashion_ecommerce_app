@@ -35,7 +35,6 @@ class _SignInScreenState extends State<SignInScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => const AlertDialog(
-              
               content: Padding(
                 padding: EdgeInsets.only(top: 8),
                 child: Row(
