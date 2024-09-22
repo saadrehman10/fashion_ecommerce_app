@@ -162,9 +162,10 @@ class TextfieldText {
   static const String nameValidationOne = 'Please enter your name';
 
   //Email
-  static const String emailHeading = 'Email';
-  static const String emailHint = 'Enter your email';
-  static const String emailValidationOne = 'Please enter your email';
+  static const String emailHeading = 'Email or Username';
+  static const String emailHint = 'Enter your email or username';
+  static const String emailValidationOne =
+      'Please enter your email or username';
   static const String emailValidationTwo = 'Please enter a valid email';
 
   //Phone

@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 import 'package:fashion_ecommerce_app/apis/user_api.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStatusLogic {
-  static Future<void> setLoginStatus(bool value, [int? userId]) async {
+  static Future<void> setLoginStatus(bool value, [String? userData]) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setBool('loginStatus', value);
-    sp.setString('UserIdLoggedIn', userId.toString());
+    sp.setString('LoggedInUserData', userData ?? '');
   }
 
   static Future<bool> getLoginStatus() async {
@@ -23,14 +25,14 @@ class LoginStatusLogic {
 }
 
 class LoginValidation {
-  static Future<bool> validateUserGet(
+  static Future<bool> validateUserViaEmail(
       {required String email, required String password}) async {
     final Map<String, dynamic> apiData = await UserApi.getAllUserData();
     final List<User> userValidationData = List<User>.generate(apiData['limit'],
         (index) => User.onlyIdAndPassFromJson(apiData['users'][index]));
     for (var user in userValidationData) {
       if (user.email == email && user.password == password) {
-        await LoginStatusLogic.setLoginStatus(true, user.id);
+        await LoginStatusLogic.setLoginStatus(true);
         return true;
       }
     }
@@ -38,12 +40,14 @@ class LoginValidation {
     return false;
   }
 
-  static Future<bool> validateUserPost(
+  static Future<bool> validateUserViaUserName(
       {required String userName, required String password}) async {
     final Map<String, dynamic>? apiData = await UserApi.authenticateUserLogin(
         userName: userName, password: password);
     debugPrint(apiData.toString());
     if (apiData != null) {
+      final String jsonEncodedData = jsonEncode(apiData);
+      LoginStatusLogic.setLoginStatus(true, jsonEncodedData);
       return true;
     } else {
       return false;
