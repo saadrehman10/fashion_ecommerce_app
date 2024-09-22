@@ -27,4 +27,21 @@ class UserApi {
       throw Exception('The response is not 200');
     }
   }
+
+  static Future<Map<String, dynamic>> authenticateUserLogin(
+      {required String email, required String password}) async {
+    final apiResponse =
+        await http.post(Uri.parse('https://dummyjson.com/auth/login'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              'username': email,
+              'password': password,
+            }));
+    if (apiResponse.statusCode == 200) {
+      final Map<String, dynamic> tempHolder = jsonDecode(apiResponse.body);
+      return tempHolder;
+    } else {
+      throw Exception('Failed to Authenticate User ${apiResponse.statusCode}');
+    }
+  }
 }
