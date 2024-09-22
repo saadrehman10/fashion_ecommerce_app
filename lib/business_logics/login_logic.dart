@@ -40,8 +40,8 @@ class LoginValidation {
 
   static Future<bool> validateUserPost(
       {required String userName, required String password}) async {
-    final apiData =
-        UserApi.authenticateUserLogin(userName: userName, password: password);
+    final Map<String, dynamic>? apiData = await UserApi.authenticateUserLogin(
+        userName: userName, password: password);
     debugPrint(apiData.toString());
     if (apiData != null) {
       return true;
