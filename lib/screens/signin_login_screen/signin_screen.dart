@@ -29,7 +29,23 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-  void _loginFunction({required String email, required String password}) async {
+  Future<void> _loginFunction(
+      {required String email, required String password}) async {
+    showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              content: Padding(
+                padding: EdgeInsets.only(top: 8),
+                child: Row(
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(width: 20),
+                    Text(SignInScreenText.waitSingingIn),
+                  ],
+                ),
+              ),
+            ));
+
     bool loginStatus = await LoginValidation.validateUserViaUserName(
         userName: email, password: password);
 
@@ -39,6 +55,8 @@ class _SignInScreenState extends State<SignInScreen> {
     }
 
     if (loginStatus) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -55,6 +73,8 @@ class _SignInScreenState extends State<SignInScreen> {
           '/LayoutPage',
           (route) => false);
     } else {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
       FlutterToast.showToast(message: PopMessages.loginFailed);
     }
   }
