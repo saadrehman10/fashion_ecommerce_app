@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _checkOpen() async {
     _nextScreenStatus = await AppOpenLogic.checkAppStatus();
-    await AppOpenLogic.setAppStatus(true);
+    await AppOpenLogic.setAppStatus(false);
     setState(() {
       _isLoading = true;
     });

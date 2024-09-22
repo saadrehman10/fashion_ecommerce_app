@@ -3,9 +3,10 @@ import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStatusLogic {
-  static Future<void> setLoginStatus(bool value) async {
+  static Future<void> setLoginStatus(bool value, [int? userId]) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setBool('loginStatus', value);
+    sp.setString('UserIdLoggedIn', userId.toString());
   }
 
   static Future<bool> getLoginStatus() async {
@@ -23,12 +24,12 @@ class LoginStatusLogic {
 class LoginValidation {
   static Future<bool> validateUser(
       {required String email, required String password}) async {
-    final Map<String, dynamic> apiData = await UserApi.getUserData();
+    final Map<String, dynamic> apiData = await UserApi.getAllUserData();
     final List<User> userValidationData = List<User>.generate(apiData['limit'],
         (index) => User.onlyIdAndPassFromJson(apiData['users'][index]));
     for (var user in userValidationData) {
       if (user.email == email && user.password == password) {
-        await LoginStatusLogic.setLoginStatus(true);
+        await LoginStatusLogic.setLoginStatus(true, user.id);
         return true;
       }
     }
