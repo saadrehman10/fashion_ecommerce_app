@@ -31,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void _loginFunction({required String email, required String password}) async {
     bool loginStatus =
-        await LoginValidation.validateUser(email: email, password: password);
+        await LoginValidation.validateUserGet(email: email, password: password);
 
     if (loginStatus) {
       // ignore: use_build_context_synchronously

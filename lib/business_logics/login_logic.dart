@@ -22,7 +22,7 @@ class LoginStatusLogic {
 }
 
 class LoginValidation {
-  static Future<bool> validateUser(
+  static Future<bool> validateUserGet(
       {required String email, required String password}) async {
     final Map<String, dynamic> apiData = await UserApi.getAllUserData();
     final List<User> userValidationData = List<User>.generate(apiData['limit'],
@@ -34,6 +34,11 @@ class LoginValidation {
       }
     }
     await LoginStatusLogic.setLoginStatus(false);
+    return false;
+  }
+
+  static Future<bool> validateUserPost(
+      {required String email, required String password}) async {
     return false;
   }
 }
