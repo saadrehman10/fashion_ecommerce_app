@@ -97,9 +97,6 @@ class _SignInScreenState extends State<SignInScreen> {
                           if (value == null || value.isEmpty) {
                             return TextfieldText.emailValidationOne;
                           }
-                          // if (!value.contains('@') || !value.contains('.')) {
-                          //   return TextfieldText.emailValidationTwo;
-                          // }
                           return null;
                         },
                       ),

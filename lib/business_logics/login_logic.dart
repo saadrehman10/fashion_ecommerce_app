@@ -28,11 +28,15 @@ class LoginValidation {
   static Future<bool> validateUserViaEmail(
       {required String email, required String password}) async {
     final Map<String, dynamic> apiData = await UserApi.getAllUserData();
+
     final List<User> userValidationData = List<User>.generate(apiData['limit'],
         (index) => User.onlyIdAndPassFromJson(apiData['users'][index]));
-    for (var user in userValidationData) {
+
+    for (int i = 0; i < userValidationData.length; i++) {
+      User user = userValidationData[i];
       if (user.email == email && user.password == password) {
-        await LoginStatusLogic.setLoginStatus(true);
+        final String jsonEncodedData = jsonEncode(apiData['users'][i]);
+        await LoginStatusLogic.setLoginStatus(true, jsonEncodedData);
         return true;
       }
     }
