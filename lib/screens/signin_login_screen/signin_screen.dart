@@ -31,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void _loginFunction({required String email, required String password}) async {
     bool loginStatus = await LoginValidation.validateUserPost(
-        email: email, password: password);
+        userName: email, password: password);
 
     if (loginStatus) {
       // ignore: use_build_context_synchronously
@@ -92,9 +92,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           if (value == null || value.isEmpty) {
                             return TextfieldText.emailValidationOne;
                           }
-                          if (!value.contains('@') || !value.contains('.')) {
-                            return TextfieldText.emailValidationTwo;
-                          }
+                          // if (!value.contains('@') || !value.contains('.')) {
+                          //   return TextfieldText.emailValidationTwo;
+                          // }
                           return null;
                         },
                       ),

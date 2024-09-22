@@ -1,4 +1,4 @@
-import 'package:fashion_ecommerce_app/apis/user.dart';
+import 'package:fashion_ecommerce_app/apis/user_api.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,9 +39,9 @@ class LoginValidation {
   }
 
   static Future<bool> validateUserPost(
-      {required String email, required String password}) async {
+      {required String userName, required String password}) async {
     final apiData =
-        UserApi.authenticateUserLogin(email: email, password: password);
+        UserApi.authenticateUserLogin(userName: userName, password: password);
     debugPrint(apiData.toString());
     if (apiData != null) {
       return true;

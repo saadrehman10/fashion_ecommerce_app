@@ -28,18 +28,21 @@ class UserApi {
     }
   }
 
-  static Future<Map<String, dynamic>> authenticateUserLogin(
-      {required String email, required String password}) async {
+  static Future<Map<String, dynamic>?> authenticateUserLogin(
+      {required String userName, required String password}) async {
     final apiResponse =
         await http.post(Uri.parse('https://dummyjson.com/auth/login'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({
-              'username': email,
+              'username': userName,
               'password': password,
+              'expiresInMins': 30,
             }));
     if (apiResponse.statusCode == 200) {
       final Map<String, dynamic> tempHolder = jsonDecode(apiResponse.body);
       return tempHolder;
+    } else if (apiResponse.statusCode == 400) {
+      return null;
     } else {
       throw Exception('Failed to Authenticate User ${apiResponse.statusCode}');
     }
