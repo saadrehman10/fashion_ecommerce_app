@@ -46,7 +46,6 @@ class SignInScreenText {
   static const String welcomeText = 'Hi! Welcome back, you\'ve been missed';
   static const String forgetPassword = 'Forget Password ? ';
   static const String waitSingingIn = 'Please Wait ...';
-
 }
 
 class CreateAccountScreenText {
@@ -107,7 +106,8 @@ class MyWishListScreenText {
 class ProfileScreenText {
   static const String pageTitle = 'Profile';
   static const String username = 'Saad ur Rehman';
-  static const String notLoggedIn = 'You are not Logged in';
+  static const String notLoggedIn = 'You are not signed in.\n';
+  static const String singInNow = 'Sign in now.';
 }
 
 class SearchScreenText {

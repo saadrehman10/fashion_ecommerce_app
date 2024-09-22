@@ -1,9 +1,10 @@
 import 'package:fashion_ecommerce_app/apis/data.dart';
+import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,11 +16,12 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
+
   Future<void> _checkLogin() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
+    _loginStatus = await LoginStatusLogic.getLoginStatus();
     setState(() {
-      _loginStatus = sp.getBool('loginStatus');
       _isLoading = true;
+      LoginStatusLogic.setLoginStatus(false);
     });
   }
 
@@ -31,9 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // double screenWidth = MediaQuery.of(context).size.width;
-    // double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: _isLoading && _loginStatus!
           ? AppBar(
@@ -90,14 +89,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             )
           : Center(
-              child: Text(
-                ProfileScreenText.notLoggedIn,
-                style: TextStyle(
-                    color: AppColors.tertiary,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w300),
-              ),
-            ),
+              child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                  text: ProfileScreenText.notLoggedIn,
+                  style: TextStyle(
+                      color: AppColors.tertiary,
+                      fontSize: 35,
+                      fontWeight: FontWeight.w300),
+                  children: [
+                    TextSpan(
+                      text: ProfileScreenText.singInNow,
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: AppColors.secondary,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w300),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, '/SignInScreen');
+                        },
+                    ),
+                  ]),
+            )),
     );
   }
 }
