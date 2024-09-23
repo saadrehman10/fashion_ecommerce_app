@@ -1,4 +1,3 @@
-import 'package:fashion_ecommerce_app/apis/data.dart';
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
