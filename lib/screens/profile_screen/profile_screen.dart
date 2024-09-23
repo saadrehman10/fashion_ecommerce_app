@@ -18,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
   late User userData;
-
+  late double screenWidth;
   //profile tiles data
   List<Map<String, dynamic>> profilePickerItems = [];
 
@@ -50,10 +50,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
         'icon': Iconsax.logout_1,
         'title': 'Log out',
         'onTapFunction': () async {
-          await LoginStatusLogic.setLoginStatus(false);
-          setState(() {
-            _isLoading = false;
-          });
+          bool? loginBool = await showModalBottomSheet<bool>(
+            context: context,
+            builder: (context) {
+              return Container(
+                padding: const EdgeInsets.all(20),
+                height: screenWidth * .3,
+                width: screenWidth,
+                child: Column(
+                  children: [
+                    Text(
+                      ProfileScreenText.logout,
+                      style: TextStyle(
+                        color: AppColors.tertiary,
+                        fontSize: 30,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 1,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: AppColors.textColorSubtitles.withOpacity(.2)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      ProfileScreenText.confirmLogout,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: AppColors.textColorSubtitles,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Row()
+                  ],
+                ),
+              );
+            },
+          );
+          if (loginBool != null && loginBool) {
+            await LoginStatusLogic.setLoginStatus(false);
+            setState(() {
+              _isLoading = false;
+            });
+          }
         }
       },
     ];
@@ -73,6 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: _isLoading && _loginStatus!
           ? AppBar(

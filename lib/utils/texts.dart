@@ -36,10 +36,7 @@ class OnBoardingScreenText {
   //Highlited Words
   static const List<String> titlePageOneHightedWords = ['Seamless'];
   static const List<String> titlePageTwoHightedWords = ['Fashion', 'Dreams'];
-  static const List<String> titlePageThreeHightedWords = [
-    'Swift',
-    'Reliability'
-  ];
+  static const List<String> titlePageThreeHightedWords = ['Swift', 'Reliability'];
 }
 
 class SignInScreenText {
@@ -57,8 +54,7 @@ class CreateAccountScreenText {
   static const String termsAndCondition = 'Terms & Condition';
   //verification
   static const String verifyCodeTitle = 'Verify Code';
-  static const String verifyCodeWelcomeText =
-      'Please enter the code we just sent to email';
+  static const String verifyCodeWelcomeText = 'Please enter the code we just sent to email';
   static const String dontReceiveOtp = 'Didn\'t receive OTP?';
   static const String resendCode = '\nResend Code';
   //New Password
@@ -108,6 +104,8 @@ class ProfileScreenText {
   static const String username = 'No Name';
   static const String notLoggedIn = 'You are not signed in' '\n';
   static const String singInNow = 'Sign in now';
+  static const String logout = 'Logout';
+  static const String confirmLogout = 'Are you sure you want to logout?';
 }
 
 class SearchScreenText {
@@ -151,12 +149,10 @@ class PopMessages {
   static const String deleteFromCart = 'Remove from Cart?';
   //login & singup
   static const String loginSuccessful = 'Login Successful';
-  static const String loginFailed =
-      'Your Email/Username and Password don\'t match';
+  static const String loginFailed = 'Your Email/Username and Password don\'t match';
   //Error
   static const String error = 'Error';
-  static const String agreeWith =
-      'You need to agree with our terms and conditions';
+  static const String agreeWith = 'You need to agree with our terms and conditions';
 }
 
 class TextfieldText {
@@ -168,8 +164,7 @@ class TextfieldText {
   //Email
   static const String emailHeading = 'Email or Username';
   static const String emailHint = 'Enter your email or username';
-  static const String emailValidationOne =
-      'Please enter your email or username';
+  static const String emailValidationOne = 'Please enter your email or username';
   static const String emailValidationTwo = 'Please enter a valid email';
 
   //Phone
@@ -187,21 +182,17 @@ class TextfieldText {
   ///New & confirm passwords
   static const String newPasswordHeading = 'New Password';
   static const String newPasswordHint = 'Enter your new password';
-  static const String newPasswordValidationOne =
-      'Please enter your new password';
-  static const String newPasswordValidationTwo =
-      'Password must be at least 8 characters long';
+  static const String newPasswordValidationOne = 'Please enter your new password';
+  static const String newPasswordValidationTwo = 'Password must be at least 8 characters long';
   static const String newPasswordValidationThree =
       'Password must contain at least one uppercase letter';
-  static const String newPasswordValidationFour =
-      'Password must contain at least one number';
+  static const String newPasswordValidationFour = 'Password must contain at least one number';
   static const String newPasswordValidationFive =
       'Password must contain at least one special character';
 
   static const String confirmPasswordHeading = 'Confirm Password';
   static const String confirmPasswordHint = 'Enter your new password again';
-  static const String confirmPasswordValidationOne =
-      'Please enter your new password again';
+  static const String confirmPasswordValidationOne = 'Please enter your new password again';
   static const String confirmPasswordValidationTwo = 'Password Don\'t match';
 }
 
