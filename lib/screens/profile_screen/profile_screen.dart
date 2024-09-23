@@ -1,6 +1,6 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
+import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
-import 'package:fashion_ecommerce_app/utils/images.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +15,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
-   late Map<String,dynamic> userData;
+  late User userData;
 
   Future<void> _checkLogin() async {
     _loginStatus = await LoginStatusLogic.getLoginStatus();
+    if (_loginStatus!) {
+      userData = await LoginStatusLogic.getUserData();
+    }
     setState(() {
       _isLoading = true;
     });
@@ -53,10 +56,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(userData.image!),
+                    onBackgroundImageError: (exception, stackTrace) => Icon(
+                        Icons.error,
+                        color: AppColors.textColorSubtitles,
+                        size: 20),
                     radius: 50,
-                    backgroundImage:
-                        AssetImage(AppImages.welcomeScreenImgThree),
                   ),
                   const SizedBox(height: 20),
                   Text(
