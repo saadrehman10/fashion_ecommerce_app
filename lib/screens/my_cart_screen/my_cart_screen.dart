@@ -107,12 +107,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                     ],
                   );
                 } else if (snapshot.hasData) {
-                  _filteredData = List<Thumbnail>.generate(
-                      snapshot.data['limit'],
-                      (index) =>
-                          Thumbnail.formJson(snapshot.data['products'][index]));
-                  _filteredData.removeWhere(
-                      (value) => !_myCartData.contains(value.id.toString()));
+                  _filteredData = List<Thumbnail>.generate(snapshot.data['limit'],
+                      (index) => Thumbnail.formJson(snapshot.data['products'][index]));
+                  _filteredData.removeWhere((value) => !_myCartData.contains(value.id.toString()));
                   debugPrint(_filteredData.toString());
                   return Column(
                     children: [
@@ -127,16 +124,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 dismissThresholds: const {
                                   DismissDirection.endToStart: 0.35,
                                 },
-                                confirmDismiss:
-                                    (DismissDirection direction) async {
-                                  if (direction ==
-                                      DismissDirection.endToStart) {
+                                confirmDismiss: (DismissDirection direction) async {
+                                  if (direction == DismissDirection.endToStart) {
                                     return await showModalBottomSheet<bool>(
                                       context: context,
                                       builder: (context) {
                                         return Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 20),
+                                          padding: const EdgeInsets.symmetric(vertical: 20),
                                           height: screenWidth * .75,
                                           child: Column(
                                             children: [
@@ -148,44 +142,29 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 ),
                                               ),
                                               CustomListTile(
-                                                thumbnailUrl:
-                                                    _filteredData[index]
-                                                        .thumbnailUrl,
-                                                title:
-                                                    _filteredData[index].title!,
-                                                price:
-                                                    _filteredData[index].price!,
-                                                productId:
-                                                    _filteredData[index].id,
+                                                thumbnailUrl: _filteredData[index].thumbnailUrl,
+                                                title: _filteredData[index].title!,
+                                                price: _filteredData[index].price!,
+                                                productId: _filteredData[index].id,
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 20,
-                                                        vertical: 10),
+                                                padding: const EdgeInsets.symmetric(
+                                                    horizontal: 20, vertical: 10),
                                                 child: Row(
                                                   children: [
                                                     Expanded(
                                                       child: ElevatedButton(
                                                         onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop(false);
+                                                          Navigator.of(context).pop(false);
                                                         },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical: 15),
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .background,
+                                                        style: ElevatedButton.styleFrom(
+                                                          padding: const EdgeInsets.symmetric(
+                                                              vertical: 15),
+                                                          backgroundColor: AppColors.background,
                                                         ),
-                                                        child: Text(
-                                                            ButtonText.cancel,
+                                                        child: Text(ButtonText.cancel,
                                                             style: TextStyle(
-                                                              color: AppColors
-                                                                  .secondary,
+                                                              color: AppColors.secondary,
                                                               fontSize: 18,
                                                             )),
                                                       ),
@@ -194,24 +173,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     Expanded(
                                                       child: ElevatedButton(
                                                         onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop(true);
+                                                          Navigator.of(context).pop(true);
                                                         },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical: 15),
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .secondary,
+                                                        style: ElevatedButton.styleFrom(
+                                                          padding: const EdgeInsets.symmetric(
+                                                              vertical: 15),
+                                                          backgroundColor: AppColors.secondary,
                                                         ),
-                                                        child: Text(
-                                                            ButtonText.remove,
+                                                        child: Text(ButtonText.remove,
                                                             style: TextStyle(
-                                                              color: AppColors
-                                                                  .primary,
+                                                              color: AppColors.primary,
                                                               fontSize: 18,
                                                             )),
                                                       ),
@@ -228,10 +199,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   return true;
                                 },
                                 onDismissed: (direction) {
-                                  if (direction ==
-                                      DismissDirection.endToStart) {
-                                    MyCart.deleteMyCart(
-                                        productId: _filteredData[index].id);
+                                  if (direction == DismissDirection.endToStart) {
+                                    MyCart.deleteMyCart(productId: _filteredData[index].id);
                                     setState(() {
                                       dataLoad();
                                     });
@@ -243,14 +212,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   child: const Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Icon(Icons.delete,
-                                          size: 25, color: Colors.red),
+                                      Icon(Icons.delete, size: 25, color: Colors.red),
                                     ],
                                   ),
                                 ),
                                 child: CustomListTile(
-                                  thumbnailUrl:
-                                      _filteredData[index].thumbnailUrl,
+                                  thumbnailUrl: _filteredData[index].thumbnailUrl,
                                   title: _filteredData[index].title!,
                                   price: _filteredData[index].price!,
                                   productId: _filteredData[index].id,
@@ -268,9 +235,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               topRight: Radius.circular(20),
                               topLeft: Radius.circular(20),
                             ),
-                            boxShadow: const [
-                              BoxShadow(color: Colors.grey, blurRadius: 20)
-                            ]),
+                            boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 20)]),
                         child: Column(
                           children: [
                             Row(
@@ -281,17 +246,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                     children: [
                                       TextField(
                                         decoration: InputDecoration(
-                                          hintText: MyCartScreenText
-                                              .hintTextTextFelid,
-                                          hintStyle: TextStyle(
-                                              color:
-                                                  Colors.grey.withOpacity(.6)),
+                                          hintText: MyCartScreenText.hintTextTextFelid,
+                                          hintStyle: TextStyle(color: Colors.grey.withOpacity(.6)),
                                           border: OutlineInputBorder(
                                             borderSide: const BorderSide(
                                               width: 2,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(50),
+                                            borderRadius: BorderRadius.circular(50),
                                           ),
                                         ),
                                       ),
@@ -300,8 +261,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                         style: ElevatedButton.styleFrom(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 14, horizontal: 30),
-                                            backgroundColor:
-                                                AppColors.secondary),
+                                            backgroundColor: AppColors.secondary),
                                         child: Text(ButtonText.apply,
                                             style: TextStyle(
                                               color: AppColors.primary,
@@ -319,13 +279,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               children: [
                                 Text(MyCartScreenText.subTotal,
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
-                                        fontSize: 17)),
-                                Text(
-                                    '\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
-                                    style: TextStyle(
-                                        color: AppColors.tertiary,
-                                        fontSize: 17)),
+                                        color: AppColors.textColorSubtitles, fontSize: 17)),
+                                Text('\$${_subTotal(prices: _filteredData).toStringAsFixed(2)}',
+                                    style: TextStyle(color: AppColors.tertiary, fontSize: 17)),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -334,12 +290,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               children: [
                                 Text(MyCartScreenText.delivery,
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
-                                        fontSize: 17)),
+                                        color: AppColors.textColorSubtitles, fontSize: 17)),
                                 Text('\$${_deliveryPrice().toStringAsFixed(2)}',
-                                    style: TextStyle(
-                                        color: AppColors.tertiary,
-                                        fontSize: 17)),
+                                    style: TextStyle(color: AppColors.tertiary, fontSize: 17)),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -348,12 +301,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               children: [
                                 Text(MyCartScreenText.discount,
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
-                                        fontSize: 17)),
+                                        color: AppColors.textColorSubtitles, fontSize: 17)),
                                 Text('\$${_discountPrice().toStringAsFixed(2)}',
-                                    style: TextStyle(
-                                        color: AppColors.tertiary,
-                                        fontSize: 17)),
+                                    style: TextStyle(color: AppColors.tertiary, fontSize: 17)),
                               ],
                             ),
                             const SizedBox(height: 15),
@@ -362,12 +312,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               children: [
                                 Text(MyCartScreenText.total,
                                     style: TextStyle(
-                                        color: AppColors.textColorSubtitles,
-                                        fontSize: 20)),
+                                        color: AppColors.textColorSubtitles, fontSize: 20)),
                                 Text('\$${_total().toStringAsFixed(2)}',
-                                    style: TextStyle(
-                                        color: AppColors.tertiary,
-                                        fontSize: 20)),
+                                    style: TextStyle(color: AppColors.tertiary, fontSize: 20)),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -377,8 +324,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   child: ElevatedButton(
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 15),
+                                      padding: const EdgeInsets.symmetric(vertical: 15),
                                       backgroundColor: AppColors.secondary,
                                     ),
                                     child: Text(
@@ -405,10 +351,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
           : Center(
               child: Text(
                 MyCartScreenText.emptyCart,
-                style: TextStyle(
-                    color: AppColors.tertiary,
-                    fontSize: 40,
-                    fontWeight: FontWeight.w300),
+                style:
+                    TextStyle(color: AppColors.tertiary, fontSize: 40, fontWeight: FontWeight.w300),
               ),
             ),
     );

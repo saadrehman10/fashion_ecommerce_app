@@ -40,24 +40,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _populateProfilePickerItems() {
     profilePickerItems = [
       {'icon': Iconsax.user, 'title': 'Your profile', 'onTapFunction': () {}},
-      {
-        'icon': Iconsax.card,
-        'title': 'Payment Methods',
-        'onTapFunction': () {}
-      },
+      {'icon': Iconsax.card, 'title': 'Payment Methods', 'onTapFunction': () {}},
       {'icon': Iconsax.note, 'title': 'My Orders', 'onTapFunction': () {}},
       {'icon': Iconsax.setting_2, 'title': 'Settings', 'onTapFunction': () {}},
-      {
-        'icon': Iconsax.info_circle,
-        'title': 'Help Center',
-        'onTapFunction': () {}
-      },
+      {'icon': Iconsax.info_circle, 'title': 'Help Center', 'onTapFunction': () {}},
       {'icon': Iconsax.lock, 'title': 'Privacy Policy', 'onTapFunction': () {}},
-      {
-        'icon': Iconsax.user_add,
-        'title': 'Invite Friends',
-        'onTapFunction': () {}
-      },
+      {'icon': Iconsax.user_add, 'title': 'Invite Friends', 'onTapFunction': () {}},
       {
         'icon': Iconsax.logout_1,
         'title': 'Log out',
@@ -113,8 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      (userData.fullName ?? ProfileScreenText.username)
-                          .capitalize,
+                      (userData.fullName ?? ProfileScreenText.username).capitalize,
                       style: TextStyle(
                         color: AppColors.tertiary,
                         fontSize: 20,
@@ -130,8 +117,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           size: 30,
                         ),
                         title: Text(profilePickerItems[index]['title']),
-                        trailing: Icon(Icons.keyboard_arrow_right,
-                            color: AppColors.secondary, size: 30),
+                        trailing:
+                            Icon(Icons.keyboard_arrow_right, color: AppColors.secondary, size: 30),
                         onTap: profilePickerItems[index]['onTapFunction'],
                       ),
                     ),
@@ -145,16 +132,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               text: TextSpan(
                   text: ProfileScreenText.notLoggedIn,
                   style: TextStyle(
-                      color: AppColors.tertiary,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w300),
+                      color: AppColors.tertiary, fontSize: 35, fontWeight: FontWeight.w300),
                   children: [
                     TextSpan(
                       text: ProfileScreenText.singInNow,
                       style: TextStyle(
-                          color: AppColors.secondary,
-                          fontSize: 35,
-                          fontWeight: FontWeight.w300),
+                          color: AppColors.secondary, fontSize: 35, fontWeight: FontWeight.w300),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.pushNamed(context, '/SignInScreen');
