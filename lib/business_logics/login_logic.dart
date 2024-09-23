@@ -12,6 +12,13 @@ class LoginStatusLogic {
     sp.setString('LoggedInUserData', userData ?? '');
   }
 
+  static Future<User> getUserData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    final String? tempData = sp.getString('LoggedInUserData');
+    final Map<String, dynamic> decodedJson = jsonDecode(tempData!);
+    return User.fromJson(decodedJson);
+  }
+
   static Future<bool> getLoginStatus() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool? loginStatus = sp.getBool('loginStatus');

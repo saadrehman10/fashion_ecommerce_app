@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
+   late Map<String,dynamic> userData;
 
   Future<void> _checkLogin() async {
     _loginStatus = await LoginStatusLogic.getLoginStatus();
