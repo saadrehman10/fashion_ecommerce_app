@@ -80,6 +80,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  
+
                   TextButton(
                     onPressed: () async {
                       await LoginStatusLogic.setLoginStatus(false);
@@ -117,4 +119,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             )),
     );
   }
+
+  
 }
