@@ -27,7 +27,7 @@ class _LayoutPageState extends State<LayoutPage> {
       HomeScreen(thumbnailsApi: apiData),
       MyCartScreen(thumbnailsApi: apiData),
       MyWishlistScreen(thumbnailsApi: apiData),
-      ChatPage(),
+      const ChatPage(),
       const ProfileScreen(),
     ];
   }
@@ -113,18 +113,13 @@ class _LayoutPageState extends State<LayoutPage> {
                           backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(
-                      currentWidgetIndex == 3
-                          ? Iconsax.message5
-                          : Iconsax.message4,
-                      color: currentWidgetIndex == 3
-                          ? AppColors.secondary
-                          : AppColors.primary),
+                  icon: Icon(Iconsax.message4, color: AppColors.primary),
                   onPressed: () {
-                    const int index = 3;
-                    setState(() {
-                      currentWidgetIndex = index;
-                    });
+                    int index = 3;
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => currentWidget[index]));
                   },
                 ),
                 IconButton(

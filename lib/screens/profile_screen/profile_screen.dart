@@ -21,7 +21,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _loginStatus = await LoginStatusLogic.getLoginStatus();
     setState(() {
       _isLoading = true;
-      LoginStatusLogic.setLoginStatus(false);
     });
   }
 
@@ -68,23 +67,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: profilesData.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: Icon(profilesData[index]['leadingIcon'],
-                            size: 25, color: AppColors.secondary),
-                        title: Text(profilesData[index]['title'],
-                            style: TextStyle(
-                              color: AppColors.tertiary,
-                              fontSize: 20,
-                            )),
-                        trailing: Icon(Icons.keyboard_arrow_right,
-                            size: 30, color: AppColors.secondary),
-                      );
+                  TextButton(
+                    onPressed: () async {
+                      await LoginStatusLogic.setLoginStatus(false);
+                      setState(() {
+                        _isLoading = false;
+                      });
                     },
-                  )
+                    child: const Text('logout'),
+                  ),
                 ],
               ),
             )
