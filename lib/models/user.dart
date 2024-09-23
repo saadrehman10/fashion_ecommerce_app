@@ -1,13 +1,5 @@
 class User {
-  final String? firstName,
-      maidenName,
-      lastName,
-      email,
-      phone,
-      username,
-      password,
-      birthDate,
-      image;
+  final String? firstName, maidenName, lastName, email, phone, username, password, birthDate, image;
   final int? age, id;
 
   const User({
@@ -62,6 +54,5 @@ class User {
     );
   }
 
-  String? get fullName =>
-      '${firstName ?? ''} ${maidenName ?? ''} ${lastName ?? ''}';
+  String? get fullName => '${firstName ?? ''} ${maidenName ?? ''} ${lastName ?? ''}';
 }

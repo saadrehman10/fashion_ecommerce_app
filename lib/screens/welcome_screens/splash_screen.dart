@@ -37,8 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ? FlutterSplashScreen.fadeIn(
             duration: const Duration(seconds: 2),
             backgroundColor: AppColors.primary,
-            nextScreen:
-                _nextScreenStatus ? const WelcomeScreen() : const LayoutPage(),
+            nextScreen: _nextScreenStatus ? const WelcomeScreen() : LayoutPage(),
             childWidget: SizedBox(
               child: Image.asset(AppImages.appIcon),
             ),

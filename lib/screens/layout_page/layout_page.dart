@@ -8,8 +8,10 @@ import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class LayoutPage extends StatefulWidget {
-  const LayoutPage({super.key});
+  int? currentLayout;
+  LayoutPage({super.key, this.currentLayout});
 
   @override
   State<LayoutPage> createState() => _LayoutPageState();
@@ -22,6 +24,7 @@ class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
     super.initState();
+    currentWidgetIndex = widget.currentLayout ?? 0;
     final apiData = ProductApi.allProduct();
     currentWidget = [
       HomeScreen(thumbnailsApi: apiData),
@@ -37,8 +40,7 @@ class _LayoutPageState extends State<LayoutPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        SizedBox(
-            height: screenHeight, child: currentWidget[currentWidgetIndex]),
+        SizedBox(height: screenHeight, child: currentWidget[currentWidgetIndex]),
         Positioned(
           bottom: 20,
           left: 20,
@@ -62,16 +64,10 @@ class _LayoutPageState extends State<LayoutPage> {
                 IconButton(
                   style: currentWidgetIndex == 0
                       ? IconButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.all(15))
+                          backgroundColor: AppColors.primary, padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(
-                      currentWidgetIndex == 0
-                          ? Iconsax.home_25
-                          : Iconsax.home_2,
-                      color: currentWidgetIndex == 0
-                          ? AppColors.secondary
-                          : AppColors.primary),
+                  icon: Icon(currentWidgetIndex == 0 ? Iconsax.home_25 : Iconsax.home_2,
+                      color: currentWidgetIndex == 0 ? AppColors.secondary : AppColors.primary),
                   onPressed: () {
                     const int index = 0;
                     setState(() {
@@ -84,22 +80,16 @@ class _LayoutPageState extends State<LayoutPage> {
                   onPressed: () {
                     int index = 1;
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => currentWidget[index]));
+                        context, MaterialPageRoute(builder: (context) => currentWidget[index]));
                   },
                 ),
                 IconButton(
                   style: currentWidgetIndex == 2
                       ? IconButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.all(15))
+                          backgroundColor: AppColors.primary, padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(
-                      currentWidgetIndex == 2 ? Iconsax.heart5 : Iconsax.heart,
-                      color: currentWidgetIndex == 2
-                          ? AppColors.secondary
-                          : AppColors.primary),
+                  icon: Icon(currentWidgetIndex == 2 ? Iconsax.heart5 : Iconsax.heart,
+                      color: currentWidgetIndex == 2 ? AppColors.secondary : AppColors.primary),
                   onPressed: () {
                     const int index = 2;
                     setState(() {
@@ -110,31 +100,22 @@ class _LayoutPageState extends State<LayoutPage> {
                 IconButton(
                   style: currentWidgetIndex == 3
                       ? IconButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.all(15))
+                          backgroundColor: AppColors.primary, padding: const EdgeInsets.all(15))
                       : null,
                   icon: Icon(Iconsax.message4, color: AppColors.primary),
                   onPressed: () {
                     int index = 3;
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => currentWidget[index]));
+                        context, MaterialPageRoute(builder: (context) => currentWidget[index]));
                   },
                 ),
                 IconButton(
                   style: currentWidgetIndex == 4
                       ? IconButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.all(15))
+                          backgroundColor: AppColors.primary, padding: const EdgeInsets.all(15))
                       : null,
-                  icon: Icon(
-                      currentWidgetIndex == 4
-                          ? Icons.person
-                          : Icons.person_outline,
-                      color: currentWidgetIndex == 4
-                          ? AppColors.secondary
-                          : AppColors.primary),
+                  icon: Icon(currentWidgetIndex == 4 ? Icons.person : Icons.person_outline,
+                      color: currentWidgetIndex == 4 ? AppColors.secondary : AppColors.primary),
                   onPressed: () {
                     const int index = 4;
                     setState(() {

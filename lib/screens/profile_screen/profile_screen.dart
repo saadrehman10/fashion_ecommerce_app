@@ -1,6 +1,7 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:fashion_ecommerce_app/screens/profile_screen/widgets.dart';
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
@@ -146,7 +147,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: AppColors.secondary, fontSize: 35, fontWeight: FontWeight.w300),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.pushNamed(context, '/SignInScreen');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignInScreen(
+                                        navigateToSingInScreen: 4,
+                                      )));
                         },
                     ),
                   ]),

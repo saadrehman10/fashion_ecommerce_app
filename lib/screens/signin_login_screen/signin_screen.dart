@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
+import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/widget.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/images.dart';
@@ -9,8 +10,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+  int? navigateToSingInScreen;
+  SignInScreen({super.key, this.navigateToSingInScreen});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -29,8 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-  Future<void> _loginFunction(
-      {required String email, required String password}) async {
+  Future<void> _loginFunction({required String email, required String password}) async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -47,12 +49,11 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ));
 
-    bool loginStatus = await LoginValidation.validateUserViaUserName(
-        userName: email, password: password);
+    bool loginStatus =
+        await LoginValidation.validateUserViaUserName(userName: email, password: password);
 
     if (loginStatus == false) {
-      loginStatus = await LoginValidation.validateUserViaEmail(
-          email: email, password: password);
+      loginStatus = await LoginValidation.validateUserViaEmail(email: email, password: password);
     }
 
     if (loginStatus) {
@@ -68,10 +69,14 @@ class _SignInScreenState extends State<SignInScreen> {
           backgroundColor: Colors.green,
         ),
       );
-      Navigator.pushNamedAndRemoveUntil(
+      Navigator.pushAndRemoveUntil(
           // ignore: use_build_context_synchronously
           context,
-          '/LayoutPage',
+          MaterialPageRoute(
+            builder: (context) => LayoutPage(
+              currentLayout: widget.navigateToSingInScreen,
+            ),
+          ),
           (route) => false);
     } else {
       // ignore: use_build_context_synchronously
@@ -135,10 +140,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             });
                           },
                           icon: _obscureText
-                              ? Icon(Iconsax.eye,
-                                  size: 23, color: AppColors.secondary)
-                              : Icon(Iconsax.eye_slash,
-                                  size: 23, color: AppColors.secondary),
+                              ? Icon(Iconsax.eye, size: 23, color: AppColors.secondary)
+                              : Icon(Iconsax.eye_slash, size: 23, color: AppColors.secondary),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -159,8 +162,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   debugPrint('Forget pass working');
                                 },
                               text: SignInScreenText.forgetPassword,
-                              style: TextStyle(
-                                  fontSize: 13, color: AppColors.secondary),
+                              style: TextStyle(fontSize: 13, color: AppColors.secondary),
                             ),
                           ),
                         ],
@@ -171,8 +173,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           Expanded(
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15, horizontal: 0),
+                                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
                                   backgroundColor: AppColors.secondary,
                                 ),
                                 onPressed: () {
@@ -229,8 +230,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamed(
-                                      context, '/CreateAccountScreen');
+                                  Navigator.pushNamed(context, '/CreateAccountScreen');
                                 },
                             ),
                           ],
