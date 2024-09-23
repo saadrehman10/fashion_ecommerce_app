@@ -162,28 +162,30 @@ class _ProfilePickerState extends State<ProfilePicker> {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          widget.profileImage != null && _selectedImage == null
+            widget.profileImage != null && _selectedImage == null
               ? CircleAvatar(
-                  backgroundImage: NetworkImage(widget.profileImage!),
-                  onBackgroundImageError: (exception, stackTrace) => Icon(
-                      Icons.error,
-                      color: AppColors.textColorSubtitles,
-                      size: 20),
-                  radius: 70,
-                  backgroundColor: Colors.grey[200],
-                )
+                backgroundImage: NetworkImage(widget.profileImage!),
+                onBackgroundImageError: (exception, stackTrace) => Icon(
+                  Icons.error,
+                  color: AppColors.textColorSubtitles,
+                  size: 20),
+                radius: 70,
+                backgroundColor: Colors.grey[200],
+              )
               : CircleAvatar(
-                  backgroundImage: _selectedImage,
-                  onBackgroundImageError: (exception, stackTrace) => Icon(
-                      Icons.error,
-                      color: AppColors.textColorSubtitles,
-                      size: 20),
-                  radius: 70,
-                  backgroundColor: Colors.grey[200],
-                  child: _selectedImage == null || widget.profileImage == null
-                      ? const Icon(Icons.person, size: 80, color: Colors.grey)
-                      : null,
-                ),
+                backgroundImage: _selectedImage,
+                onBackgroundImageError: _selectedImage != null
+                  ? (exception, stackTrace) => Icon(
+                    Icons.error,
+                    color: AppColors.textColorSubtitles,
+                    size: 20)
+                  : null,
+                radius: 70,
+                backgroundColor: Colors.grey[200],
+                child: _selectedImage == null && widget.profileImage == null
+                  ? const Icon(Icons.person, size: 80, color: Colors.grey)
+                  : null,
+              ),
           IconButton(
             onPressed: () {
               _showDialogAlert();
