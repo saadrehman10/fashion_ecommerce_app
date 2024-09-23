@@ -61,4 +61,7 @@ class User {
       username: map['username'],
     );
   }
+
+  String? get fullName =>
+      '${firstName ?? ''} ${maidenName ?? ''} ${lastName ?? ''}';
 }

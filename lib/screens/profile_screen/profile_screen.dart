@@ -18,6 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoading = false;
   late User userData;
 
+  // ignore: unused_field
   ImageProvider? _receiveSelectedImage;
 
   Future<void> _checkLogin() async {
@@ -71,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    (userData.username ?? ProfileScreenText.username)
+                    (userData.fullName ?? ProfileScreenText.username)
                         .capitalize,
                     style: TextStyle(
                       color: AppColors.tertiary,
