@@ -1,3 +1,4 @@
+import 'package:fashion_ecommerce_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/complete_your_profile.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/create_account_screen.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/VerifyCodeScreen': (context) => const VerifyCodeScreen(),
         '/NewPasswordScreen': (context) => const NewPasswordScreen(),
         '/CompleteYourProfile': (context) => const CompleteYourProfile(),
+        '/CheckoutScreen': (context) => const CheckoutScreen(),
       },
     );
   }

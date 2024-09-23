@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/apis/product_api.dart';
+import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart_screen/widgets.dart';
@@ -19,11 +20,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
   late List<Thumbnail> _filteredData;
   late List<String> _myCartData;
   bool _isLoading = false;
+  late bool _isLogin;
 
   double _subtotal = 0, _discount = 0, _delivery = 0;
 
   Future<void> dataLoad() async {
     _myCartData = await MyCart.getCartData();
+    _isLogin = await LoginStatusLogic.getLoginStatus();
     setState(() {
       _isLoading = true;
     });
@@ -322,7 +325,45 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               children: [
                                 Expanded(
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      if (_isLogin) {
+                                        Navigator.pushNamed(context, '/CheckoutScreen');
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                MyCartScreenText.alertDialogTitle,
+                                                style: TextStyle(
+                                                  color: AppColors.tertiary,
+                                                ),
+                                              ),
+                                              content: Text(
+                                                MyCartScreenText.alertDialogContext,
+                                                style: TextStyle(
+                                                  color: AppColors.tertiary,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text(ButtonText.cancel),
+                                                ),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: const Text(ButtonText.singIn))
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       padding: const EdgeInsets.symmetric(vertical: 15),
                                       backgroundColor: AppColors.secondary,

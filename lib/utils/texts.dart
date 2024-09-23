@@ -92,6 +92,8 @@ class MyCartScreenText {
   static const String delivery = 'Delivery';
   static const String discount = 'Discount';
   static const String total = 'Total Cost';
+  static const String alertDialogTitle = 'You are not singed in';
+  static const String alertDialogContext = 'Please sing in to please sing in to proceed.';
 }
 
 class MyWishListScreenText {
