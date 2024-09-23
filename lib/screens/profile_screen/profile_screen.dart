@@ -1,5 +1,6 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
+import 'package:fashion_ecommerce_app/screens/profile_screen/widgets.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
@@ -50,50 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         'icon': Iconsax.logout_1,
         'title': 'Log out',
         'onTapFunction': () async {
-          bool? loginBool = await showModalBottomSheet<bool>(
-            context: context,
-            builder: (context) {
-              return Container(
-                padding: const EdgeInsets.all(20),
-                height: screenWidth * .3,
-                width: screenWidth,
-                child: Column(
-                  children: [
-                    Text(
-                      ProfileScreenText.logout,
-                      style: TextStyle(
-                        color: AppColors.tertiary,
-                        fontSize: 30,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 1,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: AppColors.textColorSubtitles.withOpacity(.2)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      ProfileScreenText.confirmLogout,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: AppColors.textColorSubtitles,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Row()
-                  ],
-                ),
-              );
-            },
-          );
+          bool? loginBool = await CustomWidgets.customBottomModalSheet(
+              context: context, screenWidth: screenWidth);
           if (loginBool != null && loginBool) {
             await LoginStatusLogic.setLoginStatus(false);
             setState(() {
