@@ -112,6 +112,10 @@ class SearchScreenText {
   static const String pageTitle = 'Search';
   static const String noFound = 'Nothing Found';
 }
+
+class CheckoutScreenText {
+  static const pageTitle = 'Checkout';
+}
 ///////////////////
 //Widgets texts //
 ///////////////////

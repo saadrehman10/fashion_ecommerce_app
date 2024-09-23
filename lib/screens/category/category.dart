@@ -14,15 +14,16 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-              category.capitalize,
-              style: TextStyle(
-                color: AppColors.tertiary,
-                fontSize: 21,
-                fontWeight: FontWeight.w300,
-              ),
-            )),
+          centerTitle: true,
+          title: Text(
+            category.capitalize,
+            style: TextStyle(
+              color: AppColors.tertiary,
+              fontSize: 21,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+        ),
         body: FutureBuilder(
           future: CategoryLogic.getCategoryData(category: category),
           builder: (context, snapshot) {
@@ -49,8 +50,7 @@ class CategoryScreen extends StatelessWidget {
                       onPressed: () {
                         setState(() {});
                       },
-                      icon: Icon(Icons.refresh,
-                          size: 20, color: AppColors.secondary),
+                      icon: Icon(Icons.refresh, size: 20, color: AppColors.secondary),
                     ),
                   ),
                 ],
@@ -58,8 +58,7 @@ class CategoryScreen extends StatelessWidget {
             } else if (snapshot.hasData) {
               List<Thumbnail> filteredData = List<Thumbnail>.generate(
                   snapshot.data!['products'].length,
-                  (index) =>
-                      Thumbnail.formJson(snapshot.data!['products'][index]));
+                  (index) => Thumbnail.formJson(snapshot.data!['products'][index]));
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -67,8 +66,7 @@ class CategoryScreen extends StatelessWidget {
                     itemCount: filteredData.length,
                     shrinkWrap: true,
                     //  physics: NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
