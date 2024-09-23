@@ -2,6 +2,7 @@ import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
+import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoading = false;
   late User userData;
 
+  ImageProvider? _receiveSelectedImage;
+
   Future<void> _checkLogin() async {
     _loginStatus = await LoginStatusLogic.getLoginStatus();
     if (_loginStatus!) {
@@ -24,6 +27,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
     setState(() {
       _isLoading = true;
+    });
+  }
+
+  void _imgReceiver(ImageProvider? img) {
+    setState(() {
+      _receiveSelectedImage = img;
     });
   }
 
@@ -56,17 +65,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(userData.image!),
-                    onBackgroundImageError: (exception, stackTrace) => Icon(
-                        Icons.error,
-                        color: AppColors.textColorSubtitles,
-                        size: 20),
-                    radius: 50,
+                  ProfilePicker(
+                    imgReturnFunction: _imgReceiver,
+                    profileImage: userData.image,
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    ProfileScreenText.username,
+                    (userData.username ?? ProfileScreenText.username)
+                        .capitalize,
                     style: TextStyle(
                       color: AppColors.tertiary,
                       fontSize: 20,

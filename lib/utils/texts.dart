@@ -105,7 +105,7 @@ class MyWishListScreenText {
 
 class ProfileScreenText {
   static const String pageTitle = 'Profile';
-  static const String username = 'Saad ur Rehman';
+  static const String username = 'No Name';
   static const String notLoggedIn = 'You are not signed in' '\n';
   static const String singInNow = 'Sign in now';
 }

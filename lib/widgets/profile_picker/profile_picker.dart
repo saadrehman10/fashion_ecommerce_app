@@ -7,7 +7,9 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfilePicker extends StatefulWidget {
   final Function(ImageProvider?) imgReturnFunction;
-  const ProfilePicker({super.key, required this.imgReturnFunction});
+  final String? profileImage;
+  const ProfilePicker(
+      {super.key, required this.imgReturnFunction, this.profileImage});
   @override
   State<ProfilePicker> createState() => _ProfilePickerState();
 }
@@ -160,14 +162,28 @@ class _ProfilePickerState extends State<ProfilePicker> {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          CircleAvatar(
-            backgroundImage: _selectedImage,
-            radius: 70,
-            backgroundColor: Colors.grey[200],
-            child: _selectedImage == null
-                ? const Icon(Icons.person, size: 80, color: Colors.grey)
-                : null,
-          ),
+          widget.profileImage != null && _selectedImage == null
+              ? CircleAvatar(
+                  backgroundImage: NetworkImage(widget.profileImage!),
+                  onBackgroundImageError: (exception, stackTrace) => Icon(
+                      Icons.error,
+                      color: AppColors.textColorSubtitles,
+                      size: 20),
+                  radius: 70,
+                  backgroundColor: Colors.grey[200],
+                )
+              : CircleAvatar(
+                  backgroundImage: _selectedImage,
+                  onBackgroundImageError: (exception, stackTrace) => Icon(
+                      Icons.error,
+                      color: AppColors.textColorSubtitles,
+                      size: 20),
+                  radius: 70,
+                  backgroundColor: Colors.grey[200],
+                  child: _selectedImage == null || widget.profileImage == null
+                      ? const Icon(Icons.person, size: 80, color: Colors.grey)
+                      : null,
+                ),
           IconButton(
             onPressed: () {
               _showDialogAlert();
