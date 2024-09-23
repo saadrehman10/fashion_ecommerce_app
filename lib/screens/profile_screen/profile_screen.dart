@@ -5,6 +5,7 @@ import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:fashion_ecommerce_app/widgets/profile_picker/profile_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -17,21 +18,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
   late User userData;
+
   //profile tiles data
-  List<Map<String, dynamic>> profilePickerItems = [
-    {'icon': Icons.person, 'title': 'Your profile', 'onTapFunction': () {}},
-    {'icon': Icons.payment, 'title': 'Payment Methods', 'onTapFunction': () {}},
-    {'icon': Icons.receipt_long, 'title': 'My Orders', 'onTapFunction': () {}},
-    {'icon': Icons.settings, 'title': 'Settings', 'onTapFunction': () {}},
-    {
-      'icon': Icons.help_outline,
-      'title': 'Help Center',
-      'onTapFunction': () {}
-    },
-    {'icon': Icons.lock, 'title': 'Privacy Policy', 'onTapFunction': () {}},
-    {'icon': Icons.group, 'title': 'Invite Friends', 'onTapFunction': () {}},
-    {'icon': Icons.logout, 'title': 'Log out', 'onTapFunction': () {}},
-  ];
+  List<Map<String, dynamic>> profilePickerItems = [];
 
   // ignore: unused_field
   ImageProvider? _receiveSelectedImage;
@@ -44,6 +33,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _isLoading = true;
     });
+
+    _populateProfilePickerItems();
+  }
+
+  void _populateProfilePickerItems() {
+    profilePickerItems = [
+      {'icon': Iconsax.user, 'title': 'Your profile', 'onTapFunction': () {}},
+      {
+        'icon': Iconsax.card,
+        'title': 'Payment Methods',
+        'onTapFunction': () {}
+      },
+      {'icon': Iconsax.note, 'title': 'My Orders', 'onTapFunction': () {}},
+      {'icon': Iconsax.setting_2, 'title': 'Settings', 'onTapFunction': () {}},
+      {
+        'icon': Iconsax.info_circle,
+        'title': 'Help Center',
+        'onTapFunction': () {}
+      },
+      {'icon': Iconsax.lock, 'title': 'Privacy Policy', 'onTapFunction': () {}},
+      {
+        'icon': Iconsax.user_add,
+        'title': 'Invite Friends',
+        'onTapFunction': () {}
+      },
+      {
+        'icon': Iconsax.logout_1,
+        'title': 'Log out',
+        'onTapFunction': () async {
+          await LoginStatusLogic.setLoginStatus(false);
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      },
+    ];
   }
 
   void _imgReceiver(ImageProvider? img) {
@@ -109,15 +134,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: AppColors.secondary, size: 30),
                         onTap: profilePickerItems[index]['onTapFunction'],
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        await LoginStatusLogic.setLoginStatus(false);
-                        setState(() {
-                          _isLoading = false;
-                        });
-                      },
-                      child: const Text('logout'),
                     ),
                   ],
                 ),

@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (screenHeight < screenWidth) {
       screenWidth *= 1.45;
+      screenHeight *= 3;
     }
     return Scaffold(
       body: SafeArea(
