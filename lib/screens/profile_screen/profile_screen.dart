@@ -98,7 +98,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     TextSpan(
                       text: ProfileScreenText.singInNow,
                       style: TextStyle(
-                          decoration: TextDecoration.underline,
                           color: AppColors.secondary,
                           fontSize: 35,
                           fontWeight: FontWeight.w300),
