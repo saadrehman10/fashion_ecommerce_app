@@ -197,14 +197,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                               style: TextStyle(
                                                 color: AppColors.tertiary,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 25,
+                                                fontSize: 20,
                                               )),
                                           Text(slider[index]['subtitle'],
                                               style: TextStyle(
                                                 color: AppColors
                                                     .textColorSubtitles,
                                                 fontWeight: FontWeight.normal,
-                                                fontSize: 18,
+                                                fontSize: 15,
                                               )),
                                           const SizedBox(height: 10),
                                           ElevatedButton(
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ButtonText.shopNow,
                                                 style: TextStyle(
                                                   color: AppColors.primary,
-                                                  fontSize: 18,
+                                                  fontSize: 16,
                                                 ),
                                               ))
                                         ],
