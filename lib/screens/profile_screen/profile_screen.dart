@@ -17,6 +17,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _loginStatus;
   bool _isLoading = false;
   late User userData;
+  //profile tiles data
+  List<Map<String, dynamic>> profilePickerItems = [
+    {'icon': Icons.person, 'title': 'Your profile', 'onTapFunction': () {}},
+    {'icon': Icons.payment, 'title': 'Payment Methods', 'onTapFunction': () {}},
+    {'icon': Icons.receipt_long, 'title': 'My Orders', 'onTapFunction': () {}},
+    {'icon': Icons.settings, 'title': 'Settings', 'onTapFunction': () {}},
+    {
+      'icon': Icons.help_outline,
+      'title': 'Help Center',
+      'onTapFunction': () {}
+    },
+    {'icon': Icons.lock, 'title': 'Privacy Policy', 'onTapFunction': () {}},
+    {'icon': Icons.group, 'title': 'Invite Friends', 'onTapFunction': () {}},
+    {'icon': Icons.logout, 'title': 'Log out', 'onTapFunction': () {}},
+  ];
 
   // ignore: unused_field
   ImageProvider? _receiveSelectedImage;
@@ -60,38 +75,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
             )
           : null,
       body: _isLoading && _loginStatus!
-          ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ProfilePicker(
-                    imgReturnFunction: _imgReceiver,
-                    profileImage: userData.image,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    (userData.fullName ?? ProfileScreenText.username)
-                        .capitalize,
-                    style: TextStyle(
-                      color: AppColors.tertiary,
-                      fontSize: 20,
+          ? SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ProfilePicker(
+                      imgReturnFunction: _imgReceiver,
+                      profileImage: userData.image,
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  
-
-                  TextButton(
-                    onPressed: () async {
-                      await LoginStatusLogic.setLoginStatus(false);
-                      setState(() {
-                        _isLoading = false;
-                      });
-                    },
-                    child: const Text('logout'),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    Text(
+                      (userData.fullName ?? ProfileScreenText.username)
+                          .capitalize,
+                      style: TextStyle(
+                        color: AppColors.tertiary,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ...List.generate(
+                      profilePickerItems.length,
+                      (index) => ListTile(
+                        leading: Icon(
+                          profilePickerItems[index]['icon'],
+                          color: AppColors.secondary,
+                          size: 30,
+                        ),
+                        title: Text(profilePickerItems[index]['title']),
+                        trailing: Icon(Icons.keyboard_arrow_right,
+                            color: AppColors.secondary, size: 30),
+                        onTap: profilePickerItems[index]['onTapFunction'],
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await LoginStatusLogic.setLoginStatus(false);
+                        setState(() {
+                          _isLoading = false;
+                        });
+                      },
+                      child: const Text('logout'),
+                    ),
+                  ],
+                ),
               ),
             )
           : Center(
@@ -119,6 +148,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
             )),
     );
   }
-
-  
 }
