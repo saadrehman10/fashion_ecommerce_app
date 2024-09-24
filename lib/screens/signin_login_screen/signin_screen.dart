@@ -74,7 +74,13 @@ class _SignInScreenState extends State<SignInScreen> {
           // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => widget.navigateToSingInScreen ?? LayoutPage()),
-          (route) => false);
+          (route) {
+        if (widget.navigateToSingInScreen != null) {
+          return route.settings.name == '/LayoutPage';
+        } else {
+          return false;
+        }
+      });
     } else {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
