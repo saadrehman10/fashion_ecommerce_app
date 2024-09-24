@@ -368,6 +368,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
                                                       if (result == null) {
                                                         setState(() {});
+                                                      } else {
+                                                        setState(() {});
                                                       }
                                                     },
                                                     child: const Text(ButtonText.singIn))
