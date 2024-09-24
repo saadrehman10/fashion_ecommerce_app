@@ -356,15 +356,19 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                   child: const Text(ButtonText.cancel),
                                                 ),
                                                 TextButton(
-                                                    onPressed: () {
+                                                    onPressed: () async {
                                                       Navigator.of(context).pop();
-                                                      Navigator.push(
+                                                      final result = await Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
                                                               builder: (context) => SignInScreen(
                                                                     navigateToSingInScreen:
                                                                         const CheckoutScreen(),
                                                                   )));
+
+                                                      if (result == null) {
+                                                        setState(() {});
+                                                      }
                                                     },
                                                     child: const Text(ButtonText.singIn))
                                               ],

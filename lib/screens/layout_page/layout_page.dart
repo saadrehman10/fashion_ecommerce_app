@@ -77,10 +77,13 @@ class _LayoutPageState extends State<LayoutPage> {
                 ),
                 IconButton(
                   icon: const Icon(Iconsax.bag_2, color: Colors.white),
-                  onPressed: () {
+                  onPressed: () async {
                     int index = 1;
-                    Navigator.push(
+                    final result = await Navigator.push(
                         context, MaterialPageRoute(builder: (context) => currentWidget[index]));
+                    if (result == null) {
+                      setState(() {});
+                    }
                   },
                 ),
                 IconButton(
