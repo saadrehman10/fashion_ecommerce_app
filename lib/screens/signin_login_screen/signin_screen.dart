@@ -1,4 +1,5 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
+import 'package:fashion_ecommerce_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/widget.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
@@ -70,17 +71,32 @@ class _SignInScreenState extends State<SignInScreen> {
           backgroundColor: Colors.green,
         ),
       );
-      Navigator.pushAndRemoveUntil(
+      if (widget.navigateToSingInScreen != null) {
+        if (widget.navigateToSingInScreen is CheckoutScreen) {
+          // If the target is CheckoutScreen, replace the current screen
+          Navigator.pushReplacement(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(builder: (context) => widget.navigateToSingInScreen!),
+          );
+        } else {
+          // For other screens, remove all previous routes
+          Navigator.pushAndRemoveUntil(
+            // ignore: use_build_context_synchronously
+            context,
+            MaterialPageRoute(builder: (context) => widget.navigateToSingInScreen!),
+            (route) => false,
+          );
+        }
+      } else {
+        // If navigateToSingInScreen is null, push to LayoutPage and remove all previous routes
+        Navigator.pushAndRemoveUntil(
           // ignore: use_build_context_synchronously
           context,
-          MaterialPageRoute(builder: (context) => widget.navigateToSingInScreen ?? LayoutPage()),
-          (route) {
-        if (widget.navigateToSingInScreen != null) {
-          return route.settings.name == '/LayoutPage';
-        } else {
-          return false;
-        }
-      });
+          MaterialPageRoute(builder: (context) => LayoutPage()),
+          (route) => false,
+        );
+      }
     } else {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();

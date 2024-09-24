@@ -357,6 +357,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 ),
                                                 TextButton(
                                                     onPressed: () {
+                                                      Navigator.of(context).pop();
                                                       Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
