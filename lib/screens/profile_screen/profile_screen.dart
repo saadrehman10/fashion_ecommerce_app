@@ -1,5 +1,6 @@
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/models/user.dart';
+import 'package:fashion_ecommerce_app/screens/layout_page/layout_page.dart';
 import 'package:fashion_ecommerce_app/screens/profile_screen/widgets.dart';
 import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
@@ -151,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SignInScreen(
-                                        navigateToSingInScreen: 4,
+                                        navigateToSingInScreen: LayoutPage(currentLayout: 4),
                                       )));
                         },
                     ),

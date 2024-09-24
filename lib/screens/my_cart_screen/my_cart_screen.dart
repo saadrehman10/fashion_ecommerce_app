@@ -2,7 +2,9 @@ import 'package:fashion_ecommerce_app/apis/product_api.dart';
 import 'package:fashion_ecommerce_app/business_logics/login_logic.dart';
 import 'package:fashion_ecommerce_app/business_logics/my_cart_logic.dart';
 import 'package:fashion_ecommerce_app/models/thumbnail.dart';
+import 'package:fashion_ecommerce_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:fashion_ecommerce_app/screens/my_cart_screen/widgets.dart';
+import 'package:fashion_ecommerce_app/screens/signin_login_screen/signin_screen.dart';
 import 'package:fashion_ecommerce_app/utils/colors.dart';
 import 'package:fashion_ecommerce_app/utils/texts.dart';
 import 'package:flutter/material.dart';
@@ -355,7 +357,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 ),
                                                 TextButton(
                                                     onPressed: () {
-                                                      Navigator.of(context).pop();
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) => SignInScreen(
+                                                                    navigateToSingInScreen:
+                                                                        const CheckoutScreen(),
+                                                                  )));
                                                     },
                                                     child: const Text(ButtonText.singIn))
                                               ],

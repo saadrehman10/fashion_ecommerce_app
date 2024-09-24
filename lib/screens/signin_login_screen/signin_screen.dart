@@ -12,7 +12,7 @@ import 'package:iconsax/iconsax.dart';
 
 // ignore: must_be_immutable
 class SignInScreen extends StatefulWidget {
-  int? navigateToSingInScreen;
+  Widget? navigateToSingInScreen;
   SignInScreen({super.key, this.navigateToSingInScreen});
 
   @override
@@ -32,7 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-  Future<void> _loginFunction({required String email, required String password}) async {
+  Future<void> _loginFunction(BuildContext context,
+      {required String email, required String password}) async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -72,11 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
       Navigator.pushAndRemoveUntil(
           // ignore: use_build_context_synchronously
           context,
-          MaterialPageRoute(
-            builder: (context) => LayoutPage(
-              currentLayout: widget.navigateToSingInScreen,
-            ),
-          ),
+          MaterialPageRoute(builder: (context) => widget.navigateToSingInScreen ?? LayoutPage()),
           (route) => false);
     } else {
       // ignore: use_build_context_synchronously
@@ -178,7 +175,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    _loginFunction(
+                                    _loginFunction(context,
                                         email: _emailController.text,
                                         password: _passwordController.text);
                                   }
