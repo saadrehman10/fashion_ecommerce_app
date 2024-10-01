@@ -359,13 +359,22 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     onPressed: () async {
                                                       Navigator.of(context).pop();
                                                       final result = await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (context) => SignInScreen(
-                                                                    navigateToSingInScreen:
-                                                                        const CheckoutScreen(),
-                                                                  )));
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => SignInScreen(
+                                                            navigateToSingInScreen:
+                                                                const CheckoutScreen(),
+                                                          ),
+                                                        ),
+                                                      );
 
+
+
+
+
+
+
+                                                      
                                                       if (result == null) {
                                                         setState(() {});
                                                       } else {
