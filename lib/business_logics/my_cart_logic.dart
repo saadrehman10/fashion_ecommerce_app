@@ -40,6 +40,10 @@ class MyCart {
     }
   }
 
+
+
+
+
   static Future<bool> deleteMyCart({required int productId}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final List<String>? myCartData = sp.getStringList('myCart');
