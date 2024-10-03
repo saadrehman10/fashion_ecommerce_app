@@ -145,6 +145,11 @@ class FutureBuilderText {
   static const String loading = ' Please Wait Loading .... ';
 }
 
+
+
+
+
+
 class PopMessages {
   //Wishlist
   static const String addItemWishList = 'Item added to wishlist';
