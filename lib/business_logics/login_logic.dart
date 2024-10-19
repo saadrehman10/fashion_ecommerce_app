@@ -50,13 +50,6 @@ class LoginValidation {
     await LoginStatusLogic.setLoginStatus(false);
     return false;
   }
-
-
-
-
-
-  
-
   static Future<bool> validateUserViaUserName(
       {required String userName, required String password}) async {
     final Map<String, dynamic>? apiData = await UserApi.authenticateUserLogin(
