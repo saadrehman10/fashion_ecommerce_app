@@ -63,5 +63,4 @@ class LoginValidation {
       return false;
     }
   }
-
 }
